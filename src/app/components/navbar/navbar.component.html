@@ -1,23 +1,32 @@
 <mat-toolbar color="primary">
-  <img src="assets/logo.png" alt="logo" style="margin-right: 10px" />
-  {{ appName }}
+  <img src="assets/logo.png" alt="logo" />
+  <a mat-button class="title" routerLink="/home">
+    <span>{{ appName }}</span>
+  </a>
   <span class="spacer"></span>
-  <div fxShow="true" fxHide.gt-sm="true">
+
+  <div fxShow="true" fxHide.lt-sm="true">
+    <a mat-button routerLink="/login">Login</a>
+    <a mat-button routerLink="/signup">Join Us</a>
+    <a mat-button routerLink="/about">About Us</a>
+  </div>
+
+  <div fxShow="true" fxHide.gt-xs="true">
     <button mat-icon-button aria-label="More icon" [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
   </div>
 
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item routerLink="/login">
       <mat-icon>login</mat-icon>
       <span>Login</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item routerLink="/signup">
       <mat-icon>person_add</mat-icon>
       <span>Join Us</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item routerLink="/about">
       <mat-icon>info</mat-icon>
       <span>About Us</span>
     </button>
