@@ -1,0 +1,6 @@
+{
+  "auth": {
+    "emailKey": "LK_EMAIL",
+    "tokenKey": "LK_TOKEN"
+  }
+}
