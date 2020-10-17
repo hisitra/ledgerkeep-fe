@@ -2,9 +2,11 @@
   <img src="assets/logo.png" alt="logo" style="margin-right: 10px" />
   {{ appName }}
   <span class="spacer"></span>
-  <button mat-icon-button aria-label="More icon" [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
+  <div fxShow="true" fxHide.gt-sm="true">
+    <button mat-icon-button aria-label="More icon" [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
 
   <mat-menu #menu="matMenu">
     <button mat-menu-item>
