@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { CanActivate, Router } from "@angular/router";
-import { AuthService } from "../services/auth.service";
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class RouteGuardService implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
@@ -11,7 +11,7 @@ export class RouteGuardService implements CanActivate {
   canActivate(): boolean {
     const isAuthentic = this.authService.isSoftLoggedIn();
     if (!isAuthentic) {
-      this.router.navigate(["/login"]);
+      this.router.navigate(['/login']);
     }
 
     return isAuthentic;
