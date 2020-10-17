@@ -1,3 +1,4 @@
+import { StaticReflector } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -11,6 +12,8 @@ import { theme, validation } from '../../../assets/configs.json';
 export class LoginCardComponent implements OnInit {
   public primaryColor = theme.dpa.primary;
 
+  public isLoading = false;
+
   public loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -22,5 +25,14 @@ export class LoginCardComponent implements OnInit {
 
   ngOnInit() {}
 
-  onFormSubmit(): void {}
+  onFormSubmit(): void {
+    if (this.loginForm.invalid) {
+      return;
+    }
+  }
+
+  setLoading(state: boolean): void {
+    this.isLoading = state;
+    state ? this.loginForm.disable() : this.loginForm.enable();
+  }
 }
