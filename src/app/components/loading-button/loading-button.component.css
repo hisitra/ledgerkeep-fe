@@ -1,0 +1,9 @@
+button {
+  vertical-align: middle;
+  width: 96%;
+  height: 50px;
+}
+
+mat-progress-spinner {
+  margin: 0 auto;
+}

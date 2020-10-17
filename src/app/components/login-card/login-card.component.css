@@ -1,0 +1,20 @@
+.header-card {
+  color: white;
+}
+
+.header-card-title {
+  text-align: center;
+  padding: 1% 0;
+}
+
+form {
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-card-content {
+  margin-top: 4% !important;
+}

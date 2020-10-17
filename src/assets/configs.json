@@ -5,5 +5,15 @@
   },
   "general": {
     "appName": "LedgerKeep"
+  },
+  "theme": {
+    "dpa": {
+      "primary": "#673ab7"
+    }
+  },
+  "validation": {
+    "regex": {
+      "password": "^\\S+$"
+    }
   }
 }
