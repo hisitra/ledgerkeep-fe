@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -22,6 +23,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AboutComponent } from './pages/about/about.component';
 import { LoginCardComponent } from './components/login-card/login-card.component';
 import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
+import { AlertSnackbarComponent } from './components/alert-snackbar/alert-snackbar.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { LoadingButtonComponent } from './components/loading-button/loading-butt
     AboutComponent,
     LoginCardComponent,
     LoadingButtonComponent,
+    AlertSnackbarComponent,
   ],
+  entryComponents: [AlertSnackbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -50,6 +54,7 @@ import { LoadingButtonComponent } from './components/loading-button/loading-butt
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

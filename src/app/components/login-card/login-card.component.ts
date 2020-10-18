@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertService } from 'src/app/services/alert.service';
 
 import { theme, validation } from '../../../assets/configs.json';
 
@@ -15,7 +16,7 @@ export class LoginCardComponent implements OnInit {
 
   public loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private alertService: AlertService) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(validation.regex.password)]],
@@ -24,10 +25,12 @@ export class LoginCardComponent implements OnInit {
 
   ngOnInit() {}
 
-  onFormSubmit(): void {
+  async onFormSubmit(): Promise<void> {
     if (this.loginForm.invalid) {
       return;
     }
+
+    this.alertService.info('Login clicked.');
   }
 
   setLoading(state: boolean): void {

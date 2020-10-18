@@ -15,5 +15,8 @@
     "regex": {
       "password": "^\\S+$"
     }
+  },
+  "ui": {
+    "snackbarDuration": 3000
   }
 }

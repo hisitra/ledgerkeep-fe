@@ -59,7 +59,11 @@
 
       <!-- Actions -->
       <mat-card-actions>
-        <app-loading-button [isLoading]="isLoading" value="OK"></app-loading-button>
+        <app-loading-button
+          [isLoading]="isLoading"
+          value="OK"
+          (click)="onFormSubmit()"
+        ></app-loading-button>
       </mat-card-actions>
     </form>
   </mat-card-content>
