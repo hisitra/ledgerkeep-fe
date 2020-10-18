@@ -27,6 +27,7 @@ import { LoginCardComponent } from './components/login-card/login-card.component
 import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
 import { AlertSnackbarComponent } from './components/alert-snackbar/alert-snackbar.component';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.com
     LoadingButtonComponent,
     AlertSnackbarComponent,
     AlertDialogComponent,
+    ForgotPasswordComponent,
   ],
   entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
   imports: [

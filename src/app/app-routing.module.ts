@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { ProfileRedirectService } from './guards/profile-redirect.service';
 import { AboutComponent } from './pages/about/about.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -18,6 +19,11 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuardService],
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+    canActivate: [ProfileRedirectService],
   },
 ];
 
