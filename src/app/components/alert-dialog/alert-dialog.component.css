@@ -3,6 +3,6 @@
   align-items: center;
 }
 
-.spacer {
-  flex: 1 1 auto;
+.with-icon p {
+  margin-left: 10px;
 }

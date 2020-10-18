@@ -30,7 +30,7 @@ export class LoginCardComponent implements OnInit {
       return;
     }
 
-    this.alertService.info('Login clicked.', true);
+    this.alertService.info('Confirmation mail sent to provided Email.', true);
   }
 
   setLoading(state: boolean): void {
