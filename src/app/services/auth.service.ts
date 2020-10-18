@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import configs from '../../assets/configs.json';
 
@@ -6,7 +7,7 @@ import configs from '../../assets/configs.json';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() {}
+  constructor(private router: Router) {}
 
   isSoftLoggedIn(): boolean {
     return this.getEmail() && this.getToken() && true;
@@ -26,5 +27,12 @@ export class AuthService {
 
   setToken(token: string): void {
     localStorage.setItem(configs.auth.tokenKey, token);
+  }
+
+  logout(): void {
+    localStorage.removeItem(configs.auth.emailKey);
+    localStorage.removeItem(configs.auth.tokenKey);
+
+    this.router.navigate(['/home']);
   }
 }
