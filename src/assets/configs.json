@@ -17,6 +17,7 @@
     }
   },
   "ui": {
-    "snackbarDuration": 3000
+    "snackbarDuration": 3000,
+    "alertDialogWidth": "400px"
   }
 }

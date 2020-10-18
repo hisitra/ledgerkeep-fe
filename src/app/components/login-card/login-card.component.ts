@@ -30,7 +30,7 @@ export class LoginCardComponent implements OnInit {
       return;
     }
 
-    this.alertService.info('Login clicked.');
+    this.alertService.info('Login clicked.', true);
   }
 
   setLoading(state: boolean): void {

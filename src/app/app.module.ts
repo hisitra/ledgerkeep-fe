@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -24,6 +25,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { LoginCardComponent } from './components/login-card/login-card.component';
 import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
 import { AlertSnackbarComponent } from './components/alert-snackbar/alert-snackbar.component';
+import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,9 @@ import { AlertSnackbarComponent } from './components/alert-snackbar/alert-snackb
     LoginCardComponent,
     LoadingButtonComponent,
     AlertSnackbarComponent,
+    AlertDialogComponent,
   ],
-  entryComponents: [AlertSnackbarComponent],
+  entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -55,6 +58,7 @@ import { AlertSnackbarComponent } from './components/alert-snackbar/alert-snackb
     MatInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
