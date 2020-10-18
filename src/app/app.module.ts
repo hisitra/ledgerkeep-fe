@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -28,6 +29,8 @@ import { LoadingButtonComponent } from './components/loading-button/loading-butt
 import { AlertSnackbarComponent } from './components/alert-snackbar/alert-snackbar.component';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ForgotCardAboveComponent } from './components/forgot-card-above/forgot-card-above.component';
+import { ForgotCardBelowComponent } from './components/forgot-card-below/forgot-card-below.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,8 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     AlertSnackbarComponent,
     AlertDialogComponent,
     ForgotPasswordComponent,
+    ForgotCardAboveComponent,
+    ForgotCardBelowComponent,
   ],
   entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
   imports: [
@@ -63,6 +68,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
