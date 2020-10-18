@@ -5,15 +5,16 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class RouteGuardService implements CanActivate {
+export class ProfileRedirectService implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
     const isAuthentic = this.authService.isSoftLoggedIn();
-    if (!isAuthentic) {
-      this.router.navigate(['/login']);
+
+    if (isAuthentic) {
+      this.router.navigate(['/profile']);
     }
 
-    return isAuthentic;
+    return !isAuthentic;
   }
 }

@@ -1,7 +1,13 @@
 <div class="container" fxFlex fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
   <div fxLayout="row wrap" style="width: 100%">
     <div fxFlex="35" fxFlex.md="25" fxFlex.sm="15" fxFlex.xs="2"></div>
-    <app-login-card fxFlex="30" fxFlex.md="50" fxFlex.sm="70" fxFlex.xs="96"></app-login-card>
+    <app-login-card
+      [action]="onFormSubmit.bind(this)"
+      fxFlex="30"
+      fxFlex.md="50"
+      fxFlex.sm="70"
+      fxFlex.xs="96"
+    ></app-login-card>
     <div fxFlex="35" fxFlex.md="25" fxFlex.sm="15" fxFlex.xs="2"></div>
   </div>
 </div>

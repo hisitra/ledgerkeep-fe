@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertService } from 'src/app/services/alert.service';
-import { AuthService } from 'src/app/services/auth.service';
-import { BackendService } from 'src/app/services/backend.service';
 
 import { theme, validation } from '../../../assets/configs.json';
 
@@ -12,18 +9,15 @@ import { theme, validation } from '../../../assets/configs.json';
   styleUrls: ['./login-card.component.css'],
 })
 export class LoginCardComponent implements OnInit {
+  @Input() action: (email: string, password: string) => Promise<void>;
+
   public primaryColor = theme.dpaPrimary;
 
   public isLoading = false;
 
   public loginForm: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private alertService: AlertService,
-    private backend: BackendService,
-    private authService: AuthService,
-  ) {
+  constructor(private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(validation.emailRegex)]],
       password: ['', [Validators.required, Validators.pattern(validation.passwordRegex)]],
@@ -43,16 +37,8 @@ export class LoginCardComponent implements OnInit {
     const password = this.loginForm.value.password;
 
     try {
-      const response = await this.backend.getToken(email, password);
-      const token = response.data.token;
-
-      this.authService.setEmail(email);
-      this.authService.setToken(token);
-
-      this.alertService.success('Login successful.');
-    } catch (err) {
-      this.alertService.error(err.message);
-    }
+      await this.action(email, password);
+    } catch (err) {}
 
     this.setLoading(false);
   }

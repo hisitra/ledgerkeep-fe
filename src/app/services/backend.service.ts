@@ -36,9 +36,9 @@ export class BackendService {
       }
       return response;
     } catch (err) {
-      console.error(err);
       const customCode = err.error && err.error.customCode;
       if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
         throw defaultResponse;
       }
       if (customCode === backendCustomCodes.USER_NOT_FOUND) {
@@ -47,6 +47,7 @@ export class BackendService {
       if (customCode === backendCustomCodes.UNAUTHORIZED_OPERATION) {
         throw new Error('Invalid Credentials.');
       }
+      console.warn('Unexpected response from backend:', err);
       throw defaultResponse;
     }
   }
