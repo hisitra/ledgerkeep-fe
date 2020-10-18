@@ -19,4 +19,12 @@ export class AuthService {
   getToken(): string {
     return localStorage.getItem(configs.auth.tokenKey);
   }
+
+  setEmail(email: string): void {
+    localStorage.setItem(configs.auth.emailKey, email);
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(configs.auth.tokenKey, token);
+  }
 }

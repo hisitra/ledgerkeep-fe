@@ -7,17 +7,18 @@
     "appName": "LedgerKeep"
   },
   "theme": {
-    "dpa": {
-      "primary": "#673ab7"
-    }
+    "dpaPrimary": "#673ab7"
   },
   "validation": {
-    "regex": {
-      "password": "^\\S+$"
-    }
+    "passwordRegex": "^\\S+$",
+    "emailRegex": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
   },
   "ui": {
     "snackbarDuration": 3000,
     "alertDialogWidth": "400px"
+  },
+  "authkeep": {
+    "address": "http://localhost:7100/api",
+    "getToken": "/generalAccess/token"
   }
 }

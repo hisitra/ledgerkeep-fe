@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { BackendService } from 'src/app/services/backend.service';
 
 import { theme, validation } from '../../../assets/configs.json';
 
@@ -10,16 +12,21 @@ import { theme, validation } from '../../../assets/configs.json';
   styleUrls: ['./login-card.component.css'],
 })
 export class LoginCardComponent implements OnInit {
-  public primaryColor = theme.dpa.primary;
+  public primaryColor = theme.dpaPrimary;
 
   public isLoading = false;
 
   public loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private alertService: AlertService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private alertService: AlertService,
+    private backend: BackendService,
+    private authService: AuthService,
+  ) {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(validation.regex.password)]],
+      email: ['', [Validators.required, Validators.pattern(validation.emailRegex)]],
+      password: ['', [Validators.required, Validators.pattern(validation.passwordRegex)]],
     });
   }
 
@@ -30,7 +37,24 @@ export class LoginCardComponent implements OnInit {
       return;
     }
 
-    this.alertService.info('Confirmation mail sent to provided Email.', true);
+    this.setLoading(true);
+
+    const email = this.loginForm.value.email;
+    const password = this.loginForm.value.password;
+
+    try {
+      const response = await this.backend.getToken(email, password);
+      const token = response.data.token;
+
+      this.authService.setEmail(email);
+      this.authService.setToken(token);
+
+      this.alertService.success('Login successful.');
+    } catch (err) {
+      this.alertService.error(err.message);
+    }
+
+    this.setLoading(false);
   }
 
   setLoading(state: boolean): void {
