@@ -21,7 +21,7 @@ export class BackendService {
 
   async getToken(email: string, secret: string): Promise<any> {
     const endpoint = `${authkeep.address}${authkeep.getToken}`;
-    console.log(arguments);
+
     try {
       const response = await this.httpClient
         .get(endpoint, {

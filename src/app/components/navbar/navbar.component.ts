@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 import configs from '../../../assets/configs.json';
 
@@ -10,7 +11,11 @@ import configs from '../../../assets/configs.json';
 export class NavbarComponent implements OnInit {
   public appName = configs.general.appName;
 
-  constructor() {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {}
+
+  isLoggedOut(): boolean {
+    return !this.authService.isSoftLoggedIn();
+  }
 }

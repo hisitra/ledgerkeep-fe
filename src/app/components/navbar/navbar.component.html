@@ -5,30 +5,36 @@
   </a>
   <span class="spacer"></span>
 
-  <div fxShow="true" fxHide.lt-sm="true">
+  <button mat-flat-button color="accent" routerLink="/signup" *ngIf="isLoggedOut()">Join Us</button>
+
+  <div fxShow="true" fxHide.lt-sm="true" *ngIf="isLoggedOut()">
     <a mat-button routerLink="/login">Login</a>
-    <a mat-button routerLink="/signup">Join Us</a>
     <a mat-button routerLink="/about">About Us</a>
   </div>
 
-  <div fxShow="true" fxHide.gt-xs="true">
+  <div fxShow="true" fxHide.gt-xs="true" *ngIf="isLoggedOut()">
     <button mat-icon-button aria-label="More icon" [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/login">
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </button>
+      <button mat-menu-item routerLink="/about">
+        <mat-icon>info</mat-icon>
+        <span>About Us</span>
+      </button>
+    </mat-menu>
   </div>
 
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/login">
-      <mat-icon>login</mat-icon>
-      <span>Login</span>
-    </button>
-    <button mat-menu-item routerLink="/signup">
-      <mat-icon>person_add</mat-icon>
-      <span>Join Us</span>
-    </button>
-    <button mat-menu-item routerLink="/about">
-      <mat-icon>info</mat-icon>
-      <span>About Us</span>
-    </button>
-  </mat-menu>
+  <button
+    mat-icon-button
+    color="accent"
+    aria-label="Logout button with logout icon"
+    *ngIf="!isLoggedOut()"
+  >
+    <mat-icon>logout</mat-icon>
+  </button>
 </mat-toolbar>
