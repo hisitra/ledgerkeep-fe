@@ -4,12 +4,16 @@ import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { BackendService } from 'src/app/services/backend.service';
 
+import { theme } from '../../../assets/configs.json';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  public primaryColor = theme.dpaPrimary;
+
   constructor(
     private router: Router,
     private backend: BackendService,
