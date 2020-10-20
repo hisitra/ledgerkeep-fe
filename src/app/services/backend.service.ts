@@ -11,6 +11,7 @@ const backendCustomCodes = {
   UNAUTHORIZED_OPERATION: 'UNAUTHORIZED_OPERATION',
   USER_ALREADY_EXISTS: 'USER_ALREADY_EXISTS',
   TOKEN_EXPIRED: 'TOKEN_EXPIRED',
+  PASSWORD_RESET_ID_NOT_FOUND: 'PASSWORD_RESET_ID_NOT_FOUND',
 };
 
 @Injectable({
@@ -65,6 +66,25 @@ export class BackendService {
       }
       if (customCode === backendCustomCodes.USER_NOT_FOUND) {
         throw new Error('No account found with this mail.');
+      }
+      console.warn('Unexpected response from backend:', err);
+      throw defaultResponse;
+    }
+  }
+
+  async finishedPasswordReset(passwordResetID: string, newPassword: string): Promise<any> {
+    const endpoint = `${authkeep.address}${authkeep.finishPasswordReset}/${passwordResetID}`;
+
+    try {
+      return await this.httpClient.patch(endpoint, { newPassword }).toPromise();
+    } catch (err) {
+      const customCode = err.error && err.error.customCode;
+      if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
+        throw defaultResponse;
+      }
+      if (customCode === backendCustomCodes.PASSWORD_RESET_ID_NOT_FOUND) {
+        throw new Error('Expired or corrupt password change request.');
       }
       console.warn('Unexpected response from backend:', err);
       throw defaultResponse;

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { theme, validation } from '../../../assets/configs.json';
+import { validation } from '../../../assets/configs.json';
 
 @Component({
   selector: 'app-login-card',
@@ -12,6 +12,7 @@ export class LoginCardComponent implements OnInit {
   @Input() action: (email: string, password: string) => Promise<void>;
 
   public isLoading = false;
+  public hide = true;
 
   public loginForm: FormGroup;
 

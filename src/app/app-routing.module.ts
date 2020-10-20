@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { ProfileRedirectService } from './guards/profile-redirect.service';
+import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
+    canActivate: [ProfileRedirectService],
+  },
+  {
+    path: 'password-reset',
+    component: PasswordResetComponent,
     canActivate: [ProfileRedirectService],
   },
 ];

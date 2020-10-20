@@ -20,6 +20,7 @@
   "authkeep": {
     "address": "http://localhost:7100/api",
     "getToken": "/generalAccess/token",
-    "initPasswordReset": "/generalAccess/user/_initPasswordReset"
+    "initPasswordReset": "/generalAccess/user/_initPasswordReset",
+    "finishPasswordReset": "/generalAccess/user/password"
   }
 }

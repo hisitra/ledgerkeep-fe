@@ -31,6 +31,8 @@ import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.com
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ForgotCardComponent } from './components/forgot-card/forgot-card.component';
 import { HeaderCardComponent } from './components/header-card/header-card.component';
+import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
+import { PasswordResetCardComponent } from './components/password-reset-card/password-reset-card.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { HeaderCardComponent } from './components/header-card/header-card.compon
     ForgotPasswordComponent,
     ForgotCardComponent,
     HeaderCardComponent,
+    PasswordResetComponent,
+    PasswordResetCardComponent,
   ],
   entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
   imports: [
