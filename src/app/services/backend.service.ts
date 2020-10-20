@@ -19,13 +19,13 @@ const backendCustomCodes = {
 export class BackendService {
   constructor(private httpClient: HttpClient) {}
 
-  async getToken(email: string, secret: string): Promise<any> {
+  async getToken(email: string, password: string): Promise<any> {
     const endpoint = `${authkeep.address}${authkeep.getToken}`;
 
     try {
       const response = await this.httpClient
         .get(endpoint, {
-          headers: { 'x-email': email, 'x-secret': secret },
+          headers: { 'x-email': email, 'x-password': password },
         })
         .toPromise()
         // This line converts 'res' from type Object to type any.
@@ -46,6 +46,25 @@ export class BackendService {
       }
       if (customCode === backendCustomCodes.UNAUTHORIZED_OPERATION) {
         throw new Error('Invalid Credentials.');
+      }
+      console.warn('Unexpected response from backend:', err);
+      throw defaultResponse;
+    }
+  }
+
+  async initPasswordReset(email: string): Promise<any> {
+    const endpoint = `${authkeep.address}${authkeep.initPasswordReset}`;
+
+    try {
+      return await this.httpClient.post(endpoint, { email }).toPromise();
+    } catch (err) {
+      const customCode = err.error && err.error.customCode;
+      if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
+        throw defaultResponse;
+      }
+      if (customCode === backendCustomCodes.USER_NOT_FOUND) {
+        throw new Error('No account found with this mail.');
       }
       console.warn('Unexpected response from backend:', err);
       throw defaultResponse;

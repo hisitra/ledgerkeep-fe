@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AlertService } from 'src/app/services/alert.service';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -7,11 +8,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./forgot-password.component.css'],
 })
 export class ForgotPasswordComponent implements OnInit {
-  constructor() {}
+  constructor(private alertService: AlertService, private backend: BackendService) {}
 
   ngOnInit() {}
 
-  async sendCode(email: string): Promise<void> {}
-
-  async changePassword(code: string, newPassword: string): Promise<void> {}
+  async onSubmit(email: string): Promise<void> {
+    try {
+      await this.backend.initPasswordReset(email);
+      this.alertService.success('Instructions sent to this mail.', true);
+    } catch (err) {
+      this.alertService.error(err.message);
+    }
+  }
 }

@@ -1,10 +1,8 @@
-<mat-card class="header-card" [ngStyle]="{ backgroundColor: primaryColor }">
-  <mat-card-title class="header-card-title">Login</mat-card-title>
-</mat-card>
+<app-header-card value="Login"></app-header-card>
 <mat-card>
   <mat-card-content>
     <form [formGroup]="loginForm" (submit)="onFormSubmit()">
-      <!-- Username Input -->
+      <!-- Email Input -->
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input formControlName="email" matInput autocomplete="off" />

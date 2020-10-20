@@ -11,8 +11,6 @@ import { theme, validation } from '../../../assets/configs.json';
 export class LoginCardComponent implements OnInit {
   @Input() action: (email: string, password: string) => Promise<void>;
 
-  public primaryColor = theme.dpaPrimary;
-
   public isLoading = false;
 
   public loginForm: FormGroup;
