@@ -21,11 +21,31 @@ export class SignupCardComponent implements OnInit {
   public isLoading: boolean;
 
   constructor(private formBuilder: FormBuilder) {
-    this.signupForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern(validation.emailRegex)]],
-      firstName: ['', [Validators.required, Validators.pattern(validation.nameRegex)]],
-      lastName: ['', [Validators.required, Validators.pattern(validation.nameRegex)]],
-    });
+    this.signupForm = this.formBuilder.group(
+      {
+        firstName: ['', [Validators.required, Validators.pattern(validation.nameRegex)]],
+        lastName: ['', [Validators.required, Validators.pattern(validation.nameRegex)]],
+        email: ['', [Validators.required, Validators.pattern(validation.emailRegex)]],
+        password: ['', [Validators.required, Validators.pattern(validation.passwordRegex)]],
+        confirmPassword: ['', [Validators.required, Validators.pattern(validation.passwordRegex)]],
+      },
+      {
+        validators: (formGroup: FormGroup) => {
+          const password = formGroup.controls.password;
+          const confirmPassword = formGroup.controls.confirmPassword;
+
+          if (confirmPassword.errors) {
+            return;
+          }
+
+          if (password.value !== confirmPassword.value) {
+            confirmPassword.setErrors({ unmatch: true });
+          } else {
+            confirmPassword.setErrors(null);
+          }
+        },
+      },
+    );
   }
 
   ngOnInit() {}

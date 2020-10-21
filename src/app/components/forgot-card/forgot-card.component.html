@@ -7,7 +7,7 @@
         <mat-label>Email</mat-label>
         <input formControlName="email" matInput autocomplete="off" />
         <button type="button" mat-button matPrefix mat-icon-button>
-          <mat-icon>person</mat-icon>
+          <mat-icon>email</mat-icon>
         </button>
         <mat-hint>We'll send the reset instructions to this mail.</mat-hint>
         <mat-error *ngIf="passwordResetForm?.get('email')?.hasError('required')"
