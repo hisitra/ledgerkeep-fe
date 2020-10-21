@@ -9,4 +9,11 @@ export class SignupComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  async onFormSubmit(
+    email: string,
+    firstName: string,
+    lastName: string,
+    password: string,
+  ): Promise<void> {}
 }

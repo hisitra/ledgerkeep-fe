@@ -1,0 +1,60 @@
+<app-header-card value="Signup"></app-header-card>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="signupForm" (submit)="onFormSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput autocomplete="off" />
+        <button type="button" mat-button matPrefix mat-icon-button>
+          <mat-icon>person</mat-icon>
+        </button>
+        <mat-error *ngIf="signupForm?.get('email')?.hasError('required')"
+          ><mat-icon>error</mat-icon> Email is required.</mat-error
+        >
+        <mat-error
+          *ngIf="
+            !signupForm?.get('email')?.hasError('required') &&
+            signupForm?.get('email')?.hasError('pattern')
+          "
+          ><mat-icon>error</mat-icon> Please enter a valid Email.</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input formControlName="firstName" matInput autocomplete="off" />
+        <button type="button" mat-button matPrefix mat-icon-button>
+          <mat-icon>person</mat-icon>
+        </button>
+        <mat-error *ngIf="signupForm?.get('firstName')?.hasError('required')"
+          ><mat-icon>error</mat-icon> Field is required.</mat-error
+        >
+        <mat-error
+          *ngIf="
+            !signupForm?.get('firstName')?.hasError('required') &&
+            signupForm?.get('firstName')?.hasError('pattern')
+          "
+          ><mat-icon>error</mat-icon> Field contains invalid characters.</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input formControlName="lastName" matInput autocomplete="off" />
+        <button type="button" mat-button matPrefix mat-icon-button>
+          <mat-icon>person</mat-icon>
+        </button>
+        <mat-error *ngIf="signupForm?.get('lastName')?.hasError('required')"
+          ><mat-icon>error</mat-icon> Field is required.</mat-error
+        >
+        <mat-error
+          *ngIf="
+            !signupForm?.get('lastName')?.hasError('required') &&
+            signupForm?.get('lastName')?.hasError('pattern')
+          "
+          ><mat-icon>error</mat-icon> Field contains invalid characters.</mat-error
+        >
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+</mat-card>

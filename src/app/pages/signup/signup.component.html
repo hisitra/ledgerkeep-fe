@@ -1,1 +1,9 @@
-<p>signup works!</p>
+<div class="container" fxFlex fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+  <div fxLayout="row wrap" style="width: 100%">
+    <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="2"></div>
+    <div fxFlex="500px" fxFlex.md="500px" fxFlex.sm="500px" fxFlex.xs="96">
+      <app-signup-card [action]="onFormSubmit.bind(this)"></app-signup-card>
+    </div>
+    <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="2"></div>
+  </div>
+</div>

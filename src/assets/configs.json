@@ -11,7 +11,8 @@
   },
   "validation": {
     "passwordRegex": "^\\S+$",
-    "emailRegex": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
+    "emailRegex": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$",
+    "nameRegex": "^[a-zA-Z0-9]+$"
   },
   "ui": {
     "snackbarDuration": 3000,
