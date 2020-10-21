@@ -7,9 +7,9 @@ const defaultResponse = new Error('Please try again later.');
 
 const backendCustomCodes = {
   USER_NOT_FOUND: 'USER_NOT_FOUND',
+  USER_ALREADY_EXISTS: 'USER_ALREADY_EXISTS',
   TRANSACTION_NOT_FOUND: 'TRANSACTION_NOT_FOUND',
   UNAUTHORIZED_OPERATION: 'UNAUTHORIZED_OPERATION',
-  USER_ALREADY_EXISTS: 'USER_ALREADY_EXISTS',
   TOKEN_EXPIRED: 'TOKEN_EXPIRED',
   PASSWORD_RESET_ID_NOT_FOUND: 'PASSWORD_RESET_ID_NOT_FOUND',
 };
@@ -85,6 +85,32 @@ export class BackendService {
       }
       if (customCode === backendCustomCodes.PASSWORD_RESET_ID_NOT_FOUND) {
         throw new Error('Expired or corrupt password change request.');
+      }
+      console.warn('Unexpected response from backend:', err);
+      throw defaultResponse;
+    }
+  }
+
+  async initSignup(
+    email: string,
+    firstName: string,
+    lastName: string,
+    password: string,
+  ): Promise<any> {
+    const endpoint = `${authkeep.address}${authkeep.initSignup}`;
+
+    try {
+      return await this.httpClient
+        .post(endpoint, { email, firstName, lastName, password })
+        .toPromise();
+    } catch (err) {
+      const customCode = err.error && err.error.customCode;
+      if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
+        throw defaultResponse;
+      }
+      if (customCode === backendCustomCodes.USER_ALREADY_EXISTS) {
+        throw new Error('This Email is already in use.');
       }
       console.warn('Unexpected response from backend:', err);
       throw defaultResponse;

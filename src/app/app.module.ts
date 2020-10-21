@@ -34,6 +34,7 @@ import { HeaderCardComponent } from './components/header-card/header-card.compon
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 import { PasswordResetCardComponent } from './components/password-reset-card/password-reset-card.component';
 import { SignupCardComponent } from './components/signup-card/signup-card.component';
+import { SignupConfirmComponent } from './pages/signup-confirm/signup-confirm.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SignupCardComponent } from './components/signup-card/signup-card.compon
     PasswordResetComponent,
     PasswordResetCardComponent,
     SignupCardComponent,
+    SignupConfirmComponent,
   ],
   entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
   imports: [

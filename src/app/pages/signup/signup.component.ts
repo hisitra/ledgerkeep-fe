@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert.service';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-signup',
@@ -6,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor() {}
+  constructor(private backend: BackendService, private alertService: AlertService) {}
 
   ngOnInit() {}
 
@@ -15,5 +18,14 @@ export class SignupComponent implements OnInit {
     firstName: string,
     lastName: string,
     password: string,
-  ): Promise<void> {}
+  ): Promise<boolean> {
+    try {
+      await this.backend.initSignup(email, firstName, lastName, password);
+      this.alertService.info('Please check you mail to complete signup.', true);
+      return true;
+    } catch (err) {
+      this.alertService.error(err.message);
+      return false;
+    }
+  }
 }

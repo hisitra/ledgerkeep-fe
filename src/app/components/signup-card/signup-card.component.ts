@@ -15,7 +15,7 @@ export class SignupCardComponent implements OnInit {
     firstName: string,
     lastName: string,
     password: string,
-  ) => Promise<void>;
+  ) => Promise<boolean>;
 
   public signupForm: FormGroup;
   public isLoading: boolean;
@@ -60,7 +60,10 @@ export class SignupCardComponent implements OnInit {
     this.setLoading(true);
 
     try {
-      await this.action(email, firstName, lastName, password);
+      const success = await this.action(email, firstName, lastName, password);
+      if (success) {
+        this.signupForm.reset();
+      }
     } catch (err) {}
 
     this.setLoading(false);
