@@ -12,6 +12,7 @@ const backendCustomCodes = {
   UNAUTHORIZED_OPERATION: 'UNAUTHORIZED_OPERATION',
   TOKEN_EXPIRED: 'TOKEN_EXPIRED',
   PASSWORD_RESET_ID_NOT_FOUND: 'PASSWORD_RESET_ID_NOT_FOUND',
+  SIGNUP_ID_NOT_FOUND: 'SIGNUP_ID_NOT_FOUND',
 };
 
 @Injectable({
@@ -72,7 +73,7 @@ export class BackendService {
     }
   }
 
-  async finishedPasswordReset(passwordResetID: string, newPassword: string): Promise<any> {
+  async finishPasswordReset(passwordResetID: string, newPassword: string): Promise<any> {
     const endpoint = `${authkeep.address}${authkeep.finishPasswordReset}/${passwordResetID}`;
 
     try {
@@ -111,6 +112,28 @@ export class BackendService {
       }
       if (customCode === backendCustomCodes.USER_ALREADY_EXISTS) {
         throw new Error('This Email is already in use.');
+      }
+      console.warn('Unexpected response from backend:', err);
+      throw defaultResponse;
+    }
+  }
+
+  async finishSignup(signupID: string): Promise<any> {
+    const endpoint = `${authkeep.address}${authkeep.finishSignup}/${signupID}`;
+
+    try {
+      return await this.httpClient.put(endpoint, {}).toPromise();
+    } catch (err) {
+      const customCode = err.error && err.error.customCode;
+      if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
+        throw defaultResponse;
+      }
+      if (customCode === backendCustomCodes.USER_ALREADY_EXISTS) {
+        throw new Error('This user account is already confirmed.');
+      }
+      if (customCode === backendCustomCodes.SIGNUP_ID_NOT_FOUND) {
+        throw new Error('Invalid confirmation link.');
       }
       console.warn('Unexpected response from backend:', err);
       throw defaultResponse;

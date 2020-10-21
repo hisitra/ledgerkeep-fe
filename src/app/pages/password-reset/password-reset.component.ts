@@ -20,9 +20,13 @@ export class PasswordResetComponent implements OnInit {
 
   async onSubmit(newPassword: string): Promise<void> {
     const passwordResetID = await this.getPasswordResetID();
+    if (!passwordResetID) {
+      this.alertService.error('Expired or corrupt password change request.', true);
+      return;
+    }
 
     try {
-      await this.backend.finishedPasswordReset(passwordResetID, newPassword);
+      await this.backend.finishPasswordReset(passwordResetID, newPassword);
 
       this.alertService.success('Password successfully changed. Redirecting...');
 

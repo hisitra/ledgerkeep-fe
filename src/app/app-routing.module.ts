@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { SignupConfirmComponent } from './pages/signup-confirm/signup-confirm.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -29,6 +30,11 @@ const routes: Routes = [
   {
     path: 'password-reset',
     component: PasswordResetComponent,
+    canActivate: [ProfileRedirectService],
+  },
+  {
+    path: 'signup-confirm',
+    component: SignupConfirmComponent,
     canActivate: [ProfileRedirectService],
   },
 ];
