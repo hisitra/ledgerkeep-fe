@@ -55,5 +55,12 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  async onPasswordUpdate(currentPassword: string, newPassword: string): Promise<void> {}
+  async onPasswordUpdate(currentPassword: string, newPassword: string): Promise<void> {
+    try {
+      await this.backend.updateUserPassword(currentPassword, newPassword);
+      this.alertService.success('Password updated.');
+    } catch (err) {
+      this.alertService.error(err.message);
+    }
+  }
 }

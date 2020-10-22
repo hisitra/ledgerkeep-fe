@@ -26,8 +26,13 @@ export class UserPasswordUpdateCardComponent implements OnInit {
       },
       {
         validators: (formGroup: FormGroup) => {
+          const currentPassword = formGroup.controls.currentPassword;
           const newPassword = formGroup.controls.newPassword;
           const confirmNewPassword = formGroup.controls.confirmNewPassword;
+
+          if (currentPassword.value === newPassword.value) {
+            newPassword.setErrors({ same: true });
+          }
 
           if (newPassword.value !== confirmNewPassword.value) {
             confirmNewPassword.setErrors({ unmatch: true });

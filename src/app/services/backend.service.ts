@@ -215,4 +215,42 @@ export class BackendService {
       throw defaultResponse;
     }
   }
+
+  async updateUserPassword(currentPassword: string, newPassword: string): Promise<any> {
+    const endpoint = `${authkeep.address}${authkeep.updateUserPassword}`;
+    const token = this.authService.getToken();
+
+    try {
+      return await this.httpClient
+        .patch(
+          endpoint,
+          { currentPassword, newPassword },
+          {
+            headers: { authorization: token },
+          },
+        )
+        .toPromise();
+    } catch (err) {
+      const customCode = err.error && err.error.customCode;
+      if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
+        throw defaultResponse;
+      }
+      if (customCode === backendCustomCodes.UNAUTHORIZED_OPERATION) {
+        throw new Error('Incorrect password entered.');
+      }
+      if (customCode === backendCustomCodes.USER_NOT_FOUND) {
+        this.authService.logout();
+        throw new Error('You are not authorized for this action.');
+      }
+
+      if (customCode === backendCustomCodes.TOKEN_EXPIRED) {
+        this.authService.logout();
+        throw new Error('Your session has expired.');
+      }
+
+      console.warn('Unexpected response from backend:', err);
+      throw defaultResponse;
+    }
+  }
 }
