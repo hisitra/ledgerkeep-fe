@@ -37,7 +37,16 @@ export class UserGeneralUpdateCardComponent implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
+    if (this.generalUpdateForm.invalid) {
+      return;
+    }
+
     this.setLoading(true);
+
+    const values = this.generalUpdateForm.value;
+    try {
+      await this.action(values.firstName, values.lastName);
+    } catch (err) {}
 
     this.setLoading(false);
   }

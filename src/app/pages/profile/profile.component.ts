@@ -12,7 +12,7 @@ import { imageKeep } from '../../../assets/configs.json';
 export class ProfileComponent implements OnInit {
   public imagePath = `${imageKeep.address}${imageKeep.randomCover}?width=800`;
 
-  public user = {};
+  public user: any = {};
   public isLoading = false;
 
   constructor(private backend: BackendService, private alertService: AlertService) {}
@@ -29,7 +29,12 @@ export class ProfileComponent implements OnInit {
     this.isLoading = false;
   }
 
-  async onGeneralUpdate(firstName: string, lastName: string): Promise<void> {}
+  async onGeneralUpdate(firstName: string, lastName: string): Promise<void> {
+    if (this.user.firstName === firstName && this.user.lastName === lastName) {
+      this.alertService.warn('No updates provided.');
+      return;
+    }
+  }
 
   async onPasswordUpdate(currentPassword: string, newPassword: string): Promise<void> {}
 }
