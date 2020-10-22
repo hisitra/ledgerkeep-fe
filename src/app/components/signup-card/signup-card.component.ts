@@ -34,10 +34,6 @@ export class SignupCardComponent implements OnInit {
           const password = formGroup.controls.password;
           const confirmPassword = formGroup.controls.confirmPassword;
 
-          if (confirmPassword.errors) {
-            return;
-          }
-
           if (password.value !== confirmPassword.value) {
             confirmPassword.setErrors({ unmatch: true });
           } else {

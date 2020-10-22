@@ -25,10 +25,6 @@ export class PasswordResetCardComponent implements OnInit {
           const newPassword = formGroup.controls.newPassword;
           const confirmPassword = formGroup.controls.confirmPassword;
 
-          if (confirmPassword.errors) {
-            return;
-          }
-
           if (newPassword.value !== confirmPassword.value) {
             confirmPassword.setErrors({ unmatch: true });
           } else {

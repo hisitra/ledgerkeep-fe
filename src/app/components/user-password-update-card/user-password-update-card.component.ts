@@ -29,10 +29,6 @@ export class UserPasswordUpdateCardComponent implements OnInit {
           const newPassword = formGroup.controls.newPassword;
           const confirmNewPassword = formGroup.controls.confirmNewPassword;
 
-          if (confirmNewPassword.errors) {
-            return;
-          }
-
           if (newPassword.value !== confirmNewPassword.value) {
             confirmNewPassword.setErrors({ unmatch: true });
           } else {
