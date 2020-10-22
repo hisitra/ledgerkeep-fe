@@ -24,6 +24,11 @@
     "initPasswordReset": "/generalAccess/user/_initPasswordReset",
     "finishPasswordReset": "/generalAccess/user/password",
     "initSignup": "/generalAccess/user/_initSignup",
-    "finishSignup": "/generalAccess/user"
+    "finishSignup": "/generalAccess/user",
+    "getUser": "/userAccess/user"
+  },
+  "imageKeep": {
+    "address": "http://localhost:6100/api",
+    "randomCover": "/cover/random.jpg"
   }
 }

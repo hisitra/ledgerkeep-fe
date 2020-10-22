@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { authkeep } from '../../assets/configs.json';
+import { AuthService } from './auth.service';
 
 const defaultResponse = new Error('Please try again later.');
 
@@ -19,7 +20,7 @@ const backendCustomCodes = {
   providedIn: 'root',
 })
 export class BackendService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private authService: AuthService) {}
 
   async getToken(email: string, password: string): Promise<any> {
     const endpoint = `${authkeep.address}${authkeep.getToken}`;
@@ -135,6 +136,47 @@ export class BackendService {
       if (customCode === backendCustomCodes.SIGNUP_ID_NOT_FOUND) {
         throw new Error('Invalid confirmation link.');
       }
+      console.warn('Unexpected response from backend:', err);
+      throw defaultResponse;
+    }
+  }
+
+  async getUser(): Promise<any> {
+    const endpoint = `${authkeep.address}${authkeep.getUser}`;
+    const token = this.authService.getToken();
+
+    try {
+      const response = await this.httpClient
+        .get(endpoint, {
+          headers: { authorization: token },
+        })
+        .toPromise()
+        // This line converts 'res' from type Object to type any.
+        .then((res: any) => res);
+
+      if (!response || !response.data) {
+        throw defaultResponse;
+      }
+      return response;
+    } catch (err) {
+      const customCode = err.error && err.error.customCode;
+      if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
+        throw defaultResponse;
+      }
+      if (
+        customCode === backendCustomCodes.USER_NOT_FOUND ||
+        customCode === backendCustomCodes.UNAUTHORIZED_OPERATION
+      ) {
+        this.authService.logout();
+        throw new Error('You are not authorized for this action.');
+      }
+
+      if (customCode === backendCustomCodes.TOKEN_EXPIRED) {
+        this.authService.logout();
+        throw new Error('Your session has expired.');
+      }
+
       console.warn('Unexpected response from backend:', err);
       throw defaultResponse;
     }

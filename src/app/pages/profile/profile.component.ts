@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from 'src/app/services/alert.service';
+import { BackendService } from 'src/app/services/backend.service';
+
+import { imageKeep } from '../../../assets/configs.json';
 
 @Component({
   selector: 'app-profile',
@@ -6,7 +10,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  constructor() {}
+  public imagePath = `${imageKeep.address}${imageKeep.randomCover}?width=800`;
 
-  ngOnInit() {}
+  public user: any;
+  public isLoading = false;
+
+  constructor(private backend: BackendService, private alertService: AlertService) {}
+
+  async ngOnInit() {
+    this.isLoading = true;
+
+    try {
+      this.user = (await this.backend.getUser()).data;
+    } catch (err) {
+      this.alertService.error(err.message);
+    }
+
+    this.isLoading = false;
+  }
 }

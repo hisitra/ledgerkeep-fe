@@ -16,6 +16,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -35,6 +36,8 @@ import { PasswordResetComponent } from './pages/password-reset/password-reset.co
 import { PasswordResetCardComponent } from './components/password-reset-card/password-reset-card.component';
 import { SignupCardComponent } from './components/signup-card/signup-card.component';
 import { SignupConfirmComponent } from './pages/signup-confirm/signup-confirm.component';
+import { UserInfoCardComponent } from './components/user-info-card/user-info-card.component';
+import { UserInfoRowComponent } from './components/user-info-row/user-info-row.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,8 @@ import { SignupConfirmComponent } from './pages/signup-confirm/signup-confirm.co
     PasswordResetCardComponent,
     SignupCardComponent,
     SignupConfirmComponent,
+    UserInfoCardComponent,
+    UserInfoRowComponent,
   ],
   entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
   imports: [
@@ -77,6 +82,7 @@ import { SignupConfirmComponent } from './pages/signup-confirm/signup-confirm.co
     MatSnackBarModule,
     MatDialogModule,
     MatDividerModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

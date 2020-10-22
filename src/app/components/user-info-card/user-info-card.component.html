@@ -1,0 +1,7 @@
+<app-user-info-row iconName="email" heading="Email" [value]="user.email"></app-user-info-row>
+<mat-divider></mat-divider>
+<app-user-info-row
+  iconName="schedule"
+  heading="Joined"
+  [value]="user.createdAt | date"
+></app-user-info-row>

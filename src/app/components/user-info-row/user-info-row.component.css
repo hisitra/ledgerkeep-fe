@@ -1,0 +1,20 @@
+.wrapper {
+  padding: 5px;
+}
+
+mat-divider {
+  height: 50px;
+}
+
+.content {
+  margin-left: 15px;
+}
+
+.heading {
+  margin: 8px 0;
+  font-size: large;
+}
+
+.value {
+  margin: 0 0 8px 0;
+}
