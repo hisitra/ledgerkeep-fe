@@ -1,7 +1,7 @@
 <div class="container" fxFlex fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
   <div fxLayout="row wrap" style="width: 100%">
-    <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="2"></div>
-    <div fxFlex="800px" fxFlex.md="600px" fxFlex.sm="500px" fxFlex.xs="96">
+    <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
+    <div fxFlex="800px" fxFlex.md="600px" fxFlex.sm="500px" fxFlex.xs="98">
       <div class="image-container">
         <img
           [src]="imagePath"
@@ -18,19 +18,16 @@
           <app-user-info-card [user]="user"></app-user-info-card>
         </mat-tab>
         <mat-tab label="Edit" [disabled]="isLoading">
-          <!-- <app-user-general-update-card
-            [currentFirstName]="user.firstName"
-            [currentLastName]="user.lastName"
+          <app-user-general-update-card
+            [user]="user"
             [action]="onGeneralUpdate.bind(this)"
-          ></app-user-general-update-card> -->
-
-          <mat-divider></mat-divider>
+          ></app-user-general-update-card>
 
           <!-- <app-user-password-update-card [action]="onPasswordUpdate.bind(this)">
           </app-user-password-update-card> -->
         </mat-tab>
       </mat-tab-group>
     </div>
-    <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="2"></div>
+    <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
   </div>
 </div>

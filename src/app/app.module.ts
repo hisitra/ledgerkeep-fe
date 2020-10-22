@@ -38,6 +38,7 @@ import { SignupCardComponent } from './components/signup-card/signup-card.compon
 import { SignupConfirmComponent } from './pages/signup-confirm/signup-confirm.component';
 import { UserInfoCardComponent } from './components/user-info-card/user-info-card.component';
 import { UserInfoRowComponent } from './components/user-info-row/user-info-row.component';
+import { UserGeneralUpdateCardComponent } from './components/user-general-update-card/user-general-update-card.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { UserInfoRowComponent } from './components/user-info-row/user-info-row.c
     SignupConfirmComponent,
     UserInfoCardComponent,
     UserInfoRowComponent,
+    UserGeneralUpdateCardComponent,
   ],
   entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
   imports: [

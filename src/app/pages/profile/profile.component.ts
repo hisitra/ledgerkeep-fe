@@ -12,7 +12,7 @@ import { imageKeep } from '../../../assets/configs.json';
 export class ProfileComponent implements OnInit {
   public imagePath = `${imageKeep.address}${imageKeep.randomCover}?width=800`;
 
-  public user: any;
+  public user = {};
   public isLoading = false;
 
   constructor(private backend: BackendService, private alertService: AlertService) {}
@@ -28,4 +28,8 @@ export class ProfileComponent implements OnInit {
 
     this.isLoading = false;
   }
+
+  async onGeneralUpdate(firstName: string, lastName: string): Promise<void> {}
+
+  async onPasswordUpdate(currentPassword: string, newPassword: string): Promise<void> {}
 }

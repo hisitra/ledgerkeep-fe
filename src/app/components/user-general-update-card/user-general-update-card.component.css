@@ -1,0 +1,18 @@
+.heading {
+  margin-left: 5px;
+  margin-bottom: 20px;
+  font-size: large;
+}
+
+form {
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.button-container {
+  float: right;
+  width: 85px;
+}
