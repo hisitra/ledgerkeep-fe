@@ -17,6 +17,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -39,6 +40,7 @@ import { SignupConfirmComponent } from './pages/signup-confirm/signup-confirm.co
 import { UserInfoCardComponent } from './components/user-info-card/user-info-card.component';
 import { UserInfoRowComponent } from './components/user-info-row/user-info-row.component';
 import { UserGeneralUpdateCardComponent } from './components/user-general-update-card/user-general-update-card.component';
+import { UserPasswordUpdateCardComponent } from './components/user-password-update-card/user-password-update-card.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import { UserGeneralUpdateCardComponent } from './components/user-general-update
     UserInfoCardComponent,
     UserInfoRowComponent,
     UserGeneralUpdateCardComponent,
+    UserPasswordUpdateCardComponent,
   ],
   entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
   imports: [
@@ -85,6 +88,7 @@ import { UserGeneralUpdateCardComponent } from './components/user-general-update
     MatDialogModule,
     MatDividerModule,
     MatTabsModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
