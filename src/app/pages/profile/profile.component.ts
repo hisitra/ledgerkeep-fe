@@ -30,9 +30,28 @@ export class ProfileComponent implements OnInit {
   }
 
   async onGeneralUpdate(firstName: string, lastName: string): Promise<void> {
-    if (this.user.firstName === firstName && this.user.lastName === lastName) {
-      this.alertService.warn('No updates provided.');
+    const updates: any = {};
+    if (firstName && this.user.firstName !== firstName) {
+      updates.firstName = firstName;
+    }
+    if (lastName && this.user.lastName !== lastName) {
+      updates.lastName = lastName;
+    }
+
+    if (Object.keys(updates).length === 0) {
+      this.alertService.warn('No updates were provided.');
       return;
+    }
+
+    try {
+      await this.backend.updateUser(updates);
+
+      this.user.firstName = firstName || this.user.firstName;
+      this.user.lastName = lastName || this.user.lastName;
+
+      this.alertService.success('Profle updated.');
+    } catch (err) {
+      this.alertService.error(err.message);
     }
   }
 

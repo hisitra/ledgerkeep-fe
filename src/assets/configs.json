@@ -25,7 +25,8 @@
     "finishPasswordReset": "/generalAccess/user/password",
     "initSignup": "/generalAccess/user/_initSignup",
     "finishSignup": "/generalAccess/user",
-    "getUser": "/userAccess/user"
+    "getUser": "/userAccess/user",
+    "updateUser": "/userAccess/user"
   },
   "imageKeep": {
     "address": "http://localhost:6100/api",
