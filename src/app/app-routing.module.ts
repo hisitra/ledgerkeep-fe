@@ -13,7 +13,7 @@ import { SignupConfirmComponent } from './pages/signup-confirm/signup-confirm.co
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [ProfileRedirectService] },
   { path: 'login', component: LoginComponent, canActivate: [ProfileRedirectService] },
   { path: 'signup', component: SignupComponent, canActivate: [ProfileRedirectService] },
   { path: 'about', component: AboutComponent },
