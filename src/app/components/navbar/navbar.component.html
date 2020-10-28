@@ -40,6 +40,18 @@
   </div>
 
   <button
+    class="right-icon"
+    mat-icon-button
+    color="accent"
+    aria-label="Profile button with Account Icon"
+    *ngIf="!isLoggedOut()"
+    routerLink="/profile"
+  >
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+  <button
+    class="right-icon"
     mat-icon-button
     color="accent"
     aria-label="Logout button with logout icon"

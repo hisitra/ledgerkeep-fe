@@ -10,6 +10,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SignupConfirmComponent } from './pages/signup-confirm/signup-confirm.component';
+import { AddTransactionComponent } from './pages/add-transaction/add-transaction.component';
+import { MyTransactionsComponent } from './pages/my-transactions/my-transactions.component';
+import { MyCategoriesComponent } from './pages/my-categories/my-categories.component';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -17,11 +21,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [ProfileRedirectService] },
   { path: 'signup', component: SignupComponent, canActivate: [ProfileRedirectService] },
   { path: 'about', component: AboutComponent },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AuthGuardService],
-  },
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
@@ -37,6 +36,11 @@ const routes: Routes = [
     component: SignupConfirmComponent,
     canActivate: [ProfileRedirectService],
   },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
+  { path: 'add-transaction', component: AddTransactionComponent, canActivate: [AuthGuardService] },
+  { path: 'my-transactions', component: MyTransactionsComponent, canActivate: [AuthGuardService] },
+  { path: 'my-categories', component: MyCategoriesComponent, canActivate: [AuthGuardService] },
+  { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({
