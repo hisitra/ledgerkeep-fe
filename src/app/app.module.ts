@@ -19,6 +19,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -43,6 +44,10 @@ import { UserInfoRowComponent } from './components/user-info-row/user-info-row.c
 import { UserGeneralUpdateCardComponent } from './components/user-general-update-card/user-general-update-card.component';
 import { UserPasswordUpdateCardComponent } from './components/user-password-update-card/user-password-update-card.component';
 import { DrawerContentComponent } from './components/drawer-content/drawer-content.component';
+import { AddTransactionComponent } from './pages/add-transaction/add-transaction.component';
+import { MyTransactionsComponent } from './pages/my-transactions/my-transactions.component';
+import { MyCategoriesComponent } from './pages/my-categories/my-categories.component';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +74,10 @@ import { DrawerContentComponent } from './components/drawer-content/drawer-conte
     UserGeneralUpdateCardComponent,
     UserPasswordUpdateCardComponent,
     DrawerContentComponent,
+    AddTransactionComponent,
+    MyTransactionsComponent,
+    MyCategoriesComponent,
+    StatisticsComponent,
   ],
   entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
   imports: [
@@ -93,6 +102,7 @@ import { DrawerContentComponent } from './components/drawer-content/drawer-conte
     MatTabsModule,
     MatExpansionModule,
     MatSidenavModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
