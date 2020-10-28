@@ -13,7 +13,7 @@
         <div class="name">{{ user?.firstName }} {{ user?.lastName }}</div>
         <mat-spinner diameter="25" color="accent" *ngIf="isLoading"></mat-spinner>
       </div>
-      <mat-tab-group>
+      <mat-tab-group animationDuration="200ms">
         <mat-tab label="Info" [disabled]="isLoading">
           <app-user-info-card [user]="user"></app-user-info-card>
         </mat-tab>
