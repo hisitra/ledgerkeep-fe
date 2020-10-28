@@ -1,4 +1,13 @@
 <mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    color="accent"
+    aria-label="Menu button with menu icon"
+    *ngIf="!isLoggedOut()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
   <img src="assets/logo.png" alt="logo" />
   <a mat-button class="title" routerLink="/home">
     <span>{{ appName }}</span>
