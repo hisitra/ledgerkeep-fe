@@ -4,6 +4,7 @@
     color="accent"
     aria-label="Menu button with menu icon"
     *ngIf="!isLoggedOut()"
+    (click)="toggleSideNav()"
   >
     <mat-icon>menu</mat-icon>
   </button>
@@ -43,7 +44,7 @@
     color="accent"
     aria-label="Logout button with logout icon"
     *ngIf="!isLoggedOut()"
-    (click)="authService.logout()"
+    (click)="logout()"
   >
     <mat-icon>logout</mat-icon>
   </button>

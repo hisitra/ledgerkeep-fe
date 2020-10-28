@@ -1,2 +1,10 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<app-navbar [sidenav]="drawer"></app-navbar>
+
+<mat-drawer-container class="drawer-container" [hasBackdrop]="true" (click)="drawer.close()">
+  <mat-drawer #drawer mode="over">
+    <app-drawer-content></app-drawer-content>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -41,6 +42,7 @@ import { UserInfoCardComponent } from './components/user-info-card/user-info-car
 import { UserInfoRowComponent } from './components/user-info-row/user-info-row.component';
 import { UserGeneralUpdateCardComponent } from './components/user-general-update-card/user-general-update-card.component';
 import { UserPasswordUpdateCardComponent } from './components/user-password-update-card/user-password-update-card.component';
+import { DrawerContentComponent } from './components/drawer-content/drawer-content.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { UserPasswordUpdateCardComponent } from './components/user-password-upda
     UserInfoRowComponent,
     UserGeneralUpdateCardComponent,
     UserPasswordUpdateCardComponent,
+    DrawerContentComponent,
   ],
   entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
   imports: [
@@ -89,6 +92,7 @@ import { UserPasswordUpdateCardComponent } from './components/user-password-upda
     MatDividerModule,
     MatTabsModule,
     MatExpansionModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
