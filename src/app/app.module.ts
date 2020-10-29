@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ChartsModule } from 'ng2-charts';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -88,6 +89,7 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ChartsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,

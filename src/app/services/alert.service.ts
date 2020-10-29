@@ -13,26 +13,26 @@ export class AlertService {
   constructor(private snackbar: MatSnackBar, private dialog: MatDialog) {}
 
   info(message: string, persistent = false): void {
-    this.alert(message, 'info', persistent);
+    this.alert(message, 'info', 'primary', persistent);
   }
 
   success(message: string, persistent = false): void {
-    this.alert(message, 'done', persistent);
+    this.alert(message, 'done', 'primary', persistent);
   }
 
   warn(message: string, persistent = false): void {
-    this.alert(message, 'warning', persistent);
+    this.alert(message, 'warning', 'accent', persistent);
   }
 
   error(message: string, persistent = false): void {
-    this.alert(message, 'error', persistent);
+    this.alert(message, 'error', 'warn', persistent);
   }
 
   load(message: string, persistent = false): void {
-    this.alert(message, 'hourglass_empty', persistent);
+    this.alert(message, 'hourglass_empty', 'accent', persistent);
   }
 
-  private alert(message: string, iconName: string, persistent: boolean): void {
+  private alert(message: string, iconName: string, color: string, persistent: boolean): void {
     if (persistent) {
       this.dialog.open(AlertDialogComponent, {
         width: configs.ui.alertDialogWidth,
@@ -43,7 +43,7 @@ export class AlertService {
     }
 
     this.snackbar.openFromComponent(AlertSnackbarComponent, {
-      data: { iconName, message },
+      data: { iconName, message, color },
       duration: configs.ui.snackbarDuration,
     });
   }

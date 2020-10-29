@@ -10,7 +10,7 @@ import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar'
 export class AlertSnackbarComponent implements OnInit {
   constructor(
     private snackRef: MatSnackBarRef<AlertSnackbarComponent>,
-    @Inject(MAT_SNACK_BAR_DATA) public data: { iconName: string; message: string },
+    @Inject(MAT_SNACK_BAR_DATA) public data: { iconName: string; message: string; color: string },
   ) {}
 
   ngOnInit() {}
