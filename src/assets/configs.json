@@ -15,8 +15,7 @@
     "nameRegex": "^[a-zA-Z0-9]+$"
   },
   "ui": {
-    "snackbarDuration": 3000,
-    "alertDialogWidth": "400px"
+    "snackbarDuration": 2000
   },
   "authkeep": {
     "address": "http://localhost:7100/api",

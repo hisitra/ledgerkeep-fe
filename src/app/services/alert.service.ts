@@ -35,7 +35,7 @@ export class AlertService {
   private alert(message: string, iconName: string, color: string, persistent: boolean): void {
     if (persistent) {
       this.dialog.open(AlertDialogComponent, {
-        width: configs.ui.alertDialogWidth,
+        width: '400px',
         data: { iconName, message },
       });
 
