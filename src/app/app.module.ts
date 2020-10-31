@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ChartsModule } from 'ng2-charts';
+import { ChartsModule, ThemeService } from 'ng2-charts';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -49,6 +49,8 @@ import { AddTransactionComponent } from './pages/add-transaction/add-transaction
 import { MyTransactionsComponent } from './pages/my-transactions/my-transactions.component';
 import { MyCategoriesComponent } from './pages/my-categories/my-categories.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
     MyTransactionsComponent,
     MyCategoriesComponent,
     StatisticsComponent,
+    PieChartComponent,
+    LineChartComponent,
   ],
   entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
   imports: [
@@ -106,7 +110,7 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
     MatSidenavModule,
     MatListModule,
   ],
-  providers: [],
+  providers: [ThemeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
