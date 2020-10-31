@@ -17,6 +17,10 @@
   "ui": {
     "snackbarDuration": 2000
   },
+  "imageKeep": {
+    "address": "http://localhost:6100/api",
+    "randomCover": "/cover/random.jpg"
+  },
   "authkeep": {
     "address": "http://localhost:7100/api",
     "getToken": "/generalAccess/token",
@@ -28,8 +32,8 @@
     "updateUser": "/userAccess/user",
     "updateUserPassword": "/userAccess/user/password"
   },
-  "imageKeep": {
-    "address": "http://localhost:6100/api",
-    "randomCover": "/cover/random.jpg"
+  "ledgerkeep": {
+    "address": "http://localhost:8100/api",
+    "getSum": "/userAccess/transaction/sum"
   }
 }

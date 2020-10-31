@@ -1,1 +1,14 @@
-<p>pie-chart works!</p>
+<app-loading-header-card [value]="title"></app-loading-header-card>
+<mat-card>
+  <canvas
+    baseChart
+    chartType="pie"
+    [legend]="false"
+    [data]="chartData"
+    [labels]="chartLabels"
+    [options]="chartOptions"
+    [plugins]="chartPlugins"
+    [colors]="chartColors"
+  >
+  </canvas>
+</mat-card>

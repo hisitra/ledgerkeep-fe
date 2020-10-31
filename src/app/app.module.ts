@@ -51,6 +51,7 @@ import { MyCategoriesComponent } from './pages/my-categories/my-categories.compo
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { LoadingHeaderCardComponent } from './components/loading-header-card/loading-header-card.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     StatisticsComponent,
     PieChartComponent,
     LineChartComponent,
+    LoadingHeaderCardComponent,
   ],
   entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
   imports: [
