@@ -8,8 +8,6 @@ import { RandomService } from 'src/app/services/random.service';
   styleUrls: ['./pie-chart.component.css'],
 })
 export class PieChartComponent implements OnInit {
-  @Input() public title = '';
-
   constructor(private random: RandomService) {}
 
   ngOnInit(): void {}
