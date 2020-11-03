@@ -9,6 +9,7 @@ import { theme } from '../../../assets/configs.json';
 })
 export class LoadingHeaderCardComponent implements OnInit {
   @Input() value = '';
+  @Input() public isLoading = false;
 
   public primaryColor = theme.dpaPrimary;
 

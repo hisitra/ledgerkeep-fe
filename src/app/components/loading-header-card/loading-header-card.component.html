@@ -1,1 +1,4 @@
-<mat-card [ngStyle]="{ backgroundColor: primaryColor }" class="header-card">{{ value }}</mat-card>
+<mat-card class="header-card" [ngStyle]="{ backgroundColor: primaryColor }">
+  <p class="title">{{ value }}</p>
+  <mat-spinner diameter="25" color="accent" *ngIf="isLoading"></mat-spinner>
+</mat-card>

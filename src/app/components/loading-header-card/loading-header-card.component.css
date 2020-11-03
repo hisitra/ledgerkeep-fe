@@ -1,3 +1,13 @@
 .header-card {
+  height: 25px;
+  vertical-align: middle;
   color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: large;
+  display: inline;
+  margin: 0;
 }
