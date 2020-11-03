@@ -3,15 +3,19 @@
     <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
     <div fxFlex="1000px" fxFlex.md="700px" fxFlex.sm="600px" fxFlex.xs="98">
       <app-loading-header-card value="Categories" [isLoading]="isLoading"></app-loading-header-card>
-      <mat-form-field class="w-100 mt-5">
-        <input
-          matInput
-          (keyup)="applySearch($event.target.value)"
-          placeholder="Search"
-          autocomplete="off"
-          [disabled]="isLoading"
-        />
-      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center" class="mt-5">
+        <mat-form-field fxFlex="95">
+          <input
+            matInput
+            (keyup)="applySearch($event.target.value)"
+            placeholder="Search"
+            autocomplete="off"
+            [disabled]="isLoading"
+          />
+        </mat-form-field>
+        <button mat-raised-button color="accent" fxFlex="5">New</button>
+      </div>
 
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 w-100">
         <!-- Index Column -->
