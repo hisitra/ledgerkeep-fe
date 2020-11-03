@@ -1,1 +1,9 @@
-<app-loading-header-card value="Categories"></app-loading-header-card>
+<div class="container" fxFlex fxLayout="column" fxLayoutGap="10px">
+  <div fxLayout="row wrap" style="width: 100%">
+    <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
+    <div fxFlex="1000px" fxFlex.md="700px" fxFlex.sm="600px" fxFlex.xs="98">
+      <app-loading-header-card value="Categories" [isLoading]="true"></app-loading-header-card>
+    </div>
+    <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
+  </div>
+</div>
