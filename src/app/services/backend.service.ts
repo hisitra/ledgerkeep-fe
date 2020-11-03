@@ -14,6 +14,7 @@ const backendCustomCodes = {
   TOKEN_EXPIRED: 'TOKEN_EXPIRED',
   PASSWORD_RESET_ID_NOT_FOUND: 'PASSWORD_RESET_ID_NOT_FOUND',
   SIGNUP_ID_NOT_FOUND: 'SIGNUP_ID_NOT_FOUND',
+  CATEGORY_ALREADY_EXISTS: 'CATEGORY_ALREADY_EXISTS',
 };
 
 @Injectable({
@@ -254,6 +255,47 @@ export class BackendService {
     }
   }
 
+  async getCategories(): Promise<any> {
+    const endpoint = `${ledgerkeep.address}${ledgerkeep.getCategories}`;
+    const token = this.authService.getToken();
+
+    try {
+      const response = await this.httpClient
+        .get(endpoint, {
+          headers: { authorization: token },
+        })
+        .toPromise()
+        // This line converts 'res' from type Object to type any.
+        .then((res: any) => res);
+
+      if (!response || !response.data) {
+        throw defaultResponse;
+      }
+      return response;
+    } catch (err) {
+      const customCode = err.error && err.error.customCode;
+      if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
+        throw defaultResponse;
+      }
+      if (
+        customCode === backendCustomCodes.USER_NOT_FOUND ||
+        customCode === backendCustomCodes.UNAUTHORIZED_OPERATION
+      ) {
+        this.authService.logout();
+        throw new Error('You are not authorized for this action.');
+      }
+
+      if (customCode === backendCustomCodes.TOKEN_EXPIRED) {
+        this.authService.logout();
+        throw new Error('Your session has expired.');
+      }
+
+      console.warn('Unexpected response from backend:', err);
+      throw defaultResponse;
+    }
+  }
+
   async getSum(queries: any): Promise<any> {
     const endpoint = `${ledgerkeep.address}${ledgerkeep.getSum}`;
     const token = this.authService.getToken();
@@ -372,6 +414,44 @@ export class BackendService {
       if (customCode === backendCustomCodes.TOKEN_EXPIRED) {
         this.authService.logout();
         throw new Error('Your session has expired.');
+      }
+
+      console.warn('Unexpected response from backend:', err);
+      throw defaultResponse;
+    }
+  }
+
+  async createCategory(name: string): Promise<any> {
+    const endpoint = `${ledgerkeep.address}${ledgerkeep.putCategory}/${name}`;
+    const token = this.authService.getToken();
+
+    try {
+      return await this.httpClient
+        .put(endpoint, null, {
+          headers: { authorization: token },
+        })
+        .toPromise();
+    } catch (err) {
+      const customCode = err.error && err.error.customCode;
+      if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
+        throw defaultResponse;
+      }
+      if (
+        customCode === backendCustomCodes.USER_NOT_FOUND ||
+        customCode === backendCustomCodes.UNAUTHORIZED_OPERATION
+      ) {
+        this.authService.logout();
+        throw new Error('You are not authorized for this action.');
+      }
+
+      if (customCode === backendCustomCodes.TOKEN_EXPIRED) {
+        this.authService.logout();
+        throw new Error('Your session has expired.');
+      }
+
+      if (customCode === backendCustomCodes.CATEGORY_ALREADY_EXISTS) {
+        throw new Error('Category already exists.');
       }
 
       console.warn('Unexpected response from backend:', err);

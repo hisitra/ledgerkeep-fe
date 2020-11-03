@@ -14,6 +14,7 @@ export class MyCategoriesComponent implements OnInit {
   public isLoading = false;
 
   displayedColumns: string[] = ['index', 'name', 'balance'];
+  rawData: any[] = [];
   dataSource: MatTableDataSource<any>;
 
   constructor(
@@ -25,26 +26,43 @@ export class MyCategoriesComponent implements OnInit {
   }
 
   async ngOnInit() {
+    await this.loadTable();
+  }
+
+  applySearch(searchValue: string) {
+    this.dataSource.filter = searchValue.trim().toLowerCase();
+  }
+
+  async loadTable(): Promise<void> {
     this.isLoading = true;
 
-    try {
-      const results = await this.backend.getSum({ group: 'category' });
+    this.rawData = [];
+    const calls = [this.backend.getCategories(), this.backend.getSum({ group: 'category' })];
 
-      const rawData = [];
-      results.data.forEach((entry, index) => {
-        rawData.push({ index: index + 1, name: entry.category, balance: entry.sum });
+    try {
+      const results = await Promise.all(calls);
+
+      const categories = results[0].data;
+      const sums = results[1].data;
+
+      categories.forEach((cat, index) => {
+        let balance;
+
+        sums.forEach((entry) => {
+          if (entry.category === cat) {
+            balance = entry.sum;
+          }
+        });
+
+        this.rawData.push({ index: index + 1, name: cat, balance: balance || 0 });
       });
 
-      this.dataSource = new MatTableDataSource(rawData);
+      this.dataSource = new MatTableDataSource(this.rawData);
     } catch (err) {
       this.alertService.error(err.message);
     }
 
     this.isLoading = false;
-  }
-
-  applySearch(searchValue: string) {
-    this.dataSource.filter = searchValue.trim().toLowerCase();
   }
 
   openNewCategoryDialog(): void {
@@ -54,5 +72,15 @@ export class MyCategoriesComponent implements OnInit {
     });
   }
 
-  async createCategory(name: string): Promise<void> {}
+  async createCategory(name: string): Promise<void> {
+    try {
+      await this.backend.createCategory(name);
+      this.loadTable();
+      this.alertService.success('Category created.');
+    } catch (err) {
+      this.alertService.error(err);
+    }
+  }
+
+  async rowClick(row: any): Promise<void> {}
 }

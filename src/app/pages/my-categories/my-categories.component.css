@@ -16,3 +16,8 @@
 .mt-5 {
   margin-top: 5px;
 }
+
+tr:hover {
+  background: #b4b4b433;
+  cursor: pointer;
+}

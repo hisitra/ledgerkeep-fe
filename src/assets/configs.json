@@ -35,8 +35,10 @@
   },
   "ledgerkeep": {
     "address": "http://localhost:8100/api",
+    "getCategories": "/userAccess/category",
     "getSum": "/userAccess/transaction/sum",
     "getTxCount": "/userAccess/transaction/count",
-    "getCatCount": "/userAccess/category/count"
+    "getCatCount": "/userAccess/category/count",
+    "putCategory": "/userAccess/category"
   }
 }
