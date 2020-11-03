@@ -21,7 +21,9 @@ export class LoadingButtonComponent implements OnInit {
     this.buttonStyle.height = value;
   }
 
-  constructor() {}
+  constructor() {
+    this.buttonStyle.height = `${this.spinnerDia * 1.5}px`;
+  }
 
   ngOnInit() {}
 
