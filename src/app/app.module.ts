@@ -20,6 +20,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -105,6 +106,7 @@ import { LoadingHeaderCardComponent } from './components/loading-header-card/loa
     MatExpansionModule,
     MatSidenavModule,
     MatListModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

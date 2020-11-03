@@ -3,6 +3,43 @@
     <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
     <div fxFlex="1000px" fxFlex.md="700px" fxFlex.sm="600px" fxFlex.xs="98">
       <app-loading-header-card value="Categories" [isLoading]="true"></app-loading-header-card>
+      <mat-form-field class="w-100">
+        <input
+          matInput
+          (keyup)="applySearch($event.target.value)"
+          placeholder="Search"
+          autocomplete="off"
+        />
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 w-100">
+        <!-- Index Column -->
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.index }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+
+        <!-- Transaction Count Column -->
+        <ng-container matColumnDef="txCount">
+          <th mat-header-cell *matHeaderCellDef>Transactions</th>
+          <td mat-cell *matCellDef="let element">{{ element.txCount }}</td>
+        </ng-container>
+
+        <!-- Balance Column -->
+        <ng-container matColumnDef="balance">
+          <th mat-header-cell *matHeaderCellDef>Balance</th>
+          <td mat-cell *matCellDef="let element">{{ element.balance }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
     </div>
     <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
   </div>

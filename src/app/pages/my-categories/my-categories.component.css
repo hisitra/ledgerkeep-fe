@@ -8,3 +8,7 @@
     height: calc(100vh - 66px);
   }
 }
+
+.w-100 {
+  width: 100%;
+}
