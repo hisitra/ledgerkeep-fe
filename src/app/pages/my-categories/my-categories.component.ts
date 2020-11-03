@@ -50,6 +50,9 @@ export class MyCategoriesComponent implements OnInit {
   openNewCategoryDialog(): void {
     this.dialog.open(NewCategoryDialogComponent, {
       width: '400px',
+      data: { action: this.createCategory.bind(this) },
     });
   }
+
+  async createCategory(name: string): Promise<void> {}
 }
