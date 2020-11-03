@@ -31,17 +31,16 @@ export class ProfileComponent implements OnInit {
       this.backend.getCatCount(),
     ];
 
-    let results;
     try {
-      results = await Promise.all(calls);
+      const results = await Promise.all(calls);
+
+      this.user = results[0].data;
+      this.balance = results[1].data.sum;
+      this.txCount = results[2].data.count;
+      this.catCount = results[3].data.count;
     } catch (err) {
       this.alertService.error(err.message);
     }
-
-    this.user = results[0].data;
-    this.balance = results[1].data.sum;
-    this.txCount = results[2].data.count;
-    this.catCount = results[3].data.count;
 
     this.isLoading = false;
   }
