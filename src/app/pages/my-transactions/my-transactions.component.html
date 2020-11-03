@@ -45,3 +45,8 @@
     <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
   </div>
 </div>
+<app-bottom-fab-button
+  iconName="filter_alt"
+  [disabled]="isLoading"
+  (click)="openFilterSheet()"
+></app-bottom-fab-button>

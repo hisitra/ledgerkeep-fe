@@ -22,6 +22,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -52,6 +53,8 @@ import { MyCategoriesComponent } from './pages/my-categories/my-categories.compo
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { LoadingHeaderCardComponent } from './components/loading-header-card/loading-header-card.component';
 import { NewCategoryDialogComponent } from './components/new-category-dialog/new-category-dialog.component';
+import { BottomFabButtonComponent } from './components/bottom-fab-button/bottom-fab-button.component';
+import { TransactionFilterSheetComponent } from './components/transaction-filter-sheet/transaction-filter-sheet.component';
 
 @NgModule({
   declarations: [
@@ -84,8 +87,15 @@ import { NewCategoryDialogComponent } from './components/new-category-dialog/new
     StatisticsComponent,
     LoadingHeaderCardComponent,
     NewCategoryDialogComponent,
+    BottomFabButtonComponent,
+    TransactionFilterSheetComponent,
   ],
-  entryComponents: [AlertSnackbarComponent, AlertDialogComponent, NewCategoryDialogComponent],
+  entryComponents: [
+    AlertSnackbarComponent,
+    AlertDialogComponent,
+    NewCategoryDialogComponent,
+    TransactionFilterSheetComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -111,6 +121,7 @@ import { NewCategoryDialogComponent } from './components/new-category-dialog/new
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
+    MatBottomSheetModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
