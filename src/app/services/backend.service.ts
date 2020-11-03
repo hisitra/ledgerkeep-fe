@@ -15,6 +15,8 @@ const backendCustomCodes = {
   PASSWORD_RESET_ID_NOT_FOUND: 'PASSWORD_RESET_ID_NOT_FOUND',
   SIGNUP_ID_NOT_FOUND: 'SIGNUP_ID_NOT_FOUND',
   CATEGORY_ALREADY_EXISTS: 'CATEGORY_ALREADY_EXISTS',
+  CATEGORY_NOT_FOUND: 'CATEGORY_NOT_FOUND',
+  CATEGORY_IN_USE: 'CATEGORY_IN_USE',
 };
 
 @Injectable({
@@ -452,6 +454,48 @@ export class BackendService {
 
       if (customCode === backendCustomCodes.CATEGORY_ALREADY_EXISTS) {
         throw new Error('Category already exists.');
+      }
+
+      console.warn('Unexpected response from backend:', err);
+      throw defaultResponse;
+    }
+  }
+
+  async deleteCategory(name: string): Promise<any> {
+    const endpoint = `${ledgerkeep.address}${ledgerkeep.deleteCategory}/${name}`;
+    const token = this.authService.getToken();
+
+    try {
+      return await this.httpClient
+        .delete(endpoint, {
+          headers: { authorization: token },
+        })
+        .toPromise();
+    } catch (err) {
+      const customCode = err.error && err.error.customCode;
+      if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
+        throw defaultResponse;
+      }
+      if (
+        customCode === backendCustomCodes.USER_NOT_FOUND ||
+        customCode === backendCustomCodes.UNAUTHORIZED_OPERATION
+      ) {
+        this.authService.logout();
+        throw new Error('You are not authorized for this action.');
+      }
+
+      if (customCode === backendCustomCodes.TOKEN_EXPIRED) {
+        this.authService.logout();
+        throw new Error('Your session has expired.');
+      }
+
+      if (customCode === backendCustomCodes.CATEGORY_NOT_FOUND) {
+        throw new Error('Category does not exist.');
+      }
+
+      if (customCode === backendCustomCodes.CATEGORY_IN_USE) {
+        throw new Error('Category contains transactions.');
       }
 
       console.warn('Unexpected response from backend:', err);

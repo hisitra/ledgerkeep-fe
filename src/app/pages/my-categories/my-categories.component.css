@@ -17,6 +17,14 @@
   margin-top: 5px;
 }
 
+.ta-r {
+  text-align: right;
+}
+
+.ta-c {
+  text-align: center;
+}
+
 tr:hover {
   background: #b4b4b433;
   cursor: pointer;

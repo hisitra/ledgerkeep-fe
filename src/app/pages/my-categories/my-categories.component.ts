@@ -13,7 +13,7 @@ import { BackendService } from 'src/app/services/backend.service';
 export class MyCategoriesComponent implements OnInit {
   public isLoading = false;
 
-  displayedColumns: string[] = ['index', 'name', 'balance'];
+  displayedColumns: string[] = ['index', 'name', 'balance', 'actions'];
   rawData: any[] = [];
   dataSource: MatTableDataSource<any>;
 
@@ -45,16 +45,23 @@ export class MyCategoriesComponent implements OnInit {
       const categories = results[0].data;
       const sums = results[1].data;
 
-      categories.forEach((cat, index) => {
-        let balance;
+      const processedCats = [];
 
-        sums.forEach((entry) => {
-          if (entry.category === cat) {
-            balance = entry.sum;
-          }
+      sums.forEach((entry) => {
+        processedCats.push(entry.category);
+
+        this.rawData.push({
+          index: this.rawData.length + 1,
+          name: entry.category,
+          balance: entry.sum,
         });
+      });
 
-        this.rawData.push({ index: index + 1, name: cat, balance: balance || 0 });
+      categories.forEach((name) => {
+        if (processedCats.includes(name)) {
+          return;
+        }
+        this.rawData.push({ index: this.rawData.length + 1, name, balance: 0 });
       });
 
       this.dataSource = new MatTableDataSource(this.rawData);
@@ -78,7 +85,17 @@ export class MyCategoriesComponent implements OnInit {
       this.loadTable();
       this.alertService.success('Category created.');
     } catch (err) {
-      this.alertService.error(err);
+      this.alertService.error(err.message);
+    }
+  }
+
+  async deleteCategory(element: any): Promise<void> {
+    try {
+      await this.backend.deleteCategory(element.name);
+      this.loadTable();
+      this.alertService.success('Category deleted.');
+    } catch (err) {
+      this.alertService.error(err.message);
     }
   }
 

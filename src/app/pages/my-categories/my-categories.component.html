@@ -28,19 +28,29 @@
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          <th mat-header-cell *matHeaderCellDef class="ta-c">Name</th>
+          <td mat-cell *matCellDef="let element" class="ta-c">{{ element.name }}</td>
         </ng-container>
 
         <!-- Balance Column -->
         <ng-container matColumnDef="balance">
-          <th mat-header-cell *matHeaderCellDef>Balance</th>
+          <th mat-header-cell *matHeaderCellDef class="ta-c">Balance</th>
           <td
             mat-cell
             *matCellDef="let element"
             [ngStyle]="{ color: element.balance > 0 ? 'green' : 'red' }"
+            class="ta-c"
           >
             {{ element.balance > 0 ? '+' : '' }}{{ element.balance }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="ta-r">
+            <button mat-icon-button color="warn" (click)="deleteCategory(element)">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
           </td>
         </ng-container>
 
