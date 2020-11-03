@@ -9,6 +9,7 @@ export class UserInfoRowComponent implements OnInit {
   @Input() iconName: string;
   @Input() heading: string;
   @Input() value: string;
+  @Input() color = 'black';
 
   constructor() {}
 

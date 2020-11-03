@@ -7,6 +7,9 @@ import { Input, Component, OnInit } from '@angular/core';
 })
 export class UserInfoCardComponent implements OnInit {
   @Input() user: { email: string; firstName: string; lastName: string; createdAt: number };
+  @Input() balance = 0.0;
+  @Input() txCount = 0;
+  @Input() catCount = 0;
 
   constructor() {}
 
