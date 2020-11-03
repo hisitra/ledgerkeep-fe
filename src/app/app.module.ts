@@ -48,8 +48,6 @@ import { AddTransactionComponent } from './pages/add-transaction/add-transaction
 import { MyTransactionsComponent } from './pages/my-transactions/my-transactions.component';
 import { MyCategoriesComponent } from './pages/my-categories/my-categories.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
-import { PieChartComponent } from './components/pie-chart/pie-chart.component';
-import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { LoadingHeaderCardComponent } from './components/loading-header-card/loading-header-card.component';
 
 @NgModule({
@@ -81,8 +79,6 @@ import { LoadingHeaderCardComponent } from './components/loading-header-card/loa
     MyTransactionsComponent,
     MyCategoriesComponent,
     StatisticsComponent,
-    PieChartComponent,
-    LineChartComponent,
     LoadingHeaderCardComponent,
   ],
   entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
