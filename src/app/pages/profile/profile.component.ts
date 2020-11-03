@@ -13,6 +13,10 @@ export class ProfileComponent implements OnInit {
   public imagePath = `${imageKeep.address}${imageKeep.randomCover}?width=800`;
 
   public user: any = {};
+  public balance: number;
+  public txCount: number;
+  public catCount: number;
+
   public isLoading = false;
 
   constructor(private backend: BackendService, private alertService: AlertService) {}
@@ -20,11 +24,24 @@ export class ProfileComponent implements OnInit {
   async ngOnInit() {
     this.isLoading = true;
 
+    const calls = [
+      this.backend.getUser(),
+      this.backend.getSum({}),
+      this.backend.getTxCount({}),
+      this.backend.getCatCount(),
+    ];
+
+    let results;
     try {
-      this.user = (await this.backend.getUser()).data;
+      results = await Promise.all(calls);
     } catch (err) {
       this.alertService.error(err.message);
     }
+
+    this.user = results[0].data;
+    this.balance = results[1].data.sum;
+    this.txCount = results[2].data.count;
+    this.catCount = results[3].data.count;
 
     this.isLoading = false;
   }

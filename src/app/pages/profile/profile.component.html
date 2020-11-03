@@ -15,7 +15,12 @@
       </div>
       <mat-tab-group animationDuration="200ms">
         <mat-tab label="Info" [disabled]="isLoading">
-          <app-user-info-card [user]="user"></app-user-info-card>
+          <app-user-info-card
+            [user]="user"
+            [balance]="balance"
+            [txCount]="txCount"
+            [catCount]="catCount"
+          ></app-user-info-card>
         </mat-tab>
         <mat-tab label="Edit" [disabled]="isLoading">
           <mat-accordion>

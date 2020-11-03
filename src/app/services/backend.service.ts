@@ -295,4 +295,87 @@ export class BackendService {
       throw defaultResponse;
     }
   }
+
+  async getTxCount(queries: any): Promise<any> {
+    const endpoint = `${ledgerkeep.address}${ledgerkeep.getTxCount}`;
+    const token = this.authService.getToken();
+
+    try {
+      const response = await this.httpClient
+        .get(endpoint, {
+          headers: { authorization: token },
+          params: queries,
+        })
+        .toPromise()
+        // This line converts 'res' from type Object to type any.
+        .then((res: any) => res);
+
+      if (!response || !response.data) {
+        throw defaultResponse;
+      }
+      return response;
+    } catch (err) {
+      const customCode = err.error && err.error.customCode;
+      if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
+        throw defaultResponse;
+      }
+      if (
+        customCode === backendCustomCodes.USER_NOT_FOUND ||
+        customCode === backendCustomCodes.UNAUTHORIZED_OPERATION
+      ) {
+        this.authService.logout();
+        throw new Error('You are not authorized for this action.');
+      }
+
+      if (customCode === backendCustomCodes.TOKEN_EXPIRED) {
+        this.authService.logout();
+        throw new Error('Your session has expired.');
+      }
+
+      console.warn('Unexpected response from backend:', err);
+      throw defaultResponse;
+    }
+  }
+
+  async getCatCount(): Promise<any> {
+    const endpoint = `${ledgerkeep.address}${ledgerkeep.getCatCount}`;
+    const token = this.authService.getToken();
+
+    try {
+      const response = await this.httpClient
+        .get(endpoint, {
+          headers: { authorization: token },
+        })
+        .toPromise()
+        // This line converts 'res' from type Object to type any.
+        .then((res: any) => res);
+
+      if (!response || !response.data) {
+        throw defaultResponse;
+      }
+      return response;
+    } catch (err) {
+      const customCode = err.error && err.error.customCode;
+      if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
+        throw defaultResponse;
+      }
+      if (
+        customCode === backendCustomCodes.USER_NOT_FOUND ||
+        customCode === backendCustomCodes.UNAUTHORIZED_OPERATION
+      ) {
+        this.authService.logout();
+        throw new Error('You are not authorized for this action.');
+      }
+
+      if (customCode === backendCustomCodes.TOKEN_EXPIRED) {
+        this.authService.logout();
+        throw new Error('Your session has expired.');
+      }
+
+      console.warn('Unexpected response from backend:', err);
+      throw defaultResponse;
+    }
+  }
 }
