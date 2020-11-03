@@ -6,6 +6,8 @@ import { Input, Component, OnInit } from '@angular/core';
   styleUrls: ['./loading-button.component.css'],
 })
 export class LoadingButtonComponent implements OnInit {
+  @Input() height = '50px';
+  @Input() width = '96%';
   @Input() isLoading = false;
   @Input() value = '';
   @Input() disabled = false;

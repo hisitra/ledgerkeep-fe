@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { NewCategoryDialogComponent } from 'src/app/components/new-category-dialog/new-category-dialog.component';
 import { AlertService } from 'src/app/services/alert.service';
 import { BackendService } from 'src/app/services/backend.service';
 
@@ -14,7 +16,11 @@ export class MyCategoriesComponent implements OnInit {
   displayedColumns: string[] = ['index', 'name', 'balance'];
   dataSource: MatTableDataSource<any>;
 
-  constructor(private backend: BackendService, private alertService: AlertService) {
+  constructor(
+    private backend: BackendService,
+    private alertService: AlertService,
+    private dialog: MatDialog,
+  ) {
     this.dataSource = new MatTableDataSource([]);
   }
 
@@ -39,5 +45,11 @@ export class MyCategoriesComponent implements OnInit {
 
   applySearch(searchValue: string) {
     this.dataSource.filter = searchValue.trim().toLowerCase();
+  }
+
+  openNewCategoryDialog(): void {
+    this.dialog.open(NewCategoryDialogComponent, {
+      width: '400px',
+    });
   }
 }

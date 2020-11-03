@@ -14,7 +14,9 @@
             [disabled]="isLoading"
           />
         </mat-form-field>
-        <button mat-raised-button color="accent" fxFlex="5">New</button>
+        <button mat-raised-button color="accent" fxFlex="5" (click)="openNewCategoryDialog()">
+          New
+        </button>
       </div>
 
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 w-100">

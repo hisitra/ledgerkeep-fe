@@ -50,6 +50,7 @@ import { MyTransactionsComponent } from './pages/my-transactions/my-transactions
 import { MyCategoriesComponent } from './pages/my-categories/my-categories.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { LoadingHeaderCardComponent } from './components/loading-header-card/loading-header-card.component';
+import { NewCategoryDialogComponent } from './components/new-category-dialog/new-category-dialog.component';
 
 @NgModule({
   declarations: [
@@ -81,8 +82,9 @@ import { LoadingHeaderCardComponent } from './components/loading-header-card/loa
     MyCategoriesComponent,
     StatisticsComponent,
     LoadingHeaderCardComponent,
+    NewCategoryDialogComponent,
   ],
-  entryComponents: [AlertSnackbarComponent, AlertDialogComponent],
+  entryComponents: [AlertSnackbarComponent, AlertDialogComponent, NewCategoryDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
