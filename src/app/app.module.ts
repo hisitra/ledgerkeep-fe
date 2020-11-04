@@ -60,6 +60,7 @@ import { NewCategoryDialogComponent } from './components/new-category-dialog/new
 import { BottomFabButtonComponent } from './components/bottom-fab-button/bottom-fab-button.component';
 import { TransactionFilterSheetComponent } from './components/transaction-filter-sheet/transaction-filter-sheet.component';
 import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
+import { EditTransactionComponent } from './pages/edit-transaction/edit-transaction.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.
     BottomFabButtonComponent,
     TransactionFilterSheetComponent,
     LogoutDialogComponent,
+    EditTransactionComponent,
   ],
   entryComponents: [
     AlertSnackbarComponent,

@@ -20,3 +20,8 @@ table {
 .mb-100 {
   margin-bottom: 100px;
 }
+
+tr:hover {
+  background: #b4b4b433;
+  cursor: pointer;
+}

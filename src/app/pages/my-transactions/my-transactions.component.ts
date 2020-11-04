@@ -1,8 +1,9 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionFilterSheetComponent } from 'src/app/components/transaction-filter-sheet/transaction-filter-sheet.component';
 import { AlertService } from 'src/app/services/alert.service';
 import { BackendService } from 'src/app/services/backend.service';
@@ -30,6 +31,7 @@ export class MyTransactionsComponent implements OnInit {
     private filterSheet: MatBottomSheet,
     private mtq: MtqueryService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   async ngOnInit() {
@@ -71,6 +73,7 @@ export class MyTransactionsComponent implements OnInit {
       let transactions = result.data.values || [];
       transactions = transactions.map((tx: any, index: any) => {
         return {
+          id: tx.id,
           index: index + this.skip + 1,
           amount: tx.amount,
           category: tx.category,
@@ -97,5 +100,9 @@ export class MyTransactionsComponent implements OnInit {
     if (state) {
       this.filterSheet.dismiss();
     }
+  }
+
+  public async rowClick(row: any): Promise<void> {
+    await this.router.navigate([`/edit-transaction/${row.id}`]);
   }
 }
