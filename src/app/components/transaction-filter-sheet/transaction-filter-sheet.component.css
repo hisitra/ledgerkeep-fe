@@ -11,3 +11,9 @@
 .w-95 {
   width: 95%;
 }
+
+.spinner {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert.service';
+import { BackendService } from 'src/app/services/backend.service';
 import { MtqueryService } from 'src/app/services/mtquery.service';
 
 import { validation } from '../../../assets/configs.json';
@@ -103,11 +105,16 @@ const endAmountValidator = (formGroup: FormGroup) => {
 export class TransactionFilterSheetComponent implements OnInit {
   public filterForm: FormGroup;
 
+  public categories: string[] = [];
+  public isLoading = false;
+
   constructor(
+    private backend: BackendService,
     private formBuilder: FormBuilder,
     private router: Router,
     private mtq: MtqueryService,
     private sheet: MatBottomSheetRef<TransactionFilterSheetComponent>,
+    private alertService: AlertService,
   ) {
     this.filterForm = this.formBuilder.group(
       {
@@ -126,6 +133,8 @@ export class TransactionFilterSheetComponent implements OnInit {
         ],
       },
     );
+
+    this.loadCategories();
   }
 
   async ngOnInit() {
@@ -182,5 +191,24 @@ export class TransactionFilterSheetComponent implements OnInit {
     if (currentQuery.category) {
       this.filterForm.get('category').setValue(currentQuery.category);
     }
+  }
+
+  private setLoading(state: boolean): void {
+    this.isLoading = state;
+    state ? this.filterForm.disable() : this.filterForm.enable();
+  }
+
+  private async loadCategories(): Promise<void> {
+    this.setLoading(true);
+
+    try {
+      const result = await this.backend.getCategories();
+      this.categories = result.data;
+    } catch (err) {
+      this.alertService.error('Failed to load categories');
+      this.categories = [];
+    }
+
+    this.setLoading(false);
   }
 }

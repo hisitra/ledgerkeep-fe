@@ -37,7 +37,6 @@ export class MyTransactionsComponent implements OnInit {
     this.paginator.page.subscribe(() => this.onPageEvent());
 
     setTimeout(() => {
-      // this.onPageEvent();
       this.route.queryParams.subscribe((_) => this.loadTable());
     }, 0);
   }
