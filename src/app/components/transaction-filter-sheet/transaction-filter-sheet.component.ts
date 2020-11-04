@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-import { QuerystoreService } from 'src/app/services/querystore.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { validation } from '../../../assets/configs.json';
 
@@ -104,7 +104,8 @@ export class TransactionFilterSheetComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private queryStore: QuerystoreService,
+    private router: Router,
+    private route: ActivatedRoute,
     private sheet: MatBottomSheetRef<TransactionFilterSheetComponent>,
     @Inject(MAT_BOTTOM_SHEET_DATA)
     private data: { action: () => Promise<void> },
@@ -132,7 +133,7 @@ export class TransactionFilterSheetComponent implements OnInit {
 
   ngOnInit() {}
 
-  processQuery(): void {
+  async processQuery(): Promise<void> {
     if (this.filterForm.invalid) {
       return;
     }
@@ -156,7 +157,7 @@ export class TransactionFilterSheetComponent implements OnInit {
       query.category = values.category;
     }
 
-    this.queryStore.setMyTxQuery(query);
+    await this.router.navigate([], { queryParams: query });
     this.data.action();
     this.sheet.dismiss();
   }
@@ -165,8 +166,8 @@ export class TransactionFilterSheetComponent implements OnInit {
     this.filterForm.reset();
   }
 
-  private loadQuery(): void {
-    const currentQuery = this.queryStore.getMyTxQuery();
+  private async loadQuery(): Promise<void> {
+    const currentQuery = await this.getQueryParams();
 
     if (currentQuery.startDate) {
       this.filterForm.get('startDate').setValue(new Date(currentQuery.startDate));
@@ -183,5 +184,14 @@ export class TransactionFilterSheetComponent implements OnInit {
     if (currentQuery.category) {
       this.filterForm.get('category').setValue(currentQuery.category);
     }
+  }
+
+  private async getQueryParams(): Promise<{ [key: string]: string }> {
+    return new Promise((resolve, reject) => {
+      this.route.queryParams.subscribe((params) => {
+        // validate them here.
+        resolve(params);
+      });
+    });
   }
 }
