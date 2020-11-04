@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { NewCategoryDialogComponent } from 'src/app/components/new-category-dialog/new-category-dialog.component';
 import { AlertService } from 'src/app/services/alert.service';
 import { BackendService } from 'src/app/services/backend.service';
@@ -21,6 +22,7 @@ export class MyCategoriesComponent implements OnInit {
     private backend: BackendService,
     private alertService: AlertService,
     private dialog: MatDialog,
+    private router: Router,
   ) {
     this.dataSource = new MatTableDataSource([]);
   }
@@ -99,5 +101,11 @@ export class MyCategoriesComponent implements OnInit {
     }
   }
 
-  async rowClick(row: any): Promise<void> {}
+  async rowClick(row: any): Promise<void> {
+    this.router.navigate(['/my-transactions'], {
+      queryParams: {
+        category: row.name,
+      },
+    });
+  }
 }
