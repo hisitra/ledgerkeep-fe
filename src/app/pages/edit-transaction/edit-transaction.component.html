@@ -6,7 +6,12 @@
         value="Edit Transaction"
         [isLoading]="isLoading"
       ></app-loading-header-card>
-      <app-edit-transaction-card #editCard [categories]="categories"></app-edit-transaction-card>
+      <app-edit-transaction-card
+        #editCard
+        [isLoading]="isLoading"
+        [categories]="categories"
+        [updateAction]="updateTransaction.bind(this)"
+      ></app-edit-transaction-card>
     </div>
     <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
   </div>

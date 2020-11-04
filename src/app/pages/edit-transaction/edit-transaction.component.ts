@@ -46,6 +46,23 @@ export class EditTransactionComponent implements OnInit {
     this.isLoading = false;
   }
 
+  async updateTransaction(transaction: any): Promise<void> {
+    if (this.isLoading) {
+      return;
+    }
+
+    this.isLoading = true;
+
+    try {
+      await this.backend.updateTransaction(await this.getTransactionID(), transaction);
+      this.alertService.success('Transaction updated.');
+    } catch (err) {
+      this.alertService.error(err.message);
+    }
+
+    this.isLoading = false;
+  }
+
   async getTransactionID(): Promise<string> {
     return new Promise((resolve) => {
       this.route.params.subscribe((routeParams) => {

@@ -42,6 +42,7 @@
     "getTxCount": "/userAccess/transaction/count",
     "getCatCount": "/userAccess/category/count",
     "putCategory": "/userAccess/category",
-    "deleteCategory": "/userAccess/category"
+    "deleteCategory": "/userAccess/category",
+    "updateTransaction": "/userAccess/transaction"
   }
 }

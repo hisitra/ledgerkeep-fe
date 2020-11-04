@@ -589,4 +589,46 @@ export class BackendService {
       throw defaultResponse;
     }
   }
+
+  async updateTransaction(id: string, updates: any): Promise<any> {
+    const endpoint = `${ledgerkeep.address}${ledgerkeep.updateTransaction}/${id}`;
+    const token = this.authService.getToken();
+
+    try {
+      return await this.httpClient
+        .patch(endpoint, updates, {
+          headers: { authorization: token },
+        })
+        .toPromise();
+    } catch (err) {
+      const customCode = err.error && err.error.customCode;
+      if (!customCode) {
+        console.warn('No customCode present in Backend error response.');
+        throw defaultResponse;
+      }
+      if (
+        customCode === backendCustomCodes.USER_NOT_FOUND ||
+        customCode === backendCustomCodes.UNAUTHORIZED_OPERATION
+      ) {
+        this.authService.logout();
+        throw new Error('You are not authorized for this action.');
+      }
+
+      if (customCode === backendCustomCodes.TOKEN_EXPIRED) {
+        this.authService.logout();
+        throw new Error('Your session has expired.');
+      }
+
+      if (customCode === backendCustomCodes.TRANSACTION_NOT_FOUND) {
+        throw new Error('No such transaction exists.');
+      }
+
+      if (customCode === backendCustomCodes.CATEGORY_NOT_FOUND) {
+        throw new Error('No such category exists.');
+      }
+
+      console.warn('Unexpected response from backend:', err);
+      throw defaultResponse;
+    }
+  }
 }

@@ -65,9 +65,16 @@
       </mat-form-field>
 
       <div align="end">
-        <button mat-raised-button color="primary">Update</button>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="isLoading"
+          (click)="updateTransaction()"
+        >
+          Update
+        </button>
         &nbsp;
-        <button mat-raised-button color="warn" type="button">Delete</button>
+        <button mat-raised-button color="warn" [disabled]="isLoading" type="button">Delete</button>
       </div>
     </form>
   </mat-card-content>
