@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import { TransactionFilterSheetComponent } from 'src/app/components/transaction-filter-sheet/transaction-filter-sheet.component';
 import { AlertService } from 'src/app/services/alert.service';
 import { BackendService } from 'src/app/services/backend.service';
@@ -28,13 +29,17 @@ export class MyTransactionsComponent implements OnInit {
     private alertService: AlertService,
     private filterSheet: MatBottomSheet,
     private mtq: MtqueryService,
+    private route: ActivatedRoute,
   ) {}
 
   async ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.paginator.page.subscribe(() => this.onPageEvent());
 
-    setTimeout(() => this.onPageEvent(), 0);
+    setTimeout(() => {
+      // this.onPageEvent();
+      this.route.queryParams.subscribe((_) => this.loadTable());
+    }, 0);
   }
 
   public openFilterSheet(): void {
@@ -42,20 +47,18 @@ export class MyTransactionsComponent implements OnInit {
       return;
     }
 
-    this.filterSheet.open(TransactionFilterSheetComponent, {
-      data: { action: () => this.loadTable() },
-    });
+    this.filterSheet.open(TransactionFilterSheetComponent);
   }
 
   private async onPageEvent(): Promise<void> {
-    this.limit = this.paginator.pageSize;
-    this.skip = this.paginator.pageIndex * this.paginator.pageSize;
-
     this.loadTable();
   }
 
   private async loadTable(): Promise<void> {
     this.setLoading(true);
+
+    this.limit = this.paginator.pageSize;
+    this.skip = this.paginator.pageIndex * this.paginator.pageSize;
 
     const query = await this.mtq.getQuery();
 
@@ -80,7 +83,7 @@ export class MyTransactionsComponent implements OnInit {
       this.paginator.length = result.data.totalCount;
 
       if (transactions.length === 0) {
-        throw new Error('No transactions found.');
+        this.alertService.info('No transactions found.');
       }
     } catch (err) {
       this.alertService.error(err.message);

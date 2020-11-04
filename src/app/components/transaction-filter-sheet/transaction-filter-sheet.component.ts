@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { Router } from '@angular/router';
 import { MtqueryService } from 'src/app/services/mtquery.service';
 
 import { validation } from '../../../assets/configs.json';
@@ -108,8 +108,6 @@ export class TransactionFilterSheetComponent implements OnInit {
     private router: Router,
     private mtq: MtqueryService,
     private sheet: MatBottomSheetRef<TransactionFilterSheetComponent>,
-    @Inject(MAT_BOTTOM_SHEET_DATA)
-    private data: { action: () => Promise<void> },
   ) {
     this.filterForm = this.formBuilder.group(
       {
@@ -128,11 +126,11 @@ export class TransactionFilterSheetComponent implements OnInit {
         ],
       },
     );
-
-    this.loadQuery();
   }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    await this.loadQuery();
+  }
 
   async processQuery(): Promise<void> {
     if (this.filterForm.invalid) {
@@ -159,7 +157,6 @@ export class TransactionFilterSheetComponent implements OnInit {
     }
 
     await this.router.navigate([], { queryParams: query });
-    this.data.action();
     this.sheet.dismiss();
   }
 
@@ -170,10 +167,10 @@ export class TransactionFilterSheetComponent implements OnInit {
   private async loadQuery(): Promise<void> {
     const currentQuery = await this.mtq.getQuery();
 
-    if (currentQuery.startDate) {
+    if (currentQuery.startTime) {
       this.filterForm.get('startDate').setValue(new Date(currentQuery.startTime));
     }
-    if (currentQuery.endDate) {
+    if (currentQuery.endTime) {
       this.filterForm.get('endDate').setValue(new Date(currentQuery.endTime));
     }
     if (currentQuery.startAmount) {
