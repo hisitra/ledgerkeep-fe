@@ -37,6 +37,7 @@
     "address": "http://localhost:8100/api",
     "getCategories": "/userAccess/category",
     "getTransactions": "/userAccess/transaction",
+    "getTransaction": "/userAccess/transaction",
     "getSum": "/userAccess/transaction/sum",
     "getTxCount": "/userAccess/transaction/count",
     "getCatCount": "/userAccess/category/count",

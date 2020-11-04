@@ -27,6 +27,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -61,6 +62,7 @@ import { BottomFabButtonComponent } from './components/bottom-fab-button/bottom-
 import { TransactionFilterSheetComponent } from './components/transaction-filter-sheet/transaction-filter-sheet.component';
 import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
 import { EditTransactionComponent } from './pages/edit-transaction/edit-transaction.component';
+import { EditTransactionCardComponent } from './components/edit-transaction-card/edit-transaction-card.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +99,7 @@ import { EditTransactionComponent } from './pages/edit-transaction/edit-transact
     TransactionFilterSheetComponent,
     LogoutDialogComponent,
     EditTransactionComponent,
+    EditTransactionCardComponent,
   ],
   entryComponents: [
     AlertSnackbarComponent,
@@ -135,6 +138,7 @@ import { EditTransactionComponent } from './pages/edit-transaction/edit-transact
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
