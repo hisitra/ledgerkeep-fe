@@ -23,6 +23,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -121,6 +122,7 @@ import { TransactionFilterSheetComponent } from './components/transaction-filter
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
+    MatBottomSheetModule,
     MatBottomSheetModule,
   ],
   providers: [],
