@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { QuerystoreService } from 'src/app/services/querystore.service';
 
 import { validation } from '../../../assets/configs.json';
 
@@ -101,7 +102,13 @@ const endAmountValidator = (formGroup: FormGroup) => {
 export class TransactionFilterSheetComponent implements OnInit {
   public filterForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: ActivatedRoute) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private queryStore: QuerystoreService,
+    private sheet: MatBottomSheetRef<TransactionFilterSheetComponent>,
+    @Inject(MAT_BOTTOM_SHEET_DATA)
+    private data: { action: () => Promise<void> },
+  ) {
     this.filterForm = this.formBuilder.group(
       {
         startDate: [''],
@@ -119,11 +126,62 @@ export class TransactionFilterSheetComponent implements OnInit {
         ],
       },
     );
+
+    this.loadQuery();
   }
 
   ngOnInit() {}
 
-  processQuery(): void {}
+  processQuery(): void {
+    if (this.filterForm.invalid) {
+      return;
+    }
 
-  clearQuery(): void {}
+    const values = this.filterForm.value;
+
+    const query: any = {};
+    if (values.startDate instanceof Date) {
+      query.startDate = values.startDate.getTime();
+    }
+    if (values.endDate instanceof Date) {
+      query.endDate = values.endDate.getTime();
+    }
+    if (values.startAmount) {
+      query.startAmount = values.startAmount;
+    }
+    if (values.endAmount) {
+      query.endAmount = values.endAmount;
+    }
+    if (values.category) {
+      query.category = values.category;
+    }
+
+    this.queryStore.setMyTxQuery(query);
+    this.data.action();
+    this.sheet.dismiss();
+  }
+
+  clearQuery(): void {
+    this.filterForm.reset();
+  }
+
+  private loadQuery(): void {
+    const currentQuery = this.queryStore.getMyTxQuery();
+
+    if (currentQuery.startDate) {
+      this.filterForm.get('startDate').setValue(new Date(currentQuery.startDate));
+    }
+    if (currentQuery.endDate) {
+      this.filterForm.get('endDate').setValue(new Date(currentQuery.endDate));
+    }
+    if (currentQuery.startAmount) {
+      this.filterForm.get('startAmount').setValue(currentQuery.startAmount);
+    }
+    if (currentQuery.endAmount) {
+      this.filterForm.get('endAmount').setValue(currentQuery.endAmount);
+    }
+    if (currentQuery.category) {
+      this.filterForm.get('category').setValue(currentQuery.category);
+    }
+  }
 }

@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { TransactionFilterSheetComponent } from 'src/app/components/transaction-filter-sheet/transaction-filter-sheet.component';
+import { QuerystoreService } from 'src/app/services/querystore.service';
 
 @Component({
   selector: 'app-my-transactions',
@@ -18,7 +19,14 @@ export class MyTransactionsComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private filterSheet: MatBottomSheet, private route: ActivatedRoute) {}
+  private limit: number;
+  private offset: number;
+
+  constructor(
+    private filterSheet: MatBottomSheet,
+    private route: ActivatedRoute,
+    private queryStore: QuerystoreService,
+  ) {}
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -27,8 +35,8 @@ export class MyTransactionsComponent implements OnInit {
   }
 
   async onPageEvent(): Promise<void> {
-    const limit = this.paginator.pageIndex * this.paginator.pageSize;
-    const offset = this.paginator.pageSize;
+    this.limit = this.paginator.pageIndex * this.paginator.pageSize;
+    this.offset = this.paginator.pageSize;
   }
 
   openFilterSheet(): void {
@@ -36,7 +44,9 @@ export class MyTransactionsComponent implements OnInit {
       return;
     }
 
-    this.filterSheet.open(TransactionFilterSheetComponent);
+    this.filterSheet.open(TransactionFilterSheetComponent, {
+      data: { action: () => this.loadTable() },
+    });
   }
 
   async queryParams(): Promise<{ [key: string]: string }> {
@@ -44,4 +54,6 @@ export class MyTransactionsComponent implements OnInit {
       this.route.queryParams.subscribe(resolve);
     });
   }
+
+  async loadTable(): Promise<void> {}
 }
