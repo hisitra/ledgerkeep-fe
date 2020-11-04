@@ -56,6 +56,7 @@ import { LoadingHeaderCardComponent } from './components/loading-header-card/loa
 import { NewCategoryDialogComponent } from './components/new-category-dialog/new-category-dialog.component';
 import { BottomFabButtonComponent } from './components/bottom-fab-button/bottom-fab-button.component';
 import { TransactionFilterSheetComponent } from './components/transaction-filter-sheet/transaction-filter-sheet.component';
+import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
 
 @NgModule({
   declarations: [
@@ -90,12 +91,14 @@ import { TransactionFilterSheetComponent } from './components/transaction-filter
     NewCategoryDialogComponent,
     BottomFabButtonComponent,
     TransactionFilterSheetComponent,
+    LogoutDialogComponent,
   ],
   entryComponents: [
     AlertSnackbarComponent,
     AlertDialogComponent,
     NewCategoryDialogComponent,
     TransactionFilterSheetComponent,
+    LogoutDialogComponent,
   ],
   imports: [
     BrowserModule,
