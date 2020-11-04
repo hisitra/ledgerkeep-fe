@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MtqueryService } from 'src/app/services/mtquery.service';
 
 import { validation } from '../../../assets/configs.json';
 
@@ -105,7 +106,7 @@ export class TransactionFilterSheetComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,
+    private mtq: MtqueryService,
     private sheet: MatBottomSheetRef<TransactionFilterSheetComponent>,
     @Inject(MAT_BOTTOM_SHEET_DATA)
     private data: { action: () => Promise<void> },
@@ -142,10 +143,10 @@ export class TransactionFilterSheetComponent implements OnInit {
 
     const query: any = {};
     if (values.startDate instanceof Date) {
-      query.startDate = values.startDate.getTime();
+      query.startTime = values.startDate.getTime();
     }
     if (values.endDate instanceof Date) {
-      query.endDate = values.endDate.getTime();
+      query.endTime = values.endDate.getTime();
     }
     if (values.startAmount) {
       query.startAmount = values.startAmount;
@@ -167,13 +168,13 @@ export class TransactionFilterSheetComponent implements OnInit {
   }
 
   private async loadQuery(): Promise<void> {
-    const currentQuery = await this.getQueryParams();
+    const currentQuery = await this.mtq.getQuery();
 
     if (currentQuery.startDate) {
-      this.filterForm.get('startDate').setValue(new Date(currentQuery.startDate));
+      this.filterForm.get('startDate').setValue(new Date(currentQuery.startTime));
     }
     if (currentQuery.endDate) {
-      this.filterForm.get('endDate').setValue(new Date(currentQuery.endDate));
+      this.filterForm.get('endDate').setValue(new Date(currentQuery.endTime));
     }
     if (currentQuery.startAmount) {
       this.filterForm.get('startAmount').setValue(currentQuery.startAmount);
@@ -184,14 +185,5 @@ export class TransactionFilterSheetComponent implements OnInit {
     if (currentQuery.category) {
       this.filterForm.get('category').setValue(currentQuery.category);
     }
-  }
-
-  private async getQueryParams(): Promise<{ [key: string]: string }> {
-    return new Promise((resolve, reject) => {
-      this.route.queryParams.subscribe((params) => {
-        // validate them here.
-        resolve(params);
-      });
-    });
   }
 }

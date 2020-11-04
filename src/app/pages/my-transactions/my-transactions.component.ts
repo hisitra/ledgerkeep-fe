@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionFilterSheetComponent } from 'src/app/components/transaction-filter-sheet/transaction-filter-sheet.component';
 import { AlertService } from 'src/app/services/alert.service';
 import { BackendService } from 'src/app/services/backend.service';
+import { MtqueryService } from 'src/app/services/mtquery.service';
 
 @Component({
   selector: 'app-my-transactions',
@@ -27,7 +27,7 @@ export class MyTransactionsComponent implements OnInit {
     private backend: BackendService,
     private alertService: AlertService,
     private filterSheet: MatBottomSheet,
-    private route: ActivatedRoute,
+    private mtq: MtqueryService,
   ) {}
 
   async ngOnInit() {
@@ -57,7 +57,7 @@ export class MyTransactionsComponent implements OnInit {
   private async loadTable(): Promise<void> {
     this.setLoading(true);
 
-    const query = await this.queryParams();
+    const query = await this.mtq.getQuery();
 
     try {
       const result = await this.backend.getTransactions({
@@ -95,14 +95,5 @@ export class MyTransactionsComponent implements OnInit {
     if (state) {
       this.filterSheet.dismiss();
     }
-  }
-
-  private async queryParams(): Promise<{ [key: string]: string }> {
-    return new Promise((resolve, reject) => {
-      this.route.queryParams.subscribe((params) => {
-        // validate them here.
-        resolve(params);
-      });
-    });
   }
 }
