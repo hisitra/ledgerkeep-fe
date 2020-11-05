@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-transaction.component.css'],
 })
 export class AddTransactionComponent implements OnInit {
-  public isLoading = true;
+  public isLoading = false;
   public categories: string[] = [];
 
   constructor() {}

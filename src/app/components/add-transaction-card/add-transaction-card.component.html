@@ -1,1 +1,74 @@
-<p>add-transaction-card works!</p>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="addTxForm">
+      <!-- Amount Input -->
+      <mat-form-field appearance="outline">
+        <mat-label>Amount</mat-label>
+        <input type="number" formControlName="amount" matInput autocomplete="off" />
+        <mat-error *ngIf="addTxForm?.get('amount')?.hasError('required')"
+          ><mat-icon>error</mat-icon> Amount is required.</mat-error
+        >
+        <mat-error
+          *ngIf="
+            !addTxForm?.get('amount')?.hasError('required') &&
+            addTxForm?.get('amount')?.hasError('invalid')
+          "
+          ><mat-icon>error</mat-icon> Should be a positive number.</mat-error
+        >
+      </mat-form-field>
+
+      <!-- Debit or Credit Transaction -->
+      <mat-button-toggle-group
+        name="amountType"
+        aria-label="Type of amount"
+        style="margin-bottom: 20px"
+        formControlName="amountType"
+      >
+        <mat-button-toggle value="debit">Debit</mat-button-toggle>
+        <mat-button-toggle value="credit">Credit</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <!-- Date Input -->
+      <mat-form-field appearance="outline">
+        <mat-label>Date</mat-label>
+        <input formControlName="date" matInput [matDatepicker]="datePicker" autocomplete="off" />
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+        <mat-error *ngIf="addTxForm?.get('date')?.hasError('required')"
+          ><mat-icon>error</mat-icon> Valid date is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+          <mat-option *ngFor="let name of categories" [value]="name">
+            {{ name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="addTxForm?.get('category')?.hasError('required')"
+          ><mat-icon>error</mat-icon> Category is required</mat-error
+        >
+        <mat-error
+          *ngIf="
+            !addTxForm?.get('category')?.hasError('required') &&
+            addTxForm?.get('category')?.hasError('pattern')
+          "
+          ><mat-icon>error</mat-icon> Contains invalid characters</mat-error
+        >
+      </mat-form-field>
+
+      <!-- Description Input -->
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+      <div align="end">
+        <button mat-raised-button color="primary" [disabled]="isLoading" (click)="buttonAction()">
+          Create
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
