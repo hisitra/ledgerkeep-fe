@@ -1,1 +1,17 @@
-<p>add-transaction works!</p>
+<div class="container" fxFlex fxLayout="column" fxLayoutGap="10px">
+  <div fxLayout="row wrap" style="width: 100%">
+    <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
+    <div fxFlex="700px" fxFlex.md="600px" fxFlex.sm="500px" fxFlex.xs="98">
+      <app-loading-header-card
+        value="Add Transaction"
+        [isLoading]="isLoading"
+      ></app-loading-header-card>
+      <app-add-transaction-card
+        [isLoading]="isLoading"
+        [categories]="categories"
+        [action]="createTransaction.bind(this)"
+      ></app-add-transaction-card>
+    </div>
+    <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
+  </div>
+</div>

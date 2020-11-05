@@ -64,6 +64,7 @@ import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.
 import { EditTransactionComponent } from './pages/edit-transaction/edit-transaction.component';
 import { EditTransactionCardComponent } from './components/edit-transaction-card/edit-transaction-card.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { AddTransactionCardComponent } from './components/add-transaction-card/add-transaction-card.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     EditTransactionComponent,
     EditTransactionCardComponent,
     ConfirmDialogComponent,
+    AddTransactionCardComponent,
   ],
   entryComponents: [
     AlertSnackbarComponent,
