@@ -13,9 +13,9 @@ export class ProfileComponent implements OnInit {
   public imagePath = `${imageKeep.address}${imageKeep.randomCover}?width=800`;
 
   public user: any = {};
-  public balance: number;
-  public txCount: number;
-  public catCount: number;
+  public balance = 0;
+  public txCount = 0;
+  public catCount = 0;
 
   public isLoading = false;
 

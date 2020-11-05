@@ -56,20 +56,7 @@ export class AddTransactionCardComponent implements OnInit {
     );
   }
 
-  async ngOnInit() {
-    this.isLoading = true;
-
-    let results;
-    try {
-      results = await this.backend.getCategories();
-
-      this.categories = results.data;
-    } catch (err) {
-      this.alertService.error(err.message);
-    }
-
-    this.isLoading = false;
-  }
+  async ngOnInit() {}
 
   public async buttonAction(): Promise<void> {
     if (this.isLoading || this.addTxForm.invalid) {

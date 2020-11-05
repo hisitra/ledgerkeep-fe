@@ -13,9 +13,26 @@ export class AddTransactionComponent implements OnInit {
 
   constructor(private backend: BackendService, private alertService: AlertService) {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.isLoading = true;
+
+    let results;
+    try {
+      results = await this.backend.getCategories();
+
+      this.categories = results.data;
+    } catch (err) {
+      this.alertService.error(err.message);
+    }
+
+    this.isLoading = false;
+  }
 
   public async createTransaction(data: { [key: string]: any }): Promise<void> {
+    if (this.isLoading) {
+      return;
+    }
+
     this.isLoading = true;
 
     try {

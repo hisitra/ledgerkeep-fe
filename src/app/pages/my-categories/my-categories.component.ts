@@ -82,6 +82,13 @@ export class MyCategoriesComponent implements OnInit {
   }
 
   async createCategory(name: string): Promise<void> {
+    if (this.isLoading) {
+      return;
+    }
+
+    this.isLoading = true;
+
+    this.alertService.load('Creating category...');
     try {
       await this.backend.createCategory(name);
       this.loadTable();
@@ -89,12 +96,21 @@ export class MyCategoriesComponent implements OnInit {
     } catch (err) {
       this.alertService.error(err.message);
     }
+
+    this.isLoading = false;
   }
 
   async deleteCategory(event: Event, element: any): Promise<void> {
+    if (this.isLoading) {
+      return;
+    }
+
     event.preventDefault();
     event.stopPropagation();
 
+    this.isLoading = true;
+
+    this.alertService.load('Deleting...');
     try {
       await this.backend.deleteCategory(element.name);
       this.loadTable();
@@ -102,6 +118,8 @@ export class MyCategoriesComponent implements OnInit {
     } catch (err) {
       this.alertService.error(err.message);
     }
+
+    this.isLoading = false;
   }
 
   async rowClick(row: any): Promise<void> {

@@ -18,9 +18,5 @@
   </form>
 </div>
 <div mat-dialog-actions align="end">
-  <app-loading-button
-    value="Create"
-    (click)="onSubmit()"
-    [isLoading]="isLoading"
-  ></app-loading-button>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Create</button>
 </div>

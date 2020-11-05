@@ -10,7 +10,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./new-category-dialog.component.css'],
 })
 export class NewCategoryDialogComponent implements OnInit {
-  public isLoading = false;
   public newCategoryForm: FormGroup;
 
   constructor(
@@ -30,18 +29,7 @@ export class NewCategoryDialogComponent implements OnInit {
       return;
     }
 
-    this.setLoading(true);
-
-    try {
-      await this.data.action(this.newCategoryForm.value.name);
-    } catch (err) {}
-
+    this.data.action(this.newCategoryForm.value.name);
     this.dialog.close();
-    this.setLoading(false);
-  }
-
-  setLoading(state: boolean) {
-    this.isLoading = state;
-    state ? this.newCategoryForm.disable() : this.newCategoryForm.enable();
   }
 }
