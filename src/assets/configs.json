@@ -44,6 +44,7 @@
     "putCategory": "/userAccess/category",
     "deleteCategory": "/userAccess/category",
     "updateTransaction": "/userAccess/transaction",
-    "deleteTransaction": "/userAccess/transaction"
+    "deleteTransaction": "/userAccess/transaction",
+    "putTransaction": "/userAccess/transaction"
   }
 }
