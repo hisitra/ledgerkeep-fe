@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxEchartsModule } from 'ngx-echarts';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -114,6 +115,9 @@ import { AddTransactionCardComponent } from './components/add-transaction-card/a
     ConfirmDialogComponent,
   ],
   imports: [
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
