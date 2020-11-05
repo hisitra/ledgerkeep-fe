@@ -1,0 +1,10 @@
+.container {
+  height: calc(100vh - 74px);
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 599px) {
+  .container {
+    height: calc(100vh - 66px);
+  }
+}
