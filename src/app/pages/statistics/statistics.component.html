@@ -1,13 +1,23 @@
 <div class="container" fxFlex fxLayout="column" fxLayoutGap="10px">
   <div fxFlex="50" fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
     <div fxFlex="50">
-      <mat-card></mat-card>
+      <app-pie-chart
+        #debitPie
+        [isLoading]="isDebitPieLoading"
+        name="Debit Pie Chart"
+        class="chart"
+      ></app-pie-chart>
     </div>
     <div fxFlex="50">
-      <mat-card></mat-card>
+      <app-pie-chart
+        #creditPie
+        [isLoading]="isCreditPieLoading"
+        name="Credit Pie Chart"
+        class="chart"
+      ></app-pie-chart>
     </div>
   </div>
   <div fxFlex="50">
-    <mat-card></mat-card>
+    <mat-card class="chart"></mat-card>
   </div>
 </div>
