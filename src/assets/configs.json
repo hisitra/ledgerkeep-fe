@@ -43,6 +43,7 @@
     "getCatCount": "/userAccess/category/count",
     "putCategory": "/userAccess/category",
     "deleteCategory": "/userAccess/category",
-    "updateTransaction": "/userAccess/transaction"
+    "updateTransaction": "/userAccess/transaction",
+    "deleteTransaction": "/userAccess/transaction"
   }
 }

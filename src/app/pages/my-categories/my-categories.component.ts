@@ -91,7 +91,10 @@ export class MyCategoriesComponent implements OnInit {
     }
   }
 
-  async deleteCategory(element: any): Promise<void> {
+  async deleteCategory(event: Event, element: any): Promise<void> {
+    event.preventDefault();
+    event.stopPropagation();
+
     try {
       await this.backend.deleteCategory(element.name);
       this.loadTable();
@@ -102,7 +105,7 @@ export class MyCategoriesComponent implements OnInit {
   }
 
   async rowClick(row: any): Promise<void> {
-    this.router.navigate(['/my-transactions'], {
+    await this.router.navigate(['/my-transactions'], {
       queryParams: {
         category: row.name,
       },

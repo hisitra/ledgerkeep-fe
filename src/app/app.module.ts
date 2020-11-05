@@ -63,6 +63,7 @@ import { TransactionFilterSheetComponent } from './components/transaction-filter
 import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
 import { EditTransactionComponent } from './pages/edit-transaction/edit-transaction.component';
 import { EditTransactionCardComponent } from './components/edit-transaction-card/edit-transaction-card.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { EditTransactionCardComponent } from './components/edit-transaction-card
     LogoutDialogComponent,
     EditTransactionComponent,
     EditTransactionCardComponent,
+    ConfirmDialogComponent,
   ],
   entryComponents: [
     AlertSnackbarComponent,
@@ -107,6 +109,7 @@ import { EditTransactionCardComponent } from './components/edit-transaction-card
     NewCategoryDialogComponent,
     TransactionFilterSheetComponent,
     LogoutDialogComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

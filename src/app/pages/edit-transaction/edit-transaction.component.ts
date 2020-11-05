@@ -1,6 +1,8 @@
 import { transformAll } from '@angular/compiler/src/render3/r3_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { EditTransactionCardComponent } from 'src/app/components/edit-transaction-card/edit-transaction-card.component';
 import { AlertService } from 'src/app/services/alert.service';
 import { BackendService } from 'src/app/services/backend.service';
@@ -17,9 +19,11 @@ export class EditTransactionComponent implements OnInit {
   public categories: string[] = [];
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private backend: BackendService,
     private alertService: AlertService,
+    private dialog: MatDialog,
   ) {}
 
   async ngOnInit() {
@@ -33,15 +37,14 @@ export class EditTransactionComponent implements OnInit {
     let results;
     try {
       results = await Promise.all(calls);
+
+      this.categories = results[0].data;
+
+      const transaction = results[1].data;
+      this.editCard.setTransaction(transaction);
     } catch (err) {
       this.alertService.error(err.message);
-      return;
     }
-
-    this.categories = results[0].data;
-
-    const transaction = results[1].data;
-    this.editCard.setTransaction(transaction);
 
     this.isLoading = false;
   }
@@ -56,6 +59,30 @@ export class EditTransactionComponent implements OnInit {
     try {
       await this.backend.updateTransaction(await this.getTransactionID(), transaction);
       this.alertService.success('Transaction updated.');
+    } catch (err) {
+      this.alertService.error(err.message);
+    }
+
+    this.isLoading = false;
+  }
+
+  public openDeleteDialog(): void {
+    this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      data: { message: 'Confirm deletion?', action: () => this.deleteTransaction() },
+    });
+  }
+
+  async deleteTransaction(): Promise<void> {
+    if (this.isLoading) {
+      return;
+    }
+
+    this.isLoading = true;
+
+    try {
+      await this.backend.deleteTransaction(await this.getTransactionID());
+      this.router.navigate(['/my-transactions']);
     } catch (err) {
       this.alertService.error(err.message);
     }

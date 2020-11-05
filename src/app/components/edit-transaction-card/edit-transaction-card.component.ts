@@ -53,9 +53,7 @@ export class EditTransactionCardComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    this.editTxForm.disable();
-  }
+  ngOnInit() {}
 
   public setTransaction(transaction: { [key: string]: any }): void {
     this.originalTx = transaction;
@@ -67,8 +65,6 @@ export class EditTransactionCardComponent implements OnInit {
     );
     this.editTxForm.controls.category.setValue(transaction.category);
     this.editTxForm.controls.description.setValue(transaction.description);
-
-    this.editTxForm.enable();
   }
 
   public async updateTransaction(): Promise<void> {
@@ -92,6 +88,16 @@ export class EditTransactionCardComponent implements OnInit {
     try {
       await this.updateAction(newTransaction);
       this.originalTx = newTransaction;
+    } catch (err) {}
+  }
+
+  public async deleteTransaction(): Promise<void> {
+    if (this.isLoading) {
+      return;
+    }
+
+    try {
+      await this.delAction();
     } catch (err) {}
   }
 

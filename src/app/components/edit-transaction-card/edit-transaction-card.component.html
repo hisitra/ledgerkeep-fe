@@ -74,7 +74,15 @@
           Update
         </button>
         &nbsp;
-        <button mat-raised-button color="warn" [disabled]="isLoading" type="button">Delete</button>
+        <button
+          mat-raised-button
+          color="warn"
+          [disabled]="isLoading"
+          type="button"
+          (click)="deleteTransaction()"
+        >
+          Delete
+        </button>
       </div>
     </form>
   </mat-card-content>
