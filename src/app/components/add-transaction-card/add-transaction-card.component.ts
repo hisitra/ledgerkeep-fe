@@ -46,7 +46,7 @@ export class AddTransactionCardComponent implements OnInit {
       {
         amount: ['', [Validators.required]],
         amountType: ['debit'],
-        date: ['', [Validators.required]],
+        date: [new Date(), [Validators.required]],
         category: ['', [Validators.required, Validators.pattern(validation.categoryRegex)]],
         description: [''],
       },

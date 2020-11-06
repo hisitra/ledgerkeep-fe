@@ -69,7 +69,7 @@ export class LineChartComponent implements OnInit {
         type: 'line',
         stack: 'counts',
         areaStyle: { normal: {} },
-        data: [120, 132, 101, 134, 90, 230, 210],
+        data: [0, 0, 0, 0, 0, 0, 0],
       },
     ],
   };
@@ -87,6 +87,10 @@ export class LineChartComponent implements OnInit {
   }
 
   public setData(data: any[], intervalName: string): void {
+    if (data.length === 0) {
+      return;
+    }
+
     this.data = data;
     this.intervalName = intervalName;
 

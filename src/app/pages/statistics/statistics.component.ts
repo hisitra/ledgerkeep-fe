@@ -31,6 +31,10 @@ export class StatisticsComponent implements OnInit {
 
     try {
       const result = await this.backend.getSum({ group: 'category', endAmount: 0 });
+      if (result.data && result.data.length === 0) {
+        throw new Error('No data found for chart.');
+      }
+
       this.debitPie.setData(result.data);
     } catch (err) {
       this.alertService.error(err.message);
@@ -44,6 +48,10 @@ export class StatisticsComponent implements OnInit {
 
     try {
       const result = await this.backend.getSum({ group: 'category', startAmount: 0 });
+      if (result.data && result.data.length === 0) {
+        throw new Error('No data found for chart.');
+      }
+
       this.creditPie.setData(result.data);
     } catch (err) {
       this.alertService.error(err.message);
@@ -57,6 +65,10 @@ export class StatisticsComponent implements OnInit {
 
     try {
       const result = await this.backend.getSum({ group: 'day' });
+      if (result.data && result.data.length === 0) {
+        throw new Error('No data found for chart.');
+      }
+
       this.expenseLine.setData(result.data, 'day');
     } catch (err) {
       this.alertService.error(err.message);
