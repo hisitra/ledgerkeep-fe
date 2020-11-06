@@ -1,5 +1,5 @@
-import { transformAll } from '@angular/compiler/src/render3/r3_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
@@ -24,6 +24,7 @@ export class EditTransactionComponent implements OnInit {
     private backend: BackendService,
     private alertService: AlertService,
     private dialog: MatDialog,
+    private location: Location,
   ) {}
 
   async ngOnInit() {
@@ -59,6 +60,7 @@ export class EditTransactionComponent implements OnInit {
     try {
       await this.backend.updateTransaction(await this.getTransactionID(), transaction);
       this.alertService.success('Transaction updated.');
+      this.location.back();
     } catch (err) {
       this.alertService.error(err.message);
     }
@@ -82,7 +84,8 @@ export class EditTransactionComponent implements OnInit {
 
     try {
       await this.backend.deleteTransaction(await this.getTransactionID());
-      this.router.navigate(['/my-transactions']);
+      this.alertService.success('Transaction deleted.');
+      this.location.back();
     } catch (err) {
       this.alertService.error(err.message);
     }

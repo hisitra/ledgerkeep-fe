@@ -66,7 +66,7 @@ export class StatisticsComponent implements OnInit {
     try {
       const result = await this.backend.getSum({ group: 'day' });
       if (result.data && result.data.length === 0) {
-        throw new Error('No data found Expense Line for chart.');
+        throw new Error('No data found for Expense Line chart.');
       }
 
       this.expenseLine.setData(result.data, 'day');

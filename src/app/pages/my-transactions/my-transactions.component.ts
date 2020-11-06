@@ -85,7 +85,7 @@ export class MyTransactionsComponent implements OnInit {
       this.paginator.length = result.data.totalCount;
 
       if (transactions.length === 0) {
-        this.alertService.info('No transactions found.');
+        throw new Error('No transactions found.');
       }
     } catch (err) {
       this.alertService.error(err.message);
