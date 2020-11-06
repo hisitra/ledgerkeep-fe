@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
       const results = await Promise.all(calls);
 
       this.user = results[0].data;
-      this.balance = results[1].data.sum;
+      this.balance = results[1].data.sum || 0;
       this.txCount = results[2].data.count;
       this.catCount = results[3].data.count;
     } catch (err) {
