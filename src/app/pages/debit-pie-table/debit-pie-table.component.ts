@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { DcPieFilterSheetComponent } from 'src/app/components/dc-pie-filter-sheet/dc-pie-filter-sheet.component';
 
 @Component({
   selector: 'app-debit-pie-table',
@@ -6,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./debit-pie-table.component.css'],
 })
 export class DebitPieTableComponent implements OnInit {
-  constructor() {}
+  public isLoading = false;
+
+  constructor(private filterSheet: MatBottomSheet) {}
 
   ngOnInit() {}
+
+  openFilterSheet(): void {
+    if (this.isLoading) {
+      return;
+    }
+
+    this.filterSheet.open(DcPieFilterSheetComponent);
+  }
 }
