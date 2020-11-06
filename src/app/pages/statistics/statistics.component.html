@@ -18,6 +18,11 @@
     </div>
   </div>
   <div fxFlex="50">
-    <mat-card class="chart"></mat-card>
+    <app-line-chart
+      #expenseLine
+      [isLoading]="isExpenseLineLoading"
+      name="Expense Line Chart"
+      class="chart"
+    ></app-line-chart>
   </div>
 </div>

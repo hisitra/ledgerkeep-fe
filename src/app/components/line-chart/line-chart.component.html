@@ -1,0 +1,9 @@
+<mat-card>
+  <mat-card-title class="header">
+    <p class="title">{{ name }}</p>
+    <mat-spinner diameter="20" color="primary" *ngIf="isLoading"></mat-spinner>
+  </mat-card-title>
+  <mat-card-content>
+    <div echarts (chartInit)="onChartInit($event)" [options]="options" theme="macarons"></div>
+  </mat-card-content>
+</mat-card>

@@ -67,6 +67,7 @@ import { EditTransactionCardComponent } from './components/edit-transaction-card
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { AddTransactionCardComponent } from './components/add-transaction-card/add-transaction-card.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
     ConfirmDialogComponent,
     AddTransactionCardComponent,
     PieChartComponent,
+    LineChartComponent,
   ],
   entryComponents: [
     AlertSnackbarComponent,

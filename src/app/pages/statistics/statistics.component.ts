@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { LineChartComponent } from 'src/app/components/line-chart/line-chart.component';
 import { PieChartComponent } from 'src/app/components/pie-chart/pie-chart.component';
 import { AlertService } from 'src/app/services/alert.service';
 import { BackendService } from 'src/app/services/backend.service';
@@ -11,15 +12,18 @@ import { BackendService } from 'src/app/services/backend.service';
 export class StatisticsComponent implements OnInit {
   @ViewChild('debitPie', { static: true }) debitPie: PieChartComponent;
   @ViewChild('creditPie', { static: true }) creditPie: PieChartComponent;
+  @ViewChild('expenseLine', { static: true }) expenseLine: LineChartComponent;
 
   public isCreditPieLoading = false;
   public isDebitPieLoading = false;
+  public isExpenseLineLoading = false;
 
   constructor(private backend: BackendService, private alertService: AlertService) {}
 
   async ngOnInit() {
     this.loadDebitPieChart();
     this.loadCreditPieChart();
+    this.loadExpenseLineChart();
   }
 
   private async loadDebitPieChart(): Promise<void> {
@@ -46,5 +50,18 @@ export class StatisticsComponent implements OnInit {
     }
 
     this.isCreditPieLoading = false;
+  }
+
+  private async loadExpenseLineChart(): Promise<void> {
+    this.isExpenseLineLoading = true;
+
+    try {
+      const result = await this.backend.getSum({ group: 'day' });
+      this.expenseLine.setData(result.data, 'day');
+    } catch (err) {
+      this.alertService.error(err.message);
+    }
+
+    this.isExpenseLineLoading = false;
   }
 }
