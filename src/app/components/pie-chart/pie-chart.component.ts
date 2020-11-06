@@ -33,7 +33,10 @@ export class PieChartComponent implements OnInit {
   };
 
   private static getChartRadii(): number[] {
-    return [30, 0.053 * window.innerWidth + 76.91];
+    const element = document.getElementById('card');
+    const width = element ? element.clientWidth : window.innerWidth;
+
+    return [30, 0.053 * width + 76.91];
   }
 
   constructor() {}

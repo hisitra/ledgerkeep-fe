@@ -62,9 +62,9 @@ const endDateValidator = (formGroup: FormGroup) => {
   styleUrls: ['./el-filter-sheet.component.css'],
 })
 export class ElFilterSheetComponent implements OnInit {
-  public filterForm: FormGroup;
-
   static categories: string[] = [];
+
+  public filterForm: FormGroup;
 
   public isLoading = false;
 

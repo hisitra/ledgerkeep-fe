@@ -103,9 +103,10 @@ const endAmountValidator = (formGroup: FormGroup) => {
   styleUrls: ['./transaction-filter-sheet.component.css'],
 })
 export class TransactionFilterSheetComponent implements OnInit {
+  static categories: string[] = [];
+
   public filterForm: FormGroup;
 
-  public categories: string[] = [];
   public isLoading = false;
 
   constructor(
@@ -199,16 +200,24 @@ export class TransactionFilterSheetComponent implements OnInit {
   }
 
   private async loadCategories(): Promise<void> {
+    if (TransactionFilterSheetComponent.categories.length > 0) {
+      return;
+    }
+
     this.setLoading(true);
 
     try {
       const result = await this.backend.getCategories();
-      this.categories = result.data;
+      TransactionFilterSheetComponent.categories = result.data;
     } catch (err) {
       this.alertService.error('Failed to load categories');
-      this.categories = [];
+      TransactionFilterSheetComponent.categories = [];
     }
 
     this.setLoading(false);
+  }
+
+  getCategories(): string[] {
+    return TransactionFilterSheetComponent.categories;
   }
 }

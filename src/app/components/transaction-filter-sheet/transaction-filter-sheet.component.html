@@ -87,7 +87,7 @@
         <mat-label>Category</mat-label>
         <mat-select formControlName="category">
           <mat-option>-</mat-option>
-          <mat-option *ngFor="let name of categories" [value]="name">
+          <mat-option *ngFor="let name of getCategories()" [value]="name">
             {{ name }}
           </mat-option>
         </mat-select>

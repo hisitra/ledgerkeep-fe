@@ -76,7 +76,10 @@ export class LineChartComponent implements OnInit {
   };
 
   static maxLabels(): number {
-    return Math.floor(0.02014 * document.getElementById('card').clientWidth + 5);
+    const element = document.getElementById('card');
+    const width = element ? element.clientWidth : window.innerWidth;
+
+    return Math.floor(0.02014 * width + 5);
   }
 
   constructor(private alertService: AlertService) {}
