@@ -95,8 +95,10 @@ export class MyCategoriesComponent implements OnInit {
     this.alertService.load('Creating category...');
     try {
       await this.backend.createCategory(name);
-      this.loadTable();
       this.alertService.success('Category created.');
+
+      this.rawData.push({ index: this.rawData.length + 1, name, balance: 0 });
+      this.dataSource = new MatTableDataSource(this.rawData);
     } catch (err) {
       this.alertService.error(err.message);
     }
@@ -117,8 +119,10 @@ export class MyCategoriesComponent implements OnInit {
     this.alertService.load('Deleting...');
     try {
       await this.backend.deleteCategory(element.name);
-      this.loadTable();
       this.alertService.success('Category deleted.');
+
+      this.rawData.splice(element.index - 1, 1);
+      this.dataSource = new MatTableDataSource(this.rawData);
     } catch (err) {
       this.alertService.error(err.message);
     }
