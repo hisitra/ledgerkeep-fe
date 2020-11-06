@@ -10,14 +10,13 @@
     <app-line-chart
       #expenseLine
       hideMore="true"
-      [isLoading]="isExpenseLineLoading"
-      moreLink="/statistics/expense-line"
+      [isLoading]="isLoading"
       name="Expense Line Chart"
       class="chart"
     ></app-line-chart>
   </div>
   <div fxFlex="50">
-    <app-pie-data-table #table [isLoading]="isLoading"></app-pie-data-table>
+    <app-expense-line-table #table [isLoading]="isLoading"></app-expense-line-table>
   </div>
 </div>
 

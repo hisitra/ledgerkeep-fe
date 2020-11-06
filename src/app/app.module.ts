@@ -73,6 +73,8 @@ import { CreditPieComponent } from './pages/credit-pie/credit-pie.component';
 import { ExpenseLineComponent } from './pages/expense-line/expense-line.component';
 import { DcPieFilterSheetComponent } from './components/dc-pie-filter-sheet/dc-pie-filter-sheet.component';
 import { PieDataTableComponent } from './components/pie-data-table/pie-data-table.component';
+import { ExpenseLineTableComponent } from './components/expense-line-table/expense-line-table.component';
+import { ElFilterSheetComponent } from './components/el-filter-sheet/el-filter-sheet.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +121,8 @@ import { PieDataTableComponent } from './components/pie-data-table/pie-data-tabl
     ExpenseLineComponent,
     DcPieFilterSheetComponent,
     PieDataTableComponent,
+    ExpenseLineTableComponent,
+    ElFilterSheetComponent,
   ],
   entryComponents: [
     AlertSnackbarComponent,
@@ -128,6 +132,7 @@ import { PieDataTableComponent } from './components/pie-data-table/pie-data-tabl
     LogoutDialogComponent,
     ConfirmDialogComponent,
     DcPieFilterSheetComponent,
+    ElFilterSheetComponent,
   ],
   imports: [
     NgxEchartsModule.forRoot({

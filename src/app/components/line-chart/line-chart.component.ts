@@ -76,7 +76,7 @@ export class LineChartComponent implements OnInit {
   };
 
   static maxLabels(): number {
-    return Math.floor(0.02014 * window.innerWidth + 5);
+    return Math.floor(0.02014 * document.getElementById('card').clientWidth + 5);
   }
 
   constructor(private alertService: AlertService) {}
@@ -103,6 +103,7 @@ export class LineChartComponent implements OnInit {
     let total = 0;
     for (const entry of data) {
       const date = new Date(entry[intervalName]);
+
       let label: string;
 
       if (intervalName === 'year') {
