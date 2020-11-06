@@ -71,6 +71,7 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
 import { DebitPieTableComponent } from './pages/debit-pie-table/debit-pie-table.component';
 import { CreditPieTableComponent } from './pages/credit-pie-table/credit-pie-table.component';
 import { ExpenseLineTableComponent } from './pages/expense-line-table/expense-line-table.component';
+import { DcPieFilterSheetComponent } from './components/dc-pie-filter-sheet/dc-pie-filter-sheet.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { ExpenseLineTableComponent } from './pages/expense-line-table/expense-li
     DebitPieTableComponent,
     CreditPieTableComponent,
     ExpenseLineTableComponent,
+    DcPieFilterSheetComponent,
   ],
   entryComponents: [
     AlertSnackbarComponent,
@@ -123,6 +125,7 @@ import { ExpenseLineTableComponent } from './pages/expense-line-table/expense-li
     TransactionFilterSheetComponent,
     LogoutDialogComponent,
     ConfirmDialogComponent,
+    DcPieFilterSheetComponent,
   ],
   imports: [
     NgxEchartsModule.forRoot({
