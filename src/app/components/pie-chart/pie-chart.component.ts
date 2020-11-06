@@ -9,6 +9,7 @@ export class PieChartComponent implements OnInit {
   @Input() name = '';
   @Input() isLoading = false;
   @Input() moreLink = '.';
+  @Input() hideMore = false;
 
   chartInstance: any;
 
@@ -19,7 +20,7 @@ export class PieChartComponent implements OnInit {
         type: 'pie',
         center: ['50%', '50%'],
         radius: PieChartComponent.getChartRadii(),
-        data: [{ value: 0, name: 'Loading' }],
+        data: [{ value: 0, name: 'No data here.' }],
         roseType: 'radius',
         labelLine: {
           normal: {
@@ -44,6 +45,10 @@ export class PieChartComponent implements OnInit {
   }
 
   public setData(data: any[]): void {
+    if (data.length === 0) {
+      return;
+    }
+
     const values = [];
 
     for (const entry of data) {

@@ -45,6 +45,10 @@ export class MyCategoriesComponent implements OnInit {
       const results = await Promise.all(calls);
 
       const categories = results[0].data;
+      if (categories.length === 0) {
+        throw new Error('No categories found.');
+      }
+
       const sums = results[1].data;
 
       const processedCats = [];

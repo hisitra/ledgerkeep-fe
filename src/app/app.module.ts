@@ -72,6 +72,7 @@ import { DebitPieTableComponent } from './pages/debit-pie-table/debit-pie-table.
 import { CreditPieTableComponent } from './pages/credit-pie-table/credit-pie-table.component';
 import { ExpenseLineTableComponent } from './pages/expense-line-table/expense-line-table.component';
 import { DcPieFilterSheetComponent } from './components/dc-pie-filter-sheet/dc-pie-filter-sheet.component';
+import { PieDataTableComponent } from './components/pie-data-table/pie-data-table.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { DcPieFilterSheetComponent } from './components/dc-pie-filter-sheet/dc-p
     CreditPieTableComponent,
     ExpenseLineTableComponent,
     DcPieFilterSheetComponent,
+    PieDataTableComponent,
   ],
   entryComponents: [
     AlertSnackbarComponent,

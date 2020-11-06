@@ -1,4 +1,25 @@
-<p>credit-pie-table works!</p>
+<div
+  class="container"
+  fxFlex
+  fxLayout="row-reverse"
+  fxLayout.sm="column"
+  fxLayout.xs="column"
+  fxLayoutGap="10px"
+>
+  <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+    <app-pie-chart
+      class="chart"
+      #creditPie
+      hideMore="true"
+      [isLoading]="isLoading"
+      name="Credit Pie Chart"
+    ></app-pie-chart>
+  </div>
+  <div fxFlex="50">
+    <app-pie-data-table #table [isLoading]="isLoading"></app-pie-data-table>
+  </div>
+</div>
+
 <app-bottom-fab-button
   iconName="filter_alt"
   [disabled]="isLoading"
