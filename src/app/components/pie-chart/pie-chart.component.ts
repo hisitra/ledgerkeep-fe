@@ -24,7 +24,7 @@ export class PieChartComponent implements OnInit {
         roseType: 'radius',
         labelLine: {
           normal: {
-            length: 2,
+            length: 20,
             length2: 10,
           },
         },
