@@ -42,7 +42,7 @@ export class LineChartComponent implements OnInit {
     },
     grid: {
       left: '3%',
-      right: '3%',
+      right: '5%',
       bottom: '3%',
       containLabel: true,
     },
