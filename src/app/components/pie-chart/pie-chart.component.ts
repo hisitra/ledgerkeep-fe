@@ -8,6 +8,7 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 export class PieChartComponent implements OnInit {
   @Input() name = '';
   @Input() isLoading = false;
+  @Input() moreLink = '.';
 
   chartInstance: any;
 

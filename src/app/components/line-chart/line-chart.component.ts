@@ -9,6 +9,7 @@ import { AlertService } from 'src/app/services/alert.service';
 export class LineChartComponent implements OnInit {
   @Input() name = '';
   @Input() isLoading = false;
+  @Input() moreLink = '.';
 
   chartInstance: any;
 
@@ -115,11 +116,6 @@ export class LineChartComponent implements OnInit {
       this.options.series[0].data.push(total);
 
       if (this.options.series[0].data.length >= maxLabelCount) {
-        const diff = data.length - maxLabelCount;
-        if (diff > 0) {
-          this.alertService.warn(`Skipping the last ${diff} points.`);
-        }
-
         break;
       }
     }

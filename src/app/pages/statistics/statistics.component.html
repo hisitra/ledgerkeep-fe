@@ -4,6 +4,7 @@
       <app-pie-chart
         #debitPie
         [isLoading]="isDebitPieLoading"
+        moreLink="/statistics/debit-pie"
         name="Debit Pie Chart"
         class="chart"
       ></app-pie-chart>
@@ -12,6 +13,7 @@
       <app-pie-chart
         #creditPie
         [isLoading]="isCreditPieLoading"
+        moreLink="/statistics/credit-pie"
         name="Credit Pie Chart"
         class="chart"
       ></app-pie-chart>
@@ -21,6 +23,7 @@
     <app-line-chart
       #expenseLine
       [isLoading]="isExpenseLineLoading"
+      moreLink="/statistics/expense-line"
       name="Expense Line Chart"
       class="chart"
     ></app-line-chart>

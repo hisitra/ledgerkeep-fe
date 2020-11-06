@@ -15,9 +15,11 @@ import { MyTransactionsComponent } from './pages/my-transactions/my-transactions
 import { MyCategoriesComponent } from './pages/my-categories/my-categories.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { EditTransactionComponent } from './pages/edit-transaction/edit-transaction.component';
+import { DebitPieTableComponent } from './pages/debit-pie-table/debit-pie-table.component';
+import { CreditPieTableComponent } from './pages/credit-pie-table/credit-pie-table.component';
+import { ExpenseLineTableComponent } from './pages/expense-line-table/expense-line-table.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'edit-transaction', pathMatch: 'full', redirectTo: 'my-transactions' },
   { path: 'home', component: HomeComponent, canActivate: [ProfileRedirectService] },
   { path: 'login', component: LoginComponent, canActivate: [ProfileRedirectService] },
@@ -48,6 +50,22 @@ const routes: Routes = [
   { path: 'my-transactions', component: MyTransactionsComponent, canActivate: [AuthGuardService] },
   { path: 'my-categories', component: MyCategoriesComponent, canActivate: [AuthGuardService] },
   { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuardService] },
+  {
+    path: 'statistics/debit-pie',
+    component: DebitPieTableComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'statistics/credit-pie',
+    component: CreditPieTableComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'statistics/expense-line',
+    component: ExpenseLineTableComponent,
+    canActivate: [AuthGuardService],
+  },
+  { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
 @NgModule({

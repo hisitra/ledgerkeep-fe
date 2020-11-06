@@ -5,5 +5,8 @@
   </mat-card-title>
   <mat-card-content>
     <div echarts (chartInit)="onChartInit($event)" [options]="options" theme="macarons"></div>
+    <div align="end">
+      <button mat-raised-button [routerLink]="moreLink">More</button>
+    </div>
   </mat-card-content>
 </mat-card>
