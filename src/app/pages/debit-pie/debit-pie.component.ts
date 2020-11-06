@@ -9,11 +9,11 @@ import { BackendService } from 'src/app/services/backend.service';
 import { PiequeryService } from 'src/app/services/piequery.service';
 
 @Component({
-  selector: 'app-debit-pie-table',
-  templateUrl: './debit-pie-table.component.html',
-  styleUrls: ['./debit-pie-table.component.css'],
+  selector: 'app-debit-pie',
+  templateUrl: './debit-pie.component.html',
+  styleUrls: ['./debit-pie.component.css'],
 })
-export class DebitPieTableComponent implements OnInit {
+export class DebitPieComponent implements OnInit {
   @ViewChild('debitPie', { static: true }) debitPie: PieChartComponent;
   @ViewChild('table', { static: true }) table: PieDataTableComponent;
 

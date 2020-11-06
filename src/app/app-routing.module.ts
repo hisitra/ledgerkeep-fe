@@ -15,9 +15,9 @@ import { MyTransactionsComponent } from './pages/my-transactions/my-transactions
 import { MyCategoriesComponent } from './pages/my-categories/my-categories.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { EditTransactionComponent } from './pages/edit-transaction/edit-transaction.component';
-import { DebitPieTableComponent } from './pages/debit-pie-table/debit-pie-table.component';
-import { CreditPieTableComponent } from './pages/credit-pie-table/credit-pie-table.component';
-import { ExpenseLineTableComponent } from './pages/expense-line-table/expense-line-table.component';
+import { DebitPieComponent } from './pages/debit-pie/debit-pie.component';
+import { CreditPieComponent } from './pages/credit-pie/credit-pie.component';
+import { ExpenseLineComponent } from './pages/expense-line/expense-line.component';
 
 const routes: Routes = [
   { path: 'edit-transaction', pathMatch: 'full', redirectTo: 'my-transactions' },
@@ -52,17 +52,17 @@ const routes: Routes = [
   { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuardService] },
   {
     path: 'statistics/debit-pie',
-    component: DebitPieTableComponent,
+    component: DebitPieComponent,
     canActivate: [AuthGuardService],
   },
   {
     path: 'statistics/credit-pie',
-    component: CreditPieTableComponent,
+    component: CreditPieComponent,
     canActivate: [AuthGuardService],
   },
   {
     path: 'statistics/expense-line',
-    component: ExpenseLineTableComponent,
+    component: ExpenseLineComponent,
     canActivate: [AuthGuardService],
   },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },

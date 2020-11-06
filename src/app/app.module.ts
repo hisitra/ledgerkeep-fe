@@ -68,9 +68,9 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { AddTransactionCardComponent } from './components/add-transaction-card/add-transaction-card.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
-import { DebitPieTableComponent } from './pages/debit-pie-table/debit-pie-table.component';
-import { CreditPieTableComponent } from './pages/credit-pie-table/credit-pie-table.component';
-import { ExpenseLineTableComponent } from './pages/expense-line-table/expense-line-table.component';
+import { DebitPieComponent } from './pages/debit-pie/debit-pie.component';
+import { CreditPieComponent } from './pages/credit-pie/credit-pie.component';
+import { ExpenseLineComponent } from './pages/expense-line/expense-line.component';
 import { DcPieFilterSheetComponent } from './components/dc-pie-filter-sheet/dc-pie-filter-sheet.component';
 import { PieDataTableComponent } from './components/pie-data-table/pie-data-table.component';
 
@@ -114,9 +114,9 @@ import { PieDataTableComponent } from './components/pie-data-table/pie-data-tabl
     AddTransactionCardComponent,
     PieChartComponent,
     LineChartComponent,
-    DebitPieTableComponent,
-    CreditPieTableComponent,
-    ExpenseLineTableComponent,
+    DebitPieComponent,
+    CreditPieComponent,
+    ExpenseLineComponent,
     DcPieFilterSheetComponent,
     PieDataTableComponent,
   ],

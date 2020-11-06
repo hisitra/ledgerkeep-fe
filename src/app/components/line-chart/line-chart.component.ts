@@ -10,6 +10,7 @@ export class LineChartComponent implements OnInit {
   @Input() name = '';
   @Input() isLoading = false;
   @Input() moreLink = '.';
+  @Input() hideMore = false;
 
   chartInstance: any;
 

@@ -9,11 +9,11 @@ import { BackendService } from 'src/app/services/backend.service';
 import { PiequeryService } from 'src/app/services/piequery.service';
 
 @Component({
-  selector: 'app-credit-pie-table',
-  templateUrl: './credit-pie-table.component.html',
-  styleUrls: ['./credit-pie-table.component.css'],
+  selector: 'app-credit-pie',
+  templateUrl: './credit-pie.component.html',
+  styleUrls: ['./credit-pie.component.css'],
 })
-export class CreditPieTableComponent implements OnInit {
+export class CreditPieComponent implements OnInit {
   @ViewChild('creditPie', { static: true }) creditPie: PieChartComponent;
   @ViewChild('table', { static: true }) table: PieDataTableComponent;
 
