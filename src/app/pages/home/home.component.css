@@ -7,8 +7,12 @@
   width: 100%;
 }
 
+.body {
+  margin-bottom: 100px;
+}
+
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   font-size: small;
 }
