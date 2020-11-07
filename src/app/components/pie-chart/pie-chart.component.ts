@@ -13,7 +13,7 @@ export class PieChartComponent implements OnInit {
 
   chartInstance: any;
 
-  private options: any = {
+  public options: any = {
     series: [
       {
         name: 'Debits',
@@ -59,7 +59,10 @@ export class PieChartComponent implements OnInit {
     }
 
     this.options.series[0].data = values;
-    this.chartInstance.setOption(this.options);
+
+    if (this.chartInstance) {
+      this.chartInstance.setOption(this.options);
+    }
   }
 
   @HostListener('window:resize', ['$event'])

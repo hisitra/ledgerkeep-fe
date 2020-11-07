@@ -35,7 +35,7 @@ export class EditTransactionCardComponent implements OnInit {
     return this.pIsLoading;
   }
 
-  private editTxForm: FormGroup;
+  public editTxForm: FormGroup;
   private originalTx: { [key: string]: any };
 
   constructor(private formBuilder: FormBuilder, private alertService: AlertService) {

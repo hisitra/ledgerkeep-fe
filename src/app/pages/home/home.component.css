@@ -1,0 +1,14 @@
+.title {
+  padding: 10px;
+}
+
+.img {
+  height: 400px;
+  width: 100%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0px;
+  font-size: small;
+}

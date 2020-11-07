@@ -76,6 +76,10 @@ import { PieDataTableComponent } from './components/pie-data-table/pie-data-tabl
 import { ExpenseLineTableComponent } from './components/expense-line-table/expense-line-table.component';
 import { ElFilterSheetComponent } from './components/el-filter-sheet/el-filter-sheet.component';
 
+export function iE() {
+  return import('echarts');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -136,7 +140,7 @@ import { ElFilterSheetComponent } from './components/el-filter-sheet/el-filter-s
   ],
   imports: [
     NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
+      echarts: iE,
     }),
     BrowserModule,
     AppRoutingModule,

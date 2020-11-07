@@ -32,7 +32,7 @@ export class LineChartComponent implements OnInit {
   private data: any[] = [];
   private intervalName = '';
 
-  private options = {
+  public options = {
     tooltip: {
       trigger: 'axis',
       axisPointer: {

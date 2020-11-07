@@ -26,8 +26,6 @@ export class BackendService {
   constructor(private httpClient: HttpClient, private authService: AuthService) {}
 
   async getToken(email: string, password: string): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${authkeep.address}${authkeep.getToken}`;
 
     try {
@@ -61,8 +59,6 @@ export class BackendService {
   }
 
   async initPasswordReset(email: string): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${authkeep.address}${authkeep.initPasswordReset}`;
 
     try {
@@ -82,8 +78,6 @@ export class BackendService {
   }
 
   async finishPasswordReset(passwordResetID: string, newPassword: string): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${authkeep.address}${authkeep.finishPasswordReset}/${passwordResetID}`;
 
     try {
@@ -108,8 +102,6 @@ export class BackendService {
     lastName: string,
     password: string,
   ): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${authkeep.address}${authkeep.initSignup}`;
 
     try {
@@ -131,8 +123,6 @@ export class BackendService {
   }
 
   async finishSignup(signupID: string): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${authkeep.address}${authkeep.finishSignup}/${signupID}`;
 
     try {
@@ -155,8 +145,6 @@ export class BackendService {
   }
 
   async getUser(): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${authkeep.address}${authkeep.getUser}`;
     const token = this.authService.getToken();
 
@@ -198,8 +186,6 @@ export class BackendService {
   }
 
   async updateUser(updates: any): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${authkeep.address}${authkeep.updateUser}`;
     const token = this.authService.getToken();
 
@@ -234,8 +220,6 @@ export class BackendService {
   }
 
   async updateUserPassword(currentPassword: string, newPassword: string): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${authkeep.address}${authkeep.updateUserPassword}`;
     const token = this.authService.getToken();
 
@@ -274,8 +258,6 @@ export class BackendService {
   }
 
   async getCategories(): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${ledgerkeep.address}${ledgerkeep.getCategories}`;
     const token = this.authService.getToken();
 
@@ -317,8 +299,6 @@ export class BackendService {
   }
 
   async getTransactions(queries: { [key: string]: any }): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${ledgerkeep.address}${ledgerkeep.getTransactions}`;
     const token = this.authService.getToken();
 
@@ -365,8 +345,6 @@ export class BackendService {
   }
 
   async getTransaction(id: string): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${ledgerkeep.address}${ledgerkeep.getTransaction}/${id}`;
     const token = this.authService.getToken();
 
@@ -408,8 +386,6 @@ export class BackendService {
   }
 
   async getSum(queries: any): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${ledgerkeep.address}${ledgerkeep.getSum}`;
     const token = this.authService.getToken();
 
@@ -452,8 +428,6 @@ export class BackendService {
   }
 
   async getTxCount(queries: any): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${ledgerkeep.address}${ledgerkeep.getTxCount}`;
     const token = this.authService.getToken();
 
@@ -496,8 +470,6 @@ export class BackendService {
   }
 
   async getCatCount(): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${ledgerkeep.address}${ledgerkeep.getCatCount}`;
     const token = this.authService.getToken();
 
@@ -539,8 +511,6 @@ export class BackendService {
   }
 
   async createCategory(name: string): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${ledgerkeep.address}${ledgerkeep.putCategory}/${name}`;
     const token = this.authService.getToken();
 
@@ -579,8 +549,6 @@ export class BackendService {
   }
 
   async deleteCategory(name: string): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${ledgerkeep.address}${ledgerkeep.deleteCategory}/${name}`;
     const token = this.authService.getToken();
 
@@ -623,8 +591,6 @@ export class BackendService {
   }
 
   async putTransaction(data: any): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${ledgerkeep.address}${ledgerkeep.putTransaction}`;
     const token = this.authService.getToken();
 
@@ -663,8 +629,6 @@ export class BackendService {
   }
 
   async updateTransaction(id: string, updates: any): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${ledgerkeep.address}${ledgerkeep.updateTransaction}/${id}`;
     const token = this.authService.getToken();
 
@@ -707,8 +671,6 @@ export class BackendService {
   }
 
   async deleteTransaction(id: string): Promise<any> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const endpoint = `${ledgerkeep.address}${ledgerkeep.deleteTransaction}/${id}`;
     const token = this.authService.getToken();
 
