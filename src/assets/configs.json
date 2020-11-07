@@ -19,11 +19,11 @@
     "snackbarDuration": 2000
   },
   "imageKeep": {
-    "address": "http://localhost:6100/api",
+    "address": "http://65.0.89.96:6100/api",
     "randomCover": "/cover/random.jpg"
   },
   "authkeep": {
-    "address": "http://localhost:7100/api",
+    "address": "http://65.0.89.96:7100/api",
     "getToken": "/generalAccess/token",
     "initPasswordReset": "/generalAccess/user/_initPasswordReset",
     "finishPasswordReset": "/generalAccess/user/password",
@@ -34,7 +34,7 @@
     "updateUserPassword": "/userAccess/user/password"
   },
   "ledgerkeep": {
-    "address": "http://localhost:8100/api",
+    "address": "http://65.0.89.96:8100/api",
     "getCategories": "/userAccess/category",
     "getTransactions": "/userAccess/transaction",
     "getTransaction": "/userAccess/transaction",
