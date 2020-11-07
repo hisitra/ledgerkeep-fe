@@ -1,0 +1,50 @@
+{
+  "auth": {
+    "emailKey": "LK_EMAIL",
+    "tokenKey": "LK_TOKEN"
+  },
+  "general": {
+    "appName": "LedgerKeep"
+  },
+  "theme": {
+    "dpaPrimary": "#673ab7"
+  },
+  "validation": {
+    "passwordRegex": "^\\S+$",
+    "emailRegex": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$",
+    "nameRegex": "^[a-zA-Z0-9]+$",
+    "categoryRegex": "^[a-zA-Z0-9-_]+$"
+  },
+  "ui": {
+    "snackbarDuration": 2000
+  },
+  "imageKeep": {
+    "address": "http://localhost:6100/api",
+    "randomCover": "/cover/random.jpg"
+  },
+  "authkeep": {
+    "address": "http://localhost:7100/api",
+    "getToken": "/generalAccess/token",
+    "initPasswordReset": "/generalAccess/user/_initPasswordReset",
+    "finishPasswordReset": "/generalAccess/user/password",
+    "initSignup": "/generalAccess/user/_initSignup",
+    "finishSignup": "/generalAccess/user",
+    "getUser": "/userAccess/user",
+    "updateUser": "/userAccess/user",
+    "updateUserPassword": "/userAccess/user/password"
+  },
+  "ledgerkeep": {
+    "address": "http://localhost:8100/api",
+    "getCategories": "/userAccess/category",
+    "getTransactions": "/userAccess/transaction",
+    "getTransaction": "/userAccess/transaction",
+    "getSum": "/userAccess/transaction/sum",
+    "getTxCount": "/userAccess/transaction/count",
+    "getCatCount": "/userAccess/category/count",
+    "putCategory": "/userAccess/category",
+    "deleteCategory": "/userAccess/category",
+    "updateTransaction": "/userAccess/transaction",
+    "deleteTransaction": "/userAccess/transaction",
+    "putTransaction": "/userAccess/transaction"
+  }
+}
