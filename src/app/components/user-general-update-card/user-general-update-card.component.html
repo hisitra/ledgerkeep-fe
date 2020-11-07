@@ -1,0 +1,29 @@
+<form [formGroup]="generalUpdateForm" (submit)="onSubmit()">
+  <div fxLayout="row wrap" fxLayoutGap="grid">
+    <div fxFlex="49%" fxFlex.xs="100%">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input formControlName="firstName" matInput autocomplete="off" />
+        <mat-error *ngIf="generalUpdateForm?.get('firstName')?.hasError('pattern')"
+          ><mat-icon>error</mat-icon> Field contains invalid characters.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div fxFlex="2%" fxFlex.xs="0%"></div>
+    <div fxFlex="49%" fxFlex.xs="100%">
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input formControlName="lastName" matInput autocomplete="off" />
+        <mat-error *ngIf="generalUpdateForm?.get('lastName')?.hasError('pattern')"
+          ><mat-icon>error</mat-icon> Field contains invalid characters.</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-card-actions>
+    <div align="end">
+      <app-loading-button [isLoading]="isLoading" value="Update" (click)="onSubmit()">
+      </app-loading-button>
+    </div>
+  </mat-card-actions>
+</form>

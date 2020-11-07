@@ -1,0 +1,8 @@
+.with-icon {
+  display: flex;
+  align-items: center;
+}
+
+.with-icon p {
+  margin-left: 10px;
+}

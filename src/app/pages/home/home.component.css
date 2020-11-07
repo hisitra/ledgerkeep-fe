@@ -1,0 +1,18 @@
+.title {
+  padding: 10px;
+}
+
+.img {
+  height: 400px;
+  width: 100%;
+}
+
+.body {
+  margin-bottom: 100px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0px;
+  font-size: small;
+}

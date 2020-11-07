@@ -1,0 +1,70 @@
+<app-header-card value="Login"></app-header-card>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (submit)="onFormSubmit()">
+      <!-- Email Input -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput autocomplete="off" />
+        <button type="button" mat-button matPrefix mat-icon-button>
+          <mat-icon>email</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm?.get('email')?.hasError('required')"
+          ><mat-icon>error</mat-icon> Email is required.</mat-error
+        >
+        <mat-error
+          *ngIf="
+            !loginForm?.get('email')?.hasError('required') &&
+            loginForm?.get('email')?.hasError('pattern')
+          "
+          ><mat-icon>error</mat-icon> Please enter a valid Email.</mat-error
+        >
+      </mat-form-field>
+
+      <!-- Password Input -->
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+          matInput
+          autocomplete="off"
+        />
+        <button type="button" mat-button matPrefix mat-icon-button>
+          <mat-icon>lock</mat-icon>
+        </button>
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm?.get('password')?.hasError('required')"
+          ><mat-icon>error</mat-icon> Password is required</mat-error
+        >
+        <mat-error
+          *ngIf="
+            !loginForm?.get('password')?.hasError('required') &&
+            loginForm?.get('password')?.hasError('pattern')
+          "
+          ><mat-icon>error</mat-icon> Password should not contain spaces.</mat-error
+        >
+      </mat-form-field>
+
+      <!-- Actions -->
+      <mat-card-actions>
+        <app-loading-button
+          [isLoading]="isLoading"
+          height="50px"
+          width="96%"
+          value="OK"
+          (click)="onFormSubmit()"
+        ></app-loading-button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

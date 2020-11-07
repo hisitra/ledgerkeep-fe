@@ -1,0 +1,109 @@
+<p class="filter-title">Transaction Filter</p>
+
+<mat-spinner diameter="20" class="spinner" *ngIf="isLoading"></mat-spinner>
+
+<mat-grid-list cols="2" rowHeight="75px">
+  <form [formGroup]="filterForm" (submit)="processQuery()">
+    <mat-grid-tile>
+      <mat-form-field appearance="outline" class="w-90">
+        <mat-label>Start Date</mat-label>
+        <input
+          id="startDateInput"
+          formControlName="startDate"
+          matInput
+          [matDatepicker]="startDatePicker"
+          autocomplete="off"
+        />
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+        <mat-error *ngIf="filterForm?.get('startDate')?.hasError('invalid')"
+          ><mat-icon>error</mat-icon> Invalid date.</mat-error
+        >
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field appearance="outline" class="w-90">
+        <mat-label>End Date</mat-label>
+        <input
+          id="endDateInput"
+          formControlName="endDate"
+          matInput
+          [matDatepicker]="endDatePicker"
+          autocomplete="off"
+        />
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+        <mat-error *ngIf="filterForm?.get('endDate')?.hasError('invalid')"
+          ><mat-icon>error</mat-icon> Invalid date.</mat-error
+        >
+        <mat-error
+          *ngIf="
+            !filterForm?.get('endDate')?.hasError('invalid') &&
+            filterForm?.get('endDate')?.hasError('tooLow')
+          "
+          ><mat-icon>error</mat-icon> Too Low.</mat-error
+        >
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field appearance="outline" class="w-90">
+        <mat-label>Start Amount</mat-label>
+        <input
+          id="startAmountInput"
+          formControlName="startAmount"
+          matInput
+          type="number"
+          autocomplete="off"
+        />
+        <mat-error *ngIf="filterForm?.get('startAmount')?.hasError('invalid')"
+          ><mat-icon>error</mat-icon> Invalid Amount.</mat-error
+        >
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field appearance="outline" class="w-90">
+        <mat-label>End Amount</mat-label>
+        <input
+          id="endAmountInput"
+          formControlName="endAmount"
+          matInput
+          type="number"
+          autocomplete="off"
+        />
+        <mat-error *ngIf="filterForm?.get('endAmount')?.hasError('invalid')"
+          ><mat-icon>error</mat-icon> Invalid Amount.</mat-error
+        >
+        <mat-error
+          *ngIf="
+            !filterForm?.get('endAmount')?.hasError('invalid') &&
+            filterForm?.get('endAmount')?.hasError('tooLow')
+          "
+          ><mat-icon>error</mat-icon> Too Low.</mat-error
+        >
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <mat-form-field appearance="outline" class="w-95">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+          <mat-option>-</mat-option>
+          <mat-option *ngFor="let name of getCategories()" [value]="name">
+            {{ name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="filterForm?.get('category')?.hasError('pattern')"
+          ><mat-icon>error</mat-icon> Field contains invalid characters.</mat-error
+        >
+      </mat-form-field>
+    </mat-grid-tile>
+  </form>
+</mat-grid-list>
+
+<div align="end">
+  <button mat-raised-button color="primary" (click)="processQuery()" [disabled]="isLoading">
+    Apply
+  </button>
+  &nbsp;
+  <button mat-raised-button (click)="clearQuery()" [disabled]="isLoading">Clear</button>
+</div>
+&nbsp;

@@ -1,0 +1,21 @@
+.container {
+  height: calc(100vh - 64px);
+}
+
+@media only screen and (max-width: 599px) {
+  .container {
+    height: calc(100vh - 56px);
+  }
+}
+
+.mid-div {
+  text-align: center;
+}
+
+.forgotLink {
+  text-decoration: none;
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+  font-size: small;
+}

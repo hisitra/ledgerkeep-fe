@@ -1,0 +1,31 @@
+<div class="container" fxFlex fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex="50" fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+    <div fxFlex="50">
+      <app-pie-chart
+        #debitPie
+        [isLoading]="isDebitPieLoading"
+        moreLink="/statistics/debit-pie"
+        name="Debit Pie Chart"
+        class="chart"
+      ></app-pie-chart>
+    </div>
+    <div fxFlex="50">
+      <app-pie-chart
+        #creditPie
+        [isLoading]="isCreditPieLoading"
+        moreLink="/statistics/credit-pie"
+        name="Credit Pie Chart"
+        class="chart"
+      ></app-pie-chart>
+    </div>
+  </div>
+  <div fxFlex="50">
+    <app-line-chart
+      #expenseLine
+      [isLoading]="isExpenseLineLoading"
+      moreLink="/statistics/expense-line"
+      name="Expense Line Chart"
+      class="chart"
+    ></app-line-chart>
+  </div>
+</div>

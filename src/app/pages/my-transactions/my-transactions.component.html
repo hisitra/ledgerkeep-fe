@@ -1,0 +1,57 @@
+<div class="container" fxFlex fxLayout="column" fxLayoutGap="10px">
+  <div fxLayout="row wrap" style="width: 100%">
+    <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
+    <div fxFlex="1000px" fxFlex.md="700px" fxFlex.sm="600px" fxFlex.xs="98">
+      <app-loading-header-card
+        value="Transactions"
+        [isLoading]="isLoading"
+      ></app-loading-header-card>
+
+      <div class="mat-elevation-z2 mb-100">
+        <table mat-table [dataSource]="dataSource">
+          <!-- Serial Column -->
+          <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef>No.</th>
+            <td mat-cell *matCellDef="let element">{{ element.index }}</td>
+          </ng-container>
+
+          <!-- Amount Column -->
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef class="ta-c">Amount</th>
+            <td
+              mat-cell
+              *matCellDef="let element"
+              class="ta-c"
+              [ngStyle]="{ color: element.amount > 0 ? 'green' : 'red' }"
+            >
+              {{ element.amount > 0 ? '+' : '' }}{{ element.amount }}
+            </td>
+          </ng-container>
+
+          <!-- Category Column -->
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef class="ta-c">Category</th>
+            <td mat-cell *matCellDef="let element" class="ta-c">{{ element.category }}</td>
+          </ng-container>
+
+          <!-- Date Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef class="ta-c">Date</th>
+            <td mat-cell *matCellDef="let element" class="ta-c">{{ element.timestamp | date }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="rowClick(row)"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+    <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
+  </div>
+</div>
+<app-bottom-fab-button
+  iconName="filter_alt"
+  [disabled]="isLoading"
+  (click)="openFilterSheet()"
+></app-bottom-fab-button>
