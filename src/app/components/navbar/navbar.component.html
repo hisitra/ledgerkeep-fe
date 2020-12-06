@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="nb-height nb-padding mat-elevation-z6">
-  <button mat-icon-button color="accent">
+  <button mat-icon-button color="accent" *ngIf="auth.isLoggedIn()">
     <mat-icon>menu</mat-icon>
   </button>
 
@@ -9,14 +9,16 @@
   </a>
   <span class="spacer"></span>
 
-  <button mat-flat-button color="accent" routerLink="/signup">Sign Up</button>
+  <button mat-flat-button color="accent" routerLink="/signup" *ngIf="!auth.isLoggedIn()">
+    Sign Up
+  </button>
 
-  <div fxShow="true" fxHide.lt-sm="true">
+  <div fxShow="true" fxHide.lt-sm="true" *ngIf="!auth.isLoggedIn()">
     <a mat-button routerLink="/login" class="thin-font">Login</a>
     <a mat-button routerLink="/about" class="thin-font">About</a>
   </div>
 
-  <div fxShow="true" fxHide.gt-xs="true">
+  <div fxShow="true" fxHide.gt-xs="true" *ngIf="!auth.isLoggedIn()">
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
