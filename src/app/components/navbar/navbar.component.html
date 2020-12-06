@@ -9,6 +9,15 @@
   </a>
   <span class="spacer"></span>
 
+  <div *ngIf="auth.isLoggedIn()">
+    <button mat-icon-button color="accent">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button mat-icon-button color="accent">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+
   <button mat-flat-button color="accent" routerLink="/signup" *ngIf="!auth.isLoggedIn()">
     Sign Up
   </button>
