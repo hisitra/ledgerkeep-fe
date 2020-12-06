@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div fxFlex fxLayout="row" fxLayoutAlign="center center">
+  <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
+  <div fxFlex="400px" fxFlex.md="400px" fxFlex.sm="400px" fxFlex.xs="98">
+    <!-- login-card -->
+    <mat-card class="mat-elevation-z3 card-padding">
+      <mat-card-title class="thin-font title">Login</mat-card-title>
+      <mat-card-content>
+        <form>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Email</mat-label>
+            <input matInput autocomplete="off" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" autocomplete="off" />
+          </mat-form-field>
+          <div align="end">
+            <button mat-raised-button color="primary">OK</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
+</div>
