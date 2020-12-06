@@ -15,9 +15,7 @@ export class ConfigService {
   constructor(private http: HttpClient) {}
 
   public async loadConfigs(): Promise<void> {
-    this.configs = await this.http
-      .get<ServiceConfig>(this.CONFIG_URL)
-      .toPromise();
+    this.configs = await this.http.get<ServiceConfig>(this.CONFIG_URL).toPromise();
   }
 
   public get(): ServiceConfig {

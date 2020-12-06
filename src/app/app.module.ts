@@ -14,12 +14,7 @@ function appInitializer(conf: ConfigService): () => any {
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HttpClientModule],
   providers: [
     {
       provide: APP_INITIALIZER,
