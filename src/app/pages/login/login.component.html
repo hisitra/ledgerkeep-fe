@@ -13,10 +13,14 @@
 
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Password</mat-label>
-            <input matInput type="password" autocomplete="off" />
+            <input matInput [type]="hidePass ? 'password' : 'text'" autocomplete="off" />
+            <button type="button" mat-icon-button matSuffix (click)="hidePass = !hidePass">
+              <mat-icon>{{ hidePass ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
           </mat-form-field>
+
           <div align="end">
-            <button mat-raised-button color="primary">OK</button>
+            <button type="button" mat-raised-button color="primary">OK</button>
           </div>
         </form>
       </mat-card-content>
