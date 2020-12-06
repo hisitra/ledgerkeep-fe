@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-export interface ServiceConfig {}
+export interface ServiceConfig {
+  auth: { tokenKey: string };
+}
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +15,12 @@ export class ConfigService {
   constructor(private http: HttpClient) {}
 
   public async loadConfigs(): Promise<void> {
-    console.info('Loading application configs...');
+    this.configs = await this.http
+      .get<ServiceConfig>(this.CONFIG_URL)
+      .toPromise();
+  }
+
+  public get(): ServiceConfig {
+    return this.configs;
   }
 }

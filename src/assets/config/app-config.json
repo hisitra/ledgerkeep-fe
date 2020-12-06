@@ -1,1 +1,5 @@
-{}
+{
+  "auth": {
+    "tokenKey": "LK_TOKEN"
+  }
+}

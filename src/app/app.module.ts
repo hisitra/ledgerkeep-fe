@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ConfigService } from './services/config.service';
 
-function appInitializer(conf: ConfigService) {
+function appInitializer(conf: ConfigService): () => any {
   return async () => conf.loadConfigs();
 }
 
