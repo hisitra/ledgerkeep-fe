@@ -38,6 +38,14 @@
             <mat-error
               *ngIf="
                 !loginForm?.get('password')?.hasError('required') &&
+                loginForm?.get('password')?.hasError('minlength')
+              "
+              >Password should be at least 8 characters.</mat-error
+            >
+            <mat-error
+              *ngIf="
+                !loginForm?.get('password')?.hasError('required') &&
+                !loginForm?.get('password')?.hasError('minlength') &&
                 loginForm?.get('password')?.hasError('pattern')
               "
               >Password should not contain whitespaces.</mat-error

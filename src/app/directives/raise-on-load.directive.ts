@@ -8,6 +8,6 @@ export class RaiseOnLoadDirective implements OnInit {
 
   ngOnInit(): void {
     const htmlElement = this.element.nativeElement as HTMLElement;
-    setTimeout(() => htmlElement.classList.add('mat-elevation-z3'), 10);
+    setTimeout(() => htmlElement.classList.add('mat-elevation-z4'), 10);
   }
 }

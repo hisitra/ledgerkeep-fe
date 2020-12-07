@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
+import { AuthkeepService } from 'src/app/services/authkeep.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +14,24 @@ export class LoginComponent implements OnInit {
   public isLoading = false;
   public loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private conf: ConfigService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private conf: ConfigService,
+    private authkeep: AuthkeepService,
+    private alert: SnackbarService,
+  ) {
     const configs = this.conf.get();
 
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(configs.validation.emailRegex)]],
-      password: ['', [Validators.required, Validators.pattern(configs.validation.passwordRegex)]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(configs.validation.passwordMinLength),
+          Validators.pattern(configs.validation.passwordRegex),
+        ],
+      ],
     });
   }
 
@@ -35,5 +49,11 @@ export class LoginComponent implements OnInit {
     this.isLoading = false;
   }
 
-  async login(email: string, password: string): Promise<void> {}
+  async login(email: string, password: string): Promise<void> {
+    try {
+      const response = await this.authkeep.getToken(email, password);
+    } catch (err) {
+      this.alert.error(err.message);
+    }
+  }
 }

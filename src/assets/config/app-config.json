@@ -1,9 +1,13 @@
 {
+  "api": {
+    "authkeep": "http://34.92.99.92:5100"
+  },
   "auth": {
     "tokenKey": "LK_TOKEN"
   },
   "validation": {
     "emailRegex": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$",
-    "passwordRegex": "^\\S+$"
+    "passwordRegex": "^\\S+$",
+    "passwordMinLength": 8
   }
 }
