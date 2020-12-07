@@ -9,11 +9,18 @@
   </a>
   <span class="spacer"></span>
 
-  <div *ngIf="auth.isLoggedIn()">
-    <button mat-icon-button color="accent">
+  <div *ngIf="auth.isLoggedIn()"></div>
+
+  <div fxShow="true" fxHide.lt-sm="true" *ngIf="auth.isLoggedIn()">
+    <a mat-button routerLink="/profile" class="thin-font">Profile</a>
+    <a mat-button class="thin-font" (click)="logout()">Logout</a>
+  </div>
+
+  <div fxShow="true" fxHide.gt-xs="true" *ngIf="auth.isLoggedIn()">
+    <button mat-icon-button color="accent" routerLink="/profile">
       <mat-icon>account_circle</mat-icon>
     </button>
-    <button mat-icon-button color="accent">
+    <button mat-icon-button color="accent" (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>
   </div>
