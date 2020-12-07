@@ -23,5 +23,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async loginBtnAction(): Promise<void> {}
+  async loginBtnAction(): Promise<void> {
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    const { email, password } = this.loginForm.value;
+
+    this.isLoading = true;
+    await this.login(email, password);
+    this.isLoading = false;
+  }
+
+  async login(email: string, password: string): Promise<void> {}
 }
