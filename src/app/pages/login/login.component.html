@@ -5,24 +5,51 @@
     <mat-card class="card-padding" appRaiseOnLoad>
       <mat-card-title class="thin-font title">Login</mat-card-title>
       <mat-card-content>
-        <form>
+        <form [formGroup]="loginForm">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Email</mat-label>
-            <input matInput autocomplete="off" />
+            <input matInput formControlName="email" autocomplete="off" />
+            <mat-error *ngIf="loginForm?.get('email').hasError('required')"
+              >Email is required.</mat-error
+            >
+            <mat-error
+              *ngIf="
+                !loginForm?.get('email')?.hasError('required') &&
+                loginForm?.get('email')?.hasError('pattern')
+              "
+              >Email is invalid.</mat-error
+            >
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Password</mat-label>
-            <input matInput [type]="hidePass ? 'password' : 'text'" autocomplete="off" />
+            <input
+              matInput
+              formControlName="password"
+              [type]="hidePass ? 'password' : 'text'"
+              autocomplete="off"
+            />
             <button type="button" mat-icon-button matSuffix (click)="hidePass = !hidePass">
               <mat-icon>{{ hidePass ? "visibility_off" : "visibility" }}</mat-icon>
             </button>
+            <mat-error *ngIf="loginForm?.get('password').hasError('required')"
+              >Password is required.</mat-error
+            >
+            <mat-error
+              *ngIf="
+                !loginForm?.get('password')?.hasError('required') &&
+                loginForm?.get('password')?.hasError('pattern')
+              "
+              >Password should not contain whitespaces.</mat-error
+            >
           </mat-form-field>
 
           <div align="end">
-            <app-loading-button [loading]="isLoading" (click)="loginBtnAction()"
-              >OK</app-loading-button
-            >
+            <app-loading-button
+              btnText="OK"
+              [loading]="isLoading"
+              (click)="loginBtnAction()"
+            ></app-loading-button>
           </div>
         </form>
       </mat-card-content>

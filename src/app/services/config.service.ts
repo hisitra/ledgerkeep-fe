@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 export interface ServiceConfig {
   auth: { tokenKey: string };
+  validation: { emailRegex: string; passwordRegex: string };
 }
 
 @Injectable({
