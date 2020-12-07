@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ConfigService } from './services/config.service';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -21,6 +22,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AboutComponent } from './pages/about/about.component';
 import { MatInputModule } from '@angular/material/input';
+import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
 
 function appInitializer(conf: ConfigService): () => any {
   return async () => conf.loadConfigs();
@@ -34,6 +36,7 @@ function appInitializer(conf: ConfigService): () => any {
     SignupComponent,
     NavbarComponent,
     AboutComponent,
+    LoadingButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ function appInitializer(conf: ConfigService): () => any {
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     {

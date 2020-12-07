@@ -7,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   public hidePass = true;
+  public isLoading = false;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  async loginBtnAction(): Promise<void> {}
 }

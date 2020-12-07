@@ -20,7 +20,9 @@
           </mat-form-field>
 
           <div align="end">
-            <button type="button" mat-raised-button color="primary">OK</button>
+            <app-loading-button [loading]="isLoading" (click)="loginBtnAction()"
+              >OK</app-loading-button
+            >
           </div>
         </form>
       </mat-card-content>
