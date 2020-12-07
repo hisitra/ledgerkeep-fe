@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
 import { AuthkeepService } from 'src/app/services/authkeep.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,8 @@ export class LoginComponent implements OnInit {
     private conf: ConfigService,
     private authkeep: AuthkeepService,
     private alert: SnackbarService,
+    private auth: AuthService,
+    private router: Router,
   ) {
     const configs = this.conf.get();
 
@@ -52,6 +56,8 @@ export class LoginComponent implements OnInit {
   async login(email: string, password: string): Promise<void> {
     try {
       const response = await this.authkeep.getToken(email, password);
+      this.auth.setToken(response.token);
+      this.router.navigate(['/profile']);
     } catch (err) {
       this.alert.error(err.message);
     }

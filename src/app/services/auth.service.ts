@@ -5,9 +5,17 @@ import { ConfigService } from './config.service';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private conf: ConfigService) {}
+  private tokenKey: string;
+
+  constructor(private conf: ConfigService) {
+    this.tokenKey = this.conf.get().auth.tokenKey;
+  }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem(this.conf.get().auth.tokenKey);
+    return !!localStorage.getItem(this.tokenKey);
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token);
   }
 }

@@ -27,6 +27,7 @@ import { MatInputModule } from '@angular/material/input';
 import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
 import { RaiseOnLoadDirective } from './directives/raise-on-load.directive';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 function appInitializer(conf: ConfigService): () => any {
   return async () => conf.loadConfigs();
@@ -43,6 +44,7 @@ function appInitializer(conf: ConfigService): () => any {
     LoadingButtonComponent,
     RaiseOnLoadDirective,
     SnackbarComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

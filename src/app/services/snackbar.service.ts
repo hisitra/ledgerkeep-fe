@@ -28,6 +28,10 @@ export class SnackbarService {
 
   private alert(message: string, iconName: string, color: string): void {
     const data = { iconName, message, color };
-    this.snackbar.openFromComponent(SnackbarComponent, { data, duration: this.duration });
+    this.snackbar.openFromComponent(SnackbarComponent, {
+      data,
+      duration: this.duration,
+      horizontalPosition: 'left',
+    });
   }
 }
