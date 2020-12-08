@@ -6,23 +6,29 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { AntiAuthGuardService } from './guards/anti-auth-guard.service';
+import { AuthGuardService } from './guards/auth-guard.service';
 
 const routes: Routes = [
   {
     path: 'landing',
     component: LandingComponent,
+    canActivate: [AntiAuthGuardService],
   },
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [AntiAuthGuardService],
   },
   {
     path: 'signup',
     component: SignupComponent,
+    canActivate: [AntiAuthGuardService],
   },
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
+    canActivate: [AntiAuthGuardService],
   },
   {
     path: 'about',
@@ -31,6 +37,7 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthGuardService],
   },
   { path: '**', pathMatch: 'full', redirectTo: 'landing' },
 ];
