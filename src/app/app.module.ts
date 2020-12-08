@@ -28,6 +28,7 @@ import { LoadingButtonComponent } from './components/loading-button/loading-butt
 import { RaiseOnLoadDirective } from './directives/raise-on-load.directive';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 function appInitializer(conf: ConfigService): () => any {
   return async () => conf.loadConfigs();
@@ -45,6 +46,7 @@ function appInitializer(conf: ConfigService): () => any {
     RaiseOnLoadDirective,
     SnackbarComponent,
     ProfileComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
