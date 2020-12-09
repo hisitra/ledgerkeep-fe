@@ -1,1 +1,43 @@
-<p>signup works!</p>
+<div fxFlex fxLayout="row" fxLayoutAlign="center center">
+  <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
+  <div fxFlex="400px" fxFlex.md="400px" fxFlex.sm="400px" fxFlex.xs="98">
+    <mat-card class="card-padding" appRaiseOnLoad>
+      <mat-card-title class="thin-font title">Sign Up</mat-card-title>
+      <mat-card-content>
+        <form>
+          <div fxLayout="row wrap" fxLayoutGap="grid">
+            <div fxFlex="49%" fxFlex.xs="100%">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>First Name</mat-label>
+                <input matInput autocomplete="off" />
+              </mat-form-field>
+            </div>
+            <div fxFlex="2%" fxFlex.xs="0"></div>
+            <div fxFlex="49%" fxFlex.xs="100%">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Last Name</mat-label>
+                <input matInput autocomplete="off" />
+              </mat-form-field>
+            </div>
+          </div>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Email</mat-label>
+            <input matInput autocomplete="off" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" autocomplete="off" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" autocomplete="off" />
+          </mat-form-field>
+          <div align="end">
+            <app-loading-button btnText="OK"></app-loading-button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="1"></div>
+</div>
