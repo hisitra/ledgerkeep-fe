@@ -34,6 +34,16 @@ export class AuthkeepService {
     }
   }
 
+  public async patchUserForgotPassword(forgotID: string, newPassword: string): Promise<any> {
+    try {
+      await this.client.patchUserForgotPassword(forgotID, newPassword);
+    } catch (err) {
+      throw this.handleError(err, {
+        FORGOT_PASSWORD_ID_NOT_FOUND: 'Invalid link.',
+      });
+    }
+  }
+
   private handleError(err: Error, code2Message: { [key: string]: string }): Error {
     const message = code2Message[err.message];
     if (message) {

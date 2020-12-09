@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
+import { AuthkeepService } from 'src/app/services/authkeep.service';
 
 @Component({
   selector: 'app-forgot-password-reset',
@@ -12,6 +13,7 @@ import { ConfigService } from 'src/app/services/config.service';
 export class ForgotPasswordResetComponent implements OnInit {
   private forgotPasswordID: string;
 
+  public isLoading = false;
   public prForm: FormGroup;
 
   constructor(
@@ -20,6 +22,7 @@ export class ForgotPasswordResetComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private conf: ConfigService,
+    private authkeep: AuthkeepService,
   ) {
     const configs = this.conf.get();
 
@@ -59,8 +62,35 @@ export class ForgotPasswordResetComponent implements OnInit {
       }
     } catch (err) {
       this.alert.error('Invalid link. Redirecting...');
-      this.router.navigate(['/landing']);
+      this.router.navigate(['/login']);
     }
+  }
+
+  public async onBtnAction(): Promise<void> {
+    if (this.prForm.invalid) {
+      return;
+    }
+
+    this.setLoading(true);
+
+    try {
+      await this.authkeep.patchUserForgotPassword(
+        this.forgotPasswordID,
+        this.prForm.value.newPassword,
+      );
+
+      this.alert.success('Password updated.');
+    } catch (err) {
+      this.alert.error(err.message);
+    }
+
+    this.router.navigate(['/login']);
+    this.setLoading(false);
+  }
+
+  private setLoading(state: boolean): void {
+    state ? this.prForm.disable() : this.prForm.enable();
+    this.isLoading = state;
   }
 
   private async getForgotPasswordID(): Promise<string> {
