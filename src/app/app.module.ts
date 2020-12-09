@@ -29,6 +29,7 @@ import { RaiseOnLoadDirective } from './directives/raise-on-load.directive';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ForgotPasswordResetComponent } from './pages/forgot-password-reset/forgot-password-reset.component';
 
 function appInitializer(conf: ConfigService): () => any {
   return async () => conf.loadConfigs();
@@ -47,6 +48,7 @@ function appInitializer(conf: ConfigService): () => any {
     SnackbarComponent,
     ProfileComponent,
     ForgotPasswordComponent,
+    ForgotPasswordResetComponent,
   ],
   imports: [
     BrowserModule,

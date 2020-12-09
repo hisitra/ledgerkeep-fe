@@ -8,6 +8,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { AntiAuthGuardService } from './guards/anti-auth-guard.service';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { ForgotPasswordResetComponent } from './pages/forgot-password-reset/forgot-password-reset.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
+    canActivate: [AntiAuthGuardService],
+  },
+  {
+    path: 'forgot-password-reset',
+    component: ForgotPasswordResetComponent,
     canActivate: [AntiAuthGuardService],
   },
   {
