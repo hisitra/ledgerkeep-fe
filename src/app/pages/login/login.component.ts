@@ -48,9 +48,9 @@ export class LoginComponent implements OnInit {
 
     const { email, password } = this.loginForm.value;
 
-    this.isLoading = true;
+    this.setLoading(true);
     await this.login(email, password);
-    this.isLoading = false;
+    this.setLoading(false);
   }
 
   async login(email: string, password: string): Promise<void> {
@@ -61,5 +61,10 @@ export class LoginComponent implements OnInit {
     } catch (err) {
       this.alert.error(err.message);
     }
+  }
+
+  private setLoading(state: boolean): void {
+    state ? this.loginForm.disable() : this.loginForm.enable();
+    this.isLoading = state;
   }
 }
