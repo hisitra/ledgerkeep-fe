@@ -4,7 +4,12 @@ import { HttpClient } from '@angular/common/http';
 export interface ServiceConfig {
   api: { authkeep: string };
   auth: { tokenKey: string };
-  validation: { emailRegex: string; passwordRegex: string; passwordMinLength: number };
+  validation: {
+    nameRegex: string;
+    emailRegex: string;
+    passwordRegex: string;
+    passwordMinLength: number;
+  };
 }
 
 @Injectable({

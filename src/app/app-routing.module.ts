@@ -14,7 +14,6 @@ const routes: Routes = [
   {
     path: 'landing',
     component: LandingComponent,
-    canActivate: [AntiAuthGuardService],
   },
   {
     path: 'login',
