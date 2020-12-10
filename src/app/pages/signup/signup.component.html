@@ -4,7 +4,7 @@
     <mat-card class="card-padding" appRaiseOnLoad>
       <mat-card-title class="thin-font title">Sign Up</mat-card-title>
       <mat-card-content>
-        <form [formGroup]="signupForm">
+        <form [formGroup]="signupForm" (submit)="onBtnAction()">
           <div fxLayout="row wrap" fxLayoutGap="grid">
             <div fxFlex="49%" fxFlex.xs="100%">
               <mat-form-field appearance="outline" class="w-100">
@@ -89,7 +89,11 @@
             </mat-error>
           </mat-form-field>
           <div align="end">
-            <app-loading-button btnText="OK"></app-loading-button>
+            <app-loading-button
+              btnText="OK"
+              (click)="onBtnAction()"
+              [loading]="isLoading"
+            ></app-loading-button>
           </div>
         </form>
       </mat-card-content>

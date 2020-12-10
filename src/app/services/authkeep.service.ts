@@ -44,6 +44,16 @@ export class AuthkeepService {
     }
   }
 
+  public async postUserSignupLink(signupData: any): Promise<any> {
+    try {
+      await this.client.postUserSignupLink(signupData);
+    } catch (err) {
+      throw this.handleError(err, {
+        USER_ALREADY_EXISTS: 'This email is already taken.',
+      });
+    }
+  }
+
   private handleError(err: Error, code2Message: { [key: string]: string }): Error {
     const message = code2Message[err.message];
     if (message) {

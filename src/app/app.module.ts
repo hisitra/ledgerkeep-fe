@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { ConfigService } from './services/config.service';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -30,6 +31,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ForgotPasswordResetComponent } from './pages/forgot-password-reset/forgot-password-reset.component';
+import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 
 function appInitializer(conf: ConfigService): () => any {
   return async () => conf.loadConfigs();
@@ -49,6 +51,7 @@ function appInitializer(conf: ConfigService): () => any {
     ProfileComponent,
     ForgotPasswordComponent,
     ForgotPasswordResetComponent,
+    AlertDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,7 @@ function appInitializer(conf: ConfigService): () => any {
     MatInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
   providers: [
     {
