@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { ConfirmService } from 'src/app/services/confirm.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,11 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(public auth: AuthService, private router: Router) {}
+  constructor(public auth: AuthService, private router: Router, private confirm: ConfirmService) {}
 
   ngOnInit(): void {}
 
-  logout(): void {
+  async logout(): Promise<void> {
+    const confirmed = await this.confirm.prompt('Confirm Logout?');
+    if (!confirmed) {
+      return;
+    }
+
     this.auth.removeToken();
     this.router.navigate(['/landing']);
   }
