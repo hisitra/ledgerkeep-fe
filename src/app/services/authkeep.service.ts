@@ -54,6 +54,17 @@ export class AuthkeepService {
     }
   }
 
+  public async putUser(signupID: any): Promise<any> {
+    try {
+      await this.client.putUser(signupID);
+    } catch (err) {
+      throw this.handleError(err, {
+        SIGNUP_ID_NOT_FOUND: 'Link has expired.',
+        USER_ALREADY_EXISTS: 'Link has expired.',
+      });
+    }
+  }
+
   private handleError(err: Error, code2Message: { [key: string]: string }): Error {
     const message = code2Message[err.message];
     if (message) {

@@ -32,6 +32,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ForgotPasswordResetComponent } from './pages/forgot-password-reset/forgot-password-reset.component';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
+import { ConfirmSignupComponent } from './pages/confirm-signup/confirm-signup.component';
 
 function appInitializer(conf: ConfigService): () => any {
   return async () => conf.loadConfigs();
@@ -52,6 +53,7 @@ function appInitializer(conf: ConfigService): () => any {
     ForgotPasswordComponent,
     ForgotPasswordResetComponent,
     AlertDialogComponent,
+    ConfirmSignupComponent,
   ],
   imports: [
     BrowserModule,

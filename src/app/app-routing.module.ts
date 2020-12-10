@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { AntiAuthGuardService } from './guards/anti-auth-guard.service';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { ForgotPasswordResetComponent } from './pages/forgot-password-reset/forgot-password-reset.component';
+import { ConfirmSignupComponent } from './pages/confirm-signup/confirm-signup.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
+    canActivate: [AntiAuthGuardService],
+  },
+  {
+    path: 'confirm-signup',
+    component: ConfirmSignupComponent,
     canActivate: [AntiAuthGuardService],
   },
   {
