@@ -7,7 +7,9 @@ import { ConfigService } from 'src/app/services/config.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  public isLoading = false;
   public imageSource: string;
+  public user = {};
 
   constructor(private conf: ConfigService) {
     const configs = this.conf.get();

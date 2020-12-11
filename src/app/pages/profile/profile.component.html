@@ -2,8 +2,9 @@
   <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="0"></div>
   <div fxFlex="700px" fxFlex.md="600px" fxFlex.sm="500px" fxFlex.xs="100">
     <div class="top-image">
-      <img [src]="imageSource" alt="Profile" class="mat-elevation-z3 w-100 h-100" />
-      <div class="name thin-font">Shivansh Kuchchal</div>
+      <img [src]="imageSource" alt="Profile" class="mat-elevation-z6 w-100 h-100" />
+      <div class="name thin-font">{{ user?.firstName }} {{ user?.lastName }}</div>
+      <mat-spinner diameter="20" color="accent" *ngIf="isLoading"></mat-spinner>
     </div>
   </div>
   <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="0"></div>
