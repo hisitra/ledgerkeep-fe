@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  constructor() {}
+  public imageSource: string;
+
+  constructor(private conf: ConfigService) {
+    const configs = this.conf.get();
+    this.imageSource = `${configs.api.imagekeep}/api/generalAccess/cover/random.jpg?width=800`;
+  }
 
   ngOnInit(): void {}
 }

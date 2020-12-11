@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface ServiceConfig {
-  api: { authkeep: string };
+  api: { authkeep: string; imagekeep: string };
   auth: { tokenKey: string };
   validation: {
     nameRegex: string;

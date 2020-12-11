@@ -1,0 +1,19 @@
+:host {
+  height: calc(100vh - 56px);
+}
+
+.top-image {
+  position: relative;
+  color: white;
+}
+
+.top-image img {
+  border-radius: 10px;
+}
+
+.top-image .name {
+  position: absolute;
+  bottom: 12px;
+  left: 10px;
+  font-size: x-large;
+}
