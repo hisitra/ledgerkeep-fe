@@ -26,7 +26,26 @@
             <mat-expansion-panel-header>
               <mat-panel-title> Change General Info </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>This is the primary content of the panel.</p>
+            <form>
+              <div fxLayout="row wrap" fxLayoutGap="grid">
+                <div fxFlex="49%" fxFlex.xs="100%">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>First Name</mat-label>
+                    <input matInput autocomplete="off" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex="2%" fxFlex.xs="0"></div>
+                <div fxFlex="49%" fxFlex.xs="100%">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput autocomplete="off" />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div align="end">
+                <app-loading-button btnText="Update"></app-loading-button>
+              </div>
+            </form>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
