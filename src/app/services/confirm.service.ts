@@ -11,7 +11,7 @@ export class ConfirmService {
   async prompt(message: string): Promise<boolean> {
     return new Promise((resolve) => {
       this.dialog.open(ConfirmDialogComponent, {
-        width: '300px',
+        width: '350px',
         data: { message, reply: resolve },
       });
     });
