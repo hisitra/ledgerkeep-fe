@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import Authkeep from 'authkeep-client';
 import { ConfigService } from './config.service';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -8,11 +10,12 @@ import { ConfigService } from './config.service';
 export class AuthkeepService {
   private client: Authkeep;
 
-  constructor(private conf: ConfigService) {
+  constructor(private conf: ConfigService, private auth: AuthService, private router: Router) {
     const configs = this.conf.get();
     this.client = new Authkeep(configs.api.authkeep);
   }
 
+  // GENERAL ACCESS
   public async getToken(email: string, password: string): Promise<any> {
     try {
       return await this.client.getToken(email, password);
@@ -65,6 +68,7 @@ export class AuthkeepService {
     }
   }
 
+  // USER ACCESS
   public async getUser(token: any): Promise<any> {
     try {
       return await this.client.getUser(token);
@@ -77,6 +81,11 @@ export class AuthkeepService {
     const message = code2Message[err.message];
     if (message) {
       return new Error(message);
+    }
+
+    if (err.message === 'TOKEN_EXPIRED') {
+      this.auth.removeToken();
+      this.router.navigate(['/login']);
     }
     console.warn('Unexpected error from backend:', err.message);
     return new Error('Please try again later.');

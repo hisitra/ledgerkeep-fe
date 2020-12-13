@@ -18,6 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { ConfigService } from './services/config.service';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -35,6 +36,7 @@ import { ForgotPasswordResetComponent } from './pages/forgot-password-reset/forg
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { ConfirmSignupComponent } from './pages/confirm-signup/confirm-signup.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { ProfileInfoRowComponent } from './components/profile-info-row/profile-info-row.component';
 
 function appInitializer(conf: ConfigService): () => any {
   return async () => conf.loadConfigs();
@@ -57,6 +59,7 @@ function appInitializer(conf: ConfigService): () => any {
     AlertDialogComponent,
     ConfirmSignupComponent,
     ConfirmDialogComponent,
+    ProfileInfoRowComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ function appInitializer(conf: ConfigService): () => any {
     MatSnackBarModule,
     MatDialogModule,
     MatTabsModule,
+    MatDividerModule,
   ],
   providers: [
     {
