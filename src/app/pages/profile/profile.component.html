@@ -75,7 +75,23 @@
             <mat-expansion-panel-header>
               <mat-panel-title> Change Password </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>This is the primary content of the panel.</p>
+            <form>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Current Password</mat-label>
+                <input type="password" matInput autocomplete="off" />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>New Password</mat-label>
+                <input type="password" matInput autocomplete="off" />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Confirm New Password</mat-label>
+                <input type="password" matInput autocomplete="off" />
+              </mat-form-field>
+              <div align="end">
+                <app-loading-button btnText="Update"></app-loading-button>
+              </div>
+            </form>
           </mat-expansion-panel>
         </mat-accordion>
       </mat-tab>
