@@ -2,10 +2,13 @@
   height: calc(100vh - 56px);
 }
 
+.content {
+  margin-top: 10px;
+}
+
 .top-image {
   position: relative;
   color: white;
-  margin-top: 10px;
 }
 
 .top-image img {
@@ -33,4 +36,8 @@
 ::ng-deep.mat-ink-bar {
   width: 50%;
   padding: 0 !important;
+}
+
+.gap {
+  height: 30px;
 }

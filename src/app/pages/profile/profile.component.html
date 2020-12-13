@@ -1,6 +1,6 @@
 <div fxFlex fxLayout="row" fxLayoutAlign="center">
   <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="0"></div>
-  <div fxFlex="700px" fxFlex.md="600px" fxFlex.sm="500px" fxFlex.xs="100">
+  <div fxFlex="700px" fxFlex.md="600px" fxFlex.sm="500px" fxFlex.xs="100" class="content">
     <div class="top-image">
       <img [src]="imageSource" alt="Profile" class="mat-elevation-z6 w-100 h-100" />
       <div class="name thin-font">{{ user?.firstName }} {{ user?.lastName }}</div>
@@ -150,6 +150,7 @@
         </mat-accordion>
       </mat-tab>
     </mat-tab-group>
+    <div class="gap"></div>
   </div>
   <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="0"></div>
 </div>
