@@ -1,6 +1,6 @@
 <app-navbar [sideNav]="drawer"></app-navbar>
-<mat-drawer-container hasBackdrop="true">
-  <mat-drawer #drawer [mode]="over">
+<mat-drawer-container hasBackdrop="true" (click)="drawer.close()">
+  <mat-drawer #drawer mode="over">
     <app-sidenav-content></app-sidenav-content>
   </mat-drawer>
   <mat-drawer-content>
