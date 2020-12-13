@@ -65,6 +65,14 @@ export class AuthkeepService {
     }
   }
 
+  public async getUser(token: any): Promise<any> {
+    try {
+      return await this.client.getUser(token);
+    } catch (err) {
+      throw this.handleError(err, {});
+    }
+  }
+
   private handleError(err: Error, code2Message: { [key: string]: string }): Error {
     const message = code2Message[err.message];
     if (message) {

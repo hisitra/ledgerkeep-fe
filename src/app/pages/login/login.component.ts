@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
   async login(email: string, password: string): Promise<void> {
     try {
       const response = await this.authkeep.getToken(email, password);
-      this.auth.setToken(response.token);
+      this.auth.setToken(response.data.token);
       this.router.navigate(['/profile']);
     } catch (err) {
       this.alert.error(err.message);
