@@ -24,6 +24,24 @@ export class LedgerkeepService {
     }
   }
 
+  public async getTransactionCount(queries: any): Promise<any> {
+    const token = this.auth.getToken();
+    try {
+      return await this.client.getTransactionCount(token, queries);
+    } catch (err) {
+      throw this.handleError(err, {});
+    }
+  }
+
+  public async getCategoryCount(): Promise<any> {
+    const token = this.auth.getToken();
+    try {
+      return await this.client.getCategoryCount(token);
+    } catch (err) {
+      throw this.handleError(err, {});
+    }
+  }
+
   private handleError(err: Error, code2Message: { [key: string]: string }): Error {
     const message = code2Message[err.message];
     if (message) {

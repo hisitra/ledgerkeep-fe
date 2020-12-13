@@ -26,6 +26,18 @@
           [value]="balance > 0 ? '+' + balance : balance"
           [valueColor]="balance > 0 ? 'green' : 'red'"
         ></app-profile-info-row>
+        <mat-divider></mat-divider>
+        <app-profile-info-row
+          iconName="receipt"
+          heading="Total Transactions"
+          [value]="transactionCount"
+        ></app-profile-info-row>
+        <mat-divider></mat-divider>
+        <app-profile-info-row
+          iconName="category"
+          heading="Total Categories"
+          [value]="categoryCount"
+        ></app-profile-info-row>
       </mat-tab>
       <mat-tab label="Edit" [disabled]="isMasterLoading">
         <mat-accordion>

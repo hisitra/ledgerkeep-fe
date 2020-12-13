@@ -16,8 +16,10 @@ export class ProfileComponent implements OnInit {
   public isPasswordUpdateLoading = false;
 
   public imageSource: string;
-  public balance = 0;
   public user: any = {};
+  public balance = 0;
+  public transactionCount = 0;
+  public categoryCount = 0;
 
   public generalUpdateForm: FormGroup;
   public passwordUpdateForm: FormGroup;
@@ -75,7 +77,7 @@ export class ProfileComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.isMasterLoading = true;
 
-    const promises = [this.loadUser(), this.loadBalance()];
+    const promises = [this.loadUser(), this.loadBalance(), this.loadTxCount(), this.loadCatCount()];
 
     try {
       await Promise.all(promises);
@@ -140,7 +142,25 @@ export class ProfileComponent implements OnInit {
   private async loadBalance(): Promise<void> {
     try {
       const { data } = await this.ledgerkeep.getTransactionSum({});
-      this.balance = data.sum;
+      this.balance = Math.round(data.sum * 100) / 100;
+    } catch (err) {
+      this.alert.error(err.message);
+    }
+  }
+
+  private async loadTxCount(): Promise<void> {
+    try {
+      const { data } = await this.ledgerkeep.getTransactionCount({});
+      this.transactionCount = data.count;
+    } catch (err) {
+      this.alert.error(err.message);
+    }
+  }
+
+  private async loadCatCount(): Promise<void> {
+    try {
+      const { data } = await this.ledgerkeep.getCategoryCount();
+      this.categoryCount = data.count;
     } catch (err) {
       this.alert.error(err.message);
     }
