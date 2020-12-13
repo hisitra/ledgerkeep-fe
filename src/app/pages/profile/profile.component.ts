@@ -16,7 +16,9 @@ export class ProfileComponent implements OnInit {
 
   public imageSource: string;
   public user: any = {};
+
   public generalUpdateForm: FormGroup;
+  public passwordUpdateForm: FormGroup;
 
   constructor(
     private conf: ConfigService,
@@ -32,6 +34,40 @@ export class ProfileComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.pattern(configs.validation.nameRegex)]],
       lastName: ['', [Validators.required, Validators.pattern(configs.validation.nameRegex)]],
     });
+
+    this.passwordUpdateForm = this.formBuilder.group(
+      {
+        currentPassword: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(configs.validation.passwordMinLength),
+            Validators.pattern(configs.validation.passwordRegex),
+          ],
+        ],
+        newPassword: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(configs.validation.passwordMinLength),
+            Validators.pattern(configs.validation.passwordRegex),
+          ],
+        ],
+        confirmNewPassword: [''],
+      },
+      {
+        validators: (formGroup: FormGroup) => {
+          const newPassword = formGroup.controls.newPassword;
+          const confirmNewPassword = formGroup.controls.confirmNewPassword;
+
+          if (newPassword.value !== confirmNewPassword.value) {
+            confirmNewPassword.setErrors({ unmatch: true });
+          } else {
+            confirmNewPassword.setErrors(null);
+          }
+        },
+      },
+    );
   }
 
   async ngOnInit(): Promise<void> {

@@ -75,18 +75,68 @@
             <mat-expansion-panel-header>
               <mat-panel-title> Change Password </mat-panel-title>
             </mat-expansion-panel-header>
-            <form>
+            <form [formGroup]="passwordUpdateForm">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Current Password</mat-label>
-                <input type="password" matInput autocomplete="off" />
+                <input
+                  type="password"
+                  formControlName="currentPassword"
+                  matInput
+                  autocomplete="off"
+                />
+                <mat-error *ngIf="passwordUpdateForm?.get('currentPassword')?.hasError('required')"
+                  >Current Password is required.</mat-error
+                >
+                <mat-error
+                  *ngIf="
+                    !passwordUpdateForm?.get('currentPassword')?.hasError('required') &&
+                    passwordUpdateForm?.get('currentPassword')?.hasError('minlength')
+                  "
+                  >Password too short.</mat-error
+                >
+                <mat-error
+                  *ngIf="
+                    !passwordUpdateForm?.get('currentPassword')?.hasError('required') &&
+                    !passwordUpdateForm?.get('currentPassword')?.hasError('minlength') &&
+                    passwordUpdateForm?.get('currentPassword')?.hasError('pattern')
+                  "
+                  >Password shouldn't contain whitespaces.</mat-error
+                >
               </mat-form-field>
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>New Password</mat-label>
-                <input type="password" matInput autocomplete="off" />
+                <input type="password" formControlName="newPassword" matInput autocomplete="off" />
+                <mat-error *ngIf="passwordUpdateForm?.get('newPassword')?.hasError('required')"
+                  >New Password is required.</mat-error
+                >
+                <mat-error
+                  *ngIf="
+                    !passwordUpdateForm?.get('newPassword')?.hasError('required') &&
+                    passwordUpdateForm?.get('newPassword')?.hasError('minlength')
+                  "
+                  >Password too short.</mat-error
+                >
+                <mat-error
+                  *ngIf="
+                    !passwordUpdateForm?.get('newPassword')?.hasError('required') &&
+                    !passwordUpdateForm?.get('newPassword')?.hasError('minlength') &&
+                    passwordUpdateForm?.get('newPassword')?.hasError('pattern')
+                  "
+                  >Password shouldn't contain whitespaces.</mat-error
+                >
               </mat-form-field>
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Confirm New Password</mat-label>
-                <input type="password" matInput autocomplete="off" />
+                <input
+                  type="password"
+                  formControlName="confirmNewPassword"
+                  matInput
+                  autocomplete="off"
+                />
+                <mat-error
+                  *ngIf="passwordUpdateForm?.get('confirmNewPassword')?.hasError('unmatch')"
+                  >Passwords don't match.</mat-error
+                >
               </mat-form-field>
               <div align="end">
                 <app-loading-button btnText="Update"></app-loading-button>
