@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="nb-sticky nb-height nb-padding mat-elevation-z6">
-  <button mat-icon-button color="accent" *ngIf="auth.isLoggedIn()">
+  <button mat-icon-button color="accent" *ngIf="auth.isLoggedIn()" (click)="menuAction()">
     <mat-icon>menu</mat-icon>
   </button>
 

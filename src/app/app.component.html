@@ -1,2 +1,9 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<app-navbar [sideNav]="drawer"></app-navbar>
+<mat-drawer-container hasBackdrop="true">
+  <mat-drawer #drawer [mode]="over">
+    <app-sidenav-content></app-sidenav-content>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
