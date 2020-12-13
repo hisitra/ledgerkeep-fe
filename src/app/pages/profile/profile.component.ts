@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/services/config.service';
 import { AuthkeepService } from 'src/app/services/authkeep.service';
-import { AuthService } from 'src/app/services/auth.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 

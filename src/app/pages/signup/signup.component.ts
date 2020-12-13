@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { AuthkeepService } from 'src/app/services/authkeep.service';
-import { Router } from '@angular/router';
 import { AlertDialogService } from 'src/app/services/alert-dialog.service';
 
 @Component({
@@ -21,7 +20,6 @@ export class SignupComponent implements OnInit {
     private alert: SnackbarService,
     private alertDialog: AlertDialogService,
     private authkeep: AuthkeepService,
-    private router: Router,
   ) {
     const configs = this.conf.get();
 

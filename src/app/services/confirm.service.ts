@@ -9,7 +9,7 @@ export class ConfirmService {
   constructor(private dialog: MatDialog) {}
 
   async prompt(message: string): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.dialog.open(ConfirmDialogComponent, {
         width: '300px',
         data: { message, reply: resolve },

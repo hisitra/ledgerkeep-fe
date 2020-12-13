@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import Authkeep from 'authkeep-client';
 import { ConfigService } from './config.service';
 import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
