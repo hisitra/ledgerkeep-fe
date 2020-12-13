@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { ConfigService } from './services/config.service';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -75,6 +76,7 @@ function appInitializer(conf: ConfigService): () => any {
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatTabsModule,
   ],
   providers: [
     {

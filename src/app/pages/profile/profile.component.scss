@@ -24,3 +24,13 @@
   top: 10px;
   right: 10px;
 }
+
+::ng-deep .mat-tab-header-pagination {
+  display: none !important;
+}
+
+::ng-deep.mat-tab-label,
+::ng-deep.mat-ink-bar {
+  width: 50%;
+  padding: 0 !important;
+}
