@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AuthkeepService {
   private client: Authkeep;
 
-  constructor(private conf: ConfigService, private auth: AuthService, private router: Router) {
+  constructor(private conf: ConfigService, private auth: AuthService) {
     const configs = this.conf.get();
     this.client = new Authkeep(configs.api.authkeep);
   }
@@ -105,8 +105,7 @@ export class AuthkeepService {
     }
 
     if (err.message === 'TOKEN_EXPIRED') {
-      this.auth.removeToken();
-      this.router.navigate(['/login']);
+      this.auth.logout();
       return new Error('Your session has expired.');
     }
     console.warn('Unexpected error from backend:', err.message);

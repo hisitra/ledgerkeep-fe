@@ -9,7 +9,7 @@ import { ConfirmService } from 'src/app/services/confirm.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(public auth: AuthService, private router: Router, private confirm: ConfirmService) {}
+  constructor(public auth: AuthService, private confirm: ConfirmService) {}
 
   ngOnInit(): void {}
 
@@ -19,7 +19,6 @@ export class NavbarComponent implements OnInit {
       return;
     }
 
-    this.auth.removeToken();
-    this.router.navigate(['/landing']);
+    this.auth.logout();
   }
 }

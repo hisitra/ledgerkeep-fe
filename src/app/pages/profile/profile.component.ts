@@ -24,7 +24,6 @@ export class ProfileComponent implements OnInit {
   constructor(
     private conf: ConfigService,
     private authkeep: AuthkeepService,
-    private auth: AuthService,
     private alert: SnackbarService,
     private formBuilder: FormBuilder,
   ) {
