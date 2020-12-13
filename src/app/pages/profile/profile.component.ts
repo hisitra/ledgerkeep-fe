@@ -3,6 +3,7 @@ import { ConfigService } from 'src/app/services/config.service';
 import { AuthkeepService } from 'src/app/services/authkeep.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LedgerkeepService } from 'src/app/services/ledgerkeep.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +16,7 @@ export class ProfileComponent implements OnInit {
   public isPasswordUpdateLoading = false;
 
   public imageSource: string;
+  public balance = 0;
   public user: any = {};
 
   public generalUpdateForm: FormGroup;
@@ -23,6 +25,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private conf: ConfigService,
     private authkeep: AuthkeepService,
+    private ledgerkeep: LedgerkeepService,
     private alert: SnackbarService,
     private formBuilder: FormBuilder,
   ) {
@@ -72,7 +75,7 @@ export class ProfileComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.isMasterLoading = true;
 
-    const promises = [this.loadUser()];
+    const promises = [this.loadUser(), this.loadBalance()];
 
     try {
       await Promise.all(promises);
@@ -129,6 +132,15 @@ export class ProfileComponent implements OnInit {
     try {
       const { data } = await this.authkeep.getUser();
       this.user = data;
+    } catch (err) {
+      this.alert.error(err.message);
+    }
+  }
+
+  private async loadBalance(): Promise<void> {
+    try {
+      const { data } = await this.ledgerkeep.getTransactionSum({});
+      this.balance = data.sum;
     } catch (err) {
       this.alert.error(err.message);
     }

@@ -1,7 +1,8 @@
 {
   "api": {
+    "imagekeep": "http://34.92.99.92:4100",
     "authkeep": "http://34.92.99.92:5100",
-    "imagekeep": "http://34.92.99.92:4100"
+    "ledgerkeep": "http://34.92.99.92:6100"
   },
   "auth": {
     "tokenKey": "LK_TOKEN"
