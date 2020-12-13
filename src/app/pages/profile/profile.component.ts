@@ -11,7 +11,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  public isLoading = false;
+  public isMasterLoading = false;
+  public isGeneralUpdateLoading = false;
+
   public imageSource: string;
   public user: any = {};
   public generalUpdateForm: FormGroup;
@@ -33,7 +35,7 @@ export class ProfileComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.setLoading(true);
+    this.isMasterLoading = true;
 
     const promises = [this.loadUser()];
 
@@ -44,7 +46,28 @@ export class ProfileComponent implements OnInit {
     this.generalUpdateForm.get('firstName').setValue(this.user.firstName);
     this.generalUpdateForm.get('lastName').setValue(this.user.lastName);
 
-    this.setLoading(false);
+    this.isMasterLoading = false;
+  }
+
+  public async onGeneralUpdateClick(): Promise<void> {
+    if (this.generalUpdateForm.invalid) {
+      return;
+    }
+
+    this.setGeneralUpdateLoading(true);
+
+    try {
+      await this.authkeep.patchUser(this.auth.getToken(), this.generalUpdateForm.value);
+      this.alert.success('Profile updated.');
+
+      Object.keys(this.generalUpdateForm.value).forEach((key) => {
+        this.user[key] = this.generalUpdateForm.value[key];
+      });
+    } catch (err) {
+      this.alert.error(err.message);
+    }
+
+    this.setGeneralUpdateLoading(false);
   }
 
   private async loadUser(): Promise<void> {
@@ -56,7 +79,8 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  private setLoading(state: boolean): void {
-    this.isLoading = state;
+  private setGeneralUpdateLoading(state: boolean): void {
+    state ? this.generalUpdateForm.disable() : this.generalUpdateForm.enable();
+    this.isGeneralUpdateLoading = state;
   }
 }

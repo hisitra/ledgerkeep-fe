@@ -4,10 +4,10 @@
     <div class="top-image">
       <img [src]="imageSource" alt="Profile" class="mat-elevation-z6 w-100 h-100" />
       <div class="name thin-font">{{ user?.firstName }} {{ user?.lastName }}</div>
-      <mat-spinner diameter="20" color="accent" *ngIf="isLoading"></mat-spinner>
+      <mat-spinner diameter="20" color="accent" *ngIf="isMasterLoading"></mat-spinner>
     </div>
     <mat-tab-group mat-align-tabs="center" animationDuration="200ms">
-      <mat-tab label="Info" [disabled]="isLoading">
+      <mat-tab label="Info" [disabled]="isMasterLoading">
         <app-profile-info-row
           iconName="email"
           heading="Email"
@@ -20,13 +20,13 @@
           [value]="user?.createdAt | date"
         ></app-profile-info-row>
       </mat-tab>
-      <mat-tab label="Edit" [disabled]="isLoading">
+      <mat-tab label="Edit" [disabled]="isMasterLoading">
         <mat-accordion>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title> Change General Info </mat-panel-title>
             </mat-expansion-panel-header>
-            <form [formGroup]="generalUpdateForm">
+            <form [formGroup]="generalUpdateForm" (submit)="onGeneralUpdateClick()">
               <div fxLayout="row wrap" fxLayoutGap="grid">
                 <div fxFlex="49%" fxFlex.xs="100%">
                   <mat-form-field appearance="outline" class="w-100">
@@ -63,7 +63,11 @@
                 </div>
               </div>
               <div align="end">
-                <app-loading-button btnText="Update"></app-loading-button>
+                <app-loading-button
+                  btnText="Update"
+                  [loading]="isGeneralUpdateLoading"
+                  (click)="onGeneralUpdateClick()"
+                ></app-loading-button>
               </div>
             </form>
           </mat-expansion-panel>

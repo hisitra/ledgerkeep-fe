@@ -69,9 +69,17 @@ export class AuthkeepService {
   }
 
   // USER ACCESS
-  public async getUser(token: any): Promise<any> {
+  public async getUser(token: string): Promise<any> {
     try {
       return await this.client.getUser(token);
+    } catch (err) {
+      throw this.handleError(err, {});
+    }
+  }
+
+  public async patchUser(token: string, updates: any): Promise<any> {
+    try {
+      await this.client.patchUser(token, updates);
     } catch (err) {
       throw this.handleError(err, {});
     }
