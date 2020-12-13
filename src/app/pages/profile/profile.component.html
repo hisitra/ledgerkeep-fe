@@ -7,7 +7,7 @@
       <mat-spinner diameter="20" color="accent" *ngIf="isLoading"></mat-spinner>
     </div>
     <mat-tab-group mat-align-tabs="center" animationDuration="200ms">
-      <mat-tab label="Info">
+      <mat-tab label="Info" [disabled]="isLoading">
         <app-profile-info-row
           iconName="email"
           heading="Email"
@@ -20,7 +20,7 @@
           [value]="user?.createdAt | date"
         ></app-profile-info-row>
       </mat-tab>
-      <mat-tab label="Edit">
+      <mat-tab label="Edit" [disabled]="isLoading">
         <mat-accordion>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
