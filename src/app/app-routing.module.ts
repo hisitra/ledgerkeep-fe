@@ -10,6 +10,9 @@ import { AntiAuthGuardService } from './guards/anti-auth-guard.service';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { ForgotPasswordResetComponent } from './pages/forgot-password-reset/forgot-password-reset.component';
 import { ConfirmSignupComponent } from './pages/confirm-signup/confirm-signup.component';
+import { TransactionsComponent } from './pages/transactions/transactions.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 const routes: Routes = [
   {
@@ -48,6 +51,21 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'transactions',
+    component: TransactionsComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'statistics',
+    component: StatisticsComponent,
     canActivate: [AuthGuardService],
   },
   { path: '**', pathMatch: 'full', redirectTo: 'landing' },

@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 import { ConfigService } from './services/config.service';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -40,6 +41,9 @@ import { ConfirmSignupComponent } from './pages/confirm-signup/confirm-signup.co
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ProfileInfoRowComponent } from './components/profile-info-row/profile-info-row.component';
 import { SidenavContentComponent } from './components/sidenav-content/sidenav-content.component';
+import { TransactionsComponent } from './pages/transactions/transactions.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 function appInitializer(conf: ConfigService): () => any {
   return async () => conf.loadConfigs();
@@ -64,6 +68,9 @@ function appInitializer(conf: ConfigService): () => any {
     ConfirmDialogComponent,
     ProfileInfoRowComponent,
     SidenavContentComponent,
+    TransactionsComponent,
+    CategoriesComponent,
+    StatisticsComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +94,7 @@ function appInitializer(conf: ConfigService): () => any {
     MatDividerModule,
     MatExpansionModule,
     MatSidenavModule,
+    MatListModule,
   ],
   providers: [
     {
