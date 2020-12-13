@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   public isMasterLoading = false;
   public isGeneralUpdateLoading = false;
+  public isPasswordUpdateLoading = false;
 
   public imageSource: string;
   public user: any = {};
@@ -106,6 +107,30 @@ export class ProfileComponent implements OnInit {
     this.setGeneralUpdateLoading(false);
   }
 
+  public async onPasswordUpdateClick(): Promise<void> {
+    if (this.passwordUpdateForm.invalid) {
+      return;
+    }
+
+    this.setPasswordUpdateLoading(true);
+
+    const formValue = this.passwordUpdateForm.value;
+    try {
+      await this.authkeep.patchUserPassword(
+        this.auth.getToken(),
+        formValue.currentPassword,
+        formValue.newPassword,
+      );
+
+      this.alert.success('Password updated.');
+    } catch (err) {
+      this.alert.error(err.message);
+    }
+
+    this.passwordUpdateForm.reset();
+    this.setPasswordUpdateLoading(false);
+  }
+
   private async loadUser(): Promise<void> {
     try {
       const { data } = await this.authkeep.getUser(this.auth.getToken());
@@ -118,5 +143,10 @@ export class ProfileComponent implements OnInit {
   private setGeneralUpdateLoading(state: boolean): void {
     state ? this.generalUpdateForm.disable() : this.generalUpdateForm.enable();
     this.isGeneralUpdateLoading = state;
+  }
+
+  private setPasswordUpdateLoading(state: boolean): void {
+    state ? this.passwordUpdateForm.disable() : this.passwordUpdateForm.enable();
+    this.isPasswordUpdateLoading = state;
   }
 }

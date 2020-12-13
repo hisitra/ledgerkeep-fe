@@ -75,7 +75,7 @@
             <mat-expansion-panel-header>
               <mat-panel-title> Change Password </mat-panel-title>
             </mat-expansion-panel-header>
-            <form [formGroup]="passwordUpdateForm">
+            <form [formGroup]="passwordUpdateForm" (submit)="onPasswordUpdateClick()">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Current Password</mat-label>
                 <input
@@ -139,7 +139,11 @@
                 >
               </mat-form-field>
               <div align="end">
-                <app-loading-button btnText="Update"></app-loading-button>
+                <app-loading-button
+                  btnText="Update"
+                  [loading]="isPasswordUpdateLoading"
+                  (click)="onPasswordUpdateClick()"
+                ></app-loading-button>
               </div>
             </form>
           </mat-expansion-panel>

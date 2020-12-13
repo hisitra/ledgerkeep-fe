@@ -85,6 +85,20 @@ export class AuthkeepService {
     }
   }
 
+  public async patchUserPassword(
+    token: string,
+    currentPassword: string,
+    newPassword: string,
+  ): Promise<any> {
+    try {
+      await this.client.patchUserPassword(token, currentPassword, newPassword);
+    } catch (err) {
+      throw this.handleError(err, {
+        UNAUTHORIZED: 'Password is incorrect.',
+      });
+    }
+  }
+
   private handleError(err: Error, code2Message: { [key: string]: string }): Error {
     const message = code2Message[err.message];
     if (message) {
@@ -94,6 +108,7 @@ export class AuthkeepService {
     if (err.message === 'TOKEN_EXPIRED') {
       this.auth.removeToken();
       this.router.navigate(['/login']);
+      return new Error('Your session has expired.');
     }
     console.warn('Unexpected error from backend:', err.message);
     return new Error('Please try again later.');
