@@ -19,6 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { ConfigService } from './services/config.service';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -81,6 +82,7 @@ function appInitializer(conf: ConfigService): () => any {
     MatDialogModule,
     MatTabsModule,
     MatDividerModule,
+    MatExpansionModule,
   ],
   providers: [
     {
