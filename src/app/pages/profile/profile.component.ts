@@ -94,7 +94,7 @@ export class ProfileComponent implements OnInit {
     this.setGeneralUpdateLoading(true);
 
     try {
-      await this.authkeep.patchUser(this.auth.getToken(), this.generalUpdateForm.value);
+      await this.authkeep.patchUser(this.generalUpdateForm.value);
       this.alert.success('Profile updated.');
 
       Object.keys(this.generalUpdateForm.value).forEach((key) => {
@@ -116,11 +116,7 @@ export class ProfileComponent implements OnInit {
 
     const formValue = this.passwordUpdateForm.value;
     try {
-      await this.authkeep.patchUserPassword(
-        this.auth.getToken(),
-        formValue.currentPassword,
-        formValue.newPassword,
-      );
+      await this.authkeep.patchUserPassword(formValue.currentPassword, formValue.newPassword);
 
       this.alert.success('Password updated.');
     } catch (err) {
@@ -133,7 +129,7 @@ export class ProfileComponent implements OnInit {
 
   private async loadUser(): Promise<void> {
     try {
-      const { data } = await this.authkeep.getUser(this.auth.getToken());
+      const { data } = await this.authkeep.getUser();
       this.user = data;
     } catch (err) {
       this.alert.error(err.message);

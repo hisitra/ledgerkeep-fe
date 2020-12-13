@@ -69,7 +69,8 @@ export class AuthkeepService {
   }
 
   // USER ACCESS
-  public async getUser(token: string): Promise<any> {
+  public async getUser(): Promise<any> {
+    const token = this.auth.getToken();
     try {
       return await this.client.getUser(token);
     } catch (err) {
@@ -77,7 +78,8 @@ export class AuthkeepService {
     }
   }
 
-  public async patchUser(token: string, updates: any): Promise<any> {
+  public async patchUser(updates: any): Promise<any> {
+    const token = this.auth.getToken();
     try {
       await this.client.patchUser(token, updates);
     } catch (err) {
@@ -85,11 +87,8 @@ export class AuthkeepService {
     }
   }
 
-  public async patchUserPassword(
-    token: string,
-    currentPassword: string,
-    newPassword: string,
-  ): Promise<any> {
+  public async patchUserPassword(currentPassword: string, newPassword: string): Promise<any> {
+    const token = this.auth.getToken();
     try {
       await this.client.patchUserPassword(token, currentPassword, newPassword);
     } catch (err) {
