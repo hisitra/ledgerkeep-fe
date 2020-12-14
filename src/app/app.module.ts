@@ -44,6 +44,7 @@ import { SidenavContentComponent } from './components/sidenav-content/sidenav-co
 import { TransactionsComponent } from './pages/transactions/transactions.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
+import { ChartCardComponent } from './components/chart-card/chart-card.component';
 
 function appInitializer(conf: ConfigService): () => any {
   return async () => conf.loadConfigs();
@@ -71,6 +72,7 @@ function appInitializer(conf: ConfigService): () => any {
     TransactionsComponent,
     CategoriesComponent,
     StatisticsComponent,
+    ChartCardComponent,
   ],
   imports: [
     BrowserModule,
