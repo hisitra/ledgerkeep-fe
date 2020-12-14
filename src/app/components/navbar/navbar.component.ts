@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
       return;
     }
 
+    this.sideNav.close();
     this.auth.logout();
   }
 }
