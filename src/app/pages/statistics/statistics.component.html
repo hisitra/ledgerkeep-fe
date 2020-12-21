@@ -1,8 +1,9 @@
-<div fxFlex fxLayout="column" fxLayoutGap="10px">
+<div class="container" fxFlex fxLayout="column" fxLayoutGap="10px">
   <div fxFlex="50" fxFlex.xs="66" fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
     <div fxFlex="50">
       <app-chart-card
         #debitPieChart
+        chartHolderID="debit_pie_chart"
         titleIcon="pie_chart"
         title="Debit Pie Chart"
         subtitle="Shows your category-wise debits."
@@ -11,6 +12,7 @@
     <div fxFlex="50">
       <app-chart-card
         #creditPieChart
+        chartHolderID="credit_pie_chart"
         titleIcon="pie_chart"
         title="Credit Pie Chart"
         subtitle="Shows your category-wise credits."
@@ -20,6 +22,7 @@
   <div fxFlex="50" fxFlex.xs="34">
     <app-chart-card
       #expenseLineChart
+      chartHolderID="expense_line_chart"
       titleIcon="leaderboard"
       title="Expense Line Chart"
       subtitle="Shows how your balance varied over time."

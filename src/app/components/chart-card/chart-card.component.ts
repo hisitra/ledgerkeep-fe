@@ -8,11 +8,13 @@ declare var google;
   styleUrls: ['./chart-card.component.scss'],
 })
 export class ChartCardComponent implements OnInit {
+  @Input() public chartHolderID = '';
   @Input() public titleIcon = '';
   @Input() public title = '';
   @Input() public subtitle = '';
 
   private isLoaded = false;
+  private chart: any;
 
   constructor() {}
 
@@ -23,8 +25,17 @@ export class ChartCardComponent implements OnInit {
     });
   }
 
-  public async addPieChart(): Promise<void> {
+  public async addPieChart(table: any[]): Promise<void> {
     await this.waitForModuleLoad();
+
+    this.chart = new google.visualization.PieChart(document.getElementById(this.chartHolderID));
+
+    const data = google.visualization.arrayToDataTable(table);
+    this.chart.draw(data, {
+      pieSliceText: 'none',
+      legend: { position: 'labeled' },
+      chartArea: { width: '75%', height: '75%' },
+    });
   }
 
   public async addAreaChart(): Promise<void> {

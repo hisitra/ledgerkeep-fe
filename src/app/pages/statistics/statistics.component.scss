@@ -1,3 +1,7 @@
-:host {
-  height: calc(100vh - 56px);
+.container {
+  height: 100%;
+}
+
+app-chart-card {
+  height: 100%;
 }
