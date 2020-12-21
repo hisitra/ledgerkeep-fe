@@ -42,8 +42,12 @@ export class ChartCardComponent implements OnInit {
     });
   }
 
-  public async addAreaChart(): Promise<void> {
+  public async addAreaChart(table: any[]): Promise<void> {
     await this.waitForModuleLoad();
+
+    this.chart = new google.visualization.AreaChart(document.getElementById(this.chartHolderID));
+    const data = google.visualization.arrayToDataTable(table);
+    this.chart.draw(data, {});
   }
 
   public async addLineChart(): Promise<void> {

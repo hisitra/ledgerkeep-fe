@@ -29,6 +29,11 @@ export class StatisticsComponent implements AfterViewInit {
     this.loadCreditPieChart().finally(() => {
       this.isCreditPieLoading = false;
     });
+
+    this.isExpenseLineLoading = true;
+    this.loadExpenseLineChart().finally(() => {
+      this.isExpenseLineLoading = false;
+    });
   }
 
   private async loadDebitPieChart(): Promise<void> {
@@ -70,4 +75,6 @@ export class StatisticsComponent implements AfterViewInit {
 
     this.creditPieChart.addPieChart(table);
   }
+
+  private async loadExpenseLineChart(): Promise<void> {}
 }
