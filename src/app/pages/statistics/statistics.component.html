@@ -6,6 +6,7 @@
         titleIcon="pie_chart"
         title="Debit Pie Chart"
         subtitle="Shows your category-wise debits."
+        [isChartLoading]="isDebitPieLoading"
       ></app-chart-card>
     </div>
     <div fxFlex="50">
@@ -14,6 +15,7 @@
         titleIcon="pie_chart"
         title="Credit Pie Chart"
         subtitle="Shows your category-wise credits."
+        [isChartLoading]="isCreditPieLoading"
       ></app-chart-card>
     </div>
   </div>
@@ -23,6 +25,7 @@
       titleIcon="leaderboard"
       title="Expense Line Chart"
       subtitle="Shows how your balance varied over time."
+      [isChartLoading]="isExpenseLineLoading"
     ></app-chart-card>
   </div>
 </div>

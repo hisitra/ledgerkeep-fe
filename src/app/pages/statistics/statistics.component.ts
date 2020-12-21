@@ -13,11 +13,22 @@ export class StatisticsComponent implements AfterViewInit {
   @ViewChild('creditPieChart') creditPieChart: ChartCardComponent;
   @ViewChild('expenseLineChart') expenseLineChart: ChartCardComponent;
 
+  public isDebitPieLoading = false;
+  public isCreditPieLoading = false;
+  public isExpenseLineLoading = false;
+
   constructor(private ledgerkeep: LedgerkeepService, private alert: SnackbarService) {}
 
   async ngAfterViewInit(): Promise<void> {
-    this.loadDebitPieChart();
-    this.loadCreditPieChart();
+    this.isDebitPieLoading = true;
+    this.loadDebitPieChart().finally(() => {
+      this.isDebitPieLoading = false;
+    });
+
+    this.isCreditPieLoading = true;
+    this.loadCreditPieChart().finally(() => {
+      this.isCreditPieLoading = false;
+    });
   }
 
   private async loadDebitPieChart(): Promise<void> {

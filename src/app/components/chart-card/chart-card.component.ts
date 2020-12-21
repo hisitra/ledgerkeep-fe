@@ -11,10 +11,11 @@ export class ChartCardComponent implements OnInit {
   @Input() public titleIcon = '';
   @Input() public title = '';
   @Input() public subtitle = '';
+  @Input() public isChartLoading = false;
 
   public chartHolderID = '';
+  public isLoaded = false;
 
-  private isLoaded = false;
   private chart: any;
 
   constructor() {
