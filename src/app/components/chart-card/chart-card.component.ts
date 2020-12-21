@@ -8,15 +8,18 @@ declare var google;
   styleUrls: ['./chart-card.component.scss'],
 })
 export class ChartCardComponent implements OnInit {
-  @Input() public chartHolderID = '';
   @Input() public titleIcon = '';
   @Input() public title = '';
   @Input() public subtitle = '';
 
+  public chartHolderID = '';
+
   private isLoaded = false;
   private chart: any;
 
-  constructor() {}
+  constructor() {
+    this.chartHolderID = this.randomIDGen();
+  }
 
   ngOnInit(): void {
     google.charts.load('current', { packages: ['corechart'] });
@@ -68,5 +71,14 @@ export class ChartCardComponent implements OnInit {
         }
       }, checkIntervalMS);
     });
+  }
+
+  private randomIDGen(): string {
+    let randStr = '';
+    for (let iter = 0; iter < 10; iter++) {
+      randStr += `${Math.floor(Math.random() * 10)}`;
+    }
+
+    return `chart-holder-${Date.now()}-${randStr}`;
   }
 }
