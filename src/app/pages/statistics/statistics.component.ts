@@ -8,6 +8,8 @@ import { ChartCardComponent } from 'src/app/components/chart-card/chart-card.com
 })
 export class StatisticsComponent implements AfterViewInit {
   @ViewChild('debitPieChart') debitPieChart: ChartCardComponent;
+  @ViewChild('creditPieChart') creditPieChart: ChartCardComponent;
+  @ViewChild('expenseLineChart') expenseLineChart: ChartCardComponent;
 
   constructor() {}
 

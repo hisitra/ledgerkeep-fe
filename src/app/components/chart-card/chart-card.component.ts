@@ -16,20 +16,11 @@ export class ChartCardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public async addPieChart(rows: any, options: any): Promise<void> {
-    google.charts.load('current', { packages: ['corechart'] });
+  public async addPieChart(): Promise<void> {}
 
-    return new Promise((resolve) => {
-      google.charts.setOnLoadCallback(() => {
-        const tableData = new google.visualization.DataTable();
-        tableData.addColumn('string', '_');
-        tableData.addColumn('number', '_');
-        tableData.addRows(rows);
+  public async addAreaChart(): Promise<void> {}
 
-        const chart = new google.visualization.PieChart(document.getElementById('chart-holder'));
-        chart.draw(tableData, options);
-        resolve();
-      });
-    });
-  }
+  public async addLineChart(): Promise<void> {}
+
+  public async addBarChart(): Promise<void> {}
 }
