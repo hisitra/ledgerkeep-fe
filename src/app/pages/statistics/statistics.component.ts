@@ -109,7 +109,7 @@ export class StatisticsComponent implements AfterViewInit {
       return;
     }
 
-    const table: any = [['Time', 'Balance']];
+    const table: any[] = [['Time', 'Balance']];
 
     let totalBal = 0;
     Object.keys(response).forEach((span) => {
@@ -117,6 +117,11 @@ export class StatisticsComponent implements AfterViewInit {
       totalBal += response[span];
       table.push([date, totalBal]);
     });
+
+    // Handling empty table.
+    if (table.length === 1) {
+      table.push([0, 0], [1, 0]);
+    }
 
     this.balanceChart.addAreaChart(table);
   }
