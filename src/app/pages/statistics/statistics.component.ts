@@ -32,24 +32,21 @@ export class StatisticsComponent implements AfterViewInit {
   @ViewChild('creditPieChart') creditPieChart: ChartCardComponent;
   @ViewChild('balanceChart') balanceChart: ChartCardComponent;
 
-  public isDebitPieLoading = false;
-  public isCreditPieLoading = false;
-  public isBalanceLineLoading = false;
+  public isDebitPieLoading = true;
+  public isCreditPieLoading = true;
+  public isBalanceLineLoading = true;
 
   constructor(private ledgerkeep: LedgerkeepService, private alert: SnackbarService) {}
 
   async ngAfterViewInit(): Promise<void> {
-    this.isDebitPieLoading = true;
     this.loadDebitPieChart().finally(() => {
       this.isDebitPieLoading = false;
     });
 
-    this.isCreditPieLoading = true;
     this.loadCreditPieChart().finally(() => {
       this.isCreditPieLoading = false;
     });
 
-    this.isBalanceLineLoading = true;
     this.loadBalanceChart().finally(() => {
       this.isBalanceLineLoading = false;
     });
