@@ -50,7 +50,7 @@ export class StatisticsComponent implements AfterViewInit {
     });
 
     this.isBalanceLineLoading = true;
-    this.loadExpenseLineChart().finally(() => {
+    this.loadBalanceChart().finally(() => {
       this.isBalanceLineLoading = false;
     });
   }
@@ -95,20 +95,10 @@ export class StatisticsComponent implements AfterViewInit {
     this.creditPieChart.addPieChart(table);
   }
 
-  private async loadExpenseLineChart(): Promise<void> {
+  private async loadBalanceChart(): Promise<void> {
     const firstExpenseTime = await this.ledgerkeep.getFirstTransactionTimestamp();
     const interval = (Date.now() - firstExpenseTime) / 1000;
-
-    let groupBy;
-    if (interval >= 4 * yearInterval) {
-      groupBy = yearInterval;
-    } else if (interval >= 4 * monthInterval) {
-      groupBy = monthInterval;
-    } else if (interval >= 4 * weekInterval) {
-      groupBy = weekInterval;
-    } else {
-      groupBy = dayInterval;
-    }
+    const groupBy = this.getGroupByInterval(interval);
 
     let response;
     try {
@@ -129,6 +119,19 @@ export class StatisticsComponent implements AfterViewInit {
     });
 
     this.balanceChart.addAreaChart(table);
+  }
+
+  private getGroupByInterval(interval: number): number {
+    if (interval >= 4 * yearInterval) {
+      return yearInterval;
+    }
+    if (interval >= 4 * monthInterval) {
+      return monthInterval;
+    }
+    if (interval >= 4 * weekInterval) {
+      return weekInterval;
+    }
+    return dayInterval;
   }
 
   private dateFormatter(seconds: string, interval: number): string {

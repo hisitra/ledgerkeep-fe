@@ -58,8 +58,15 @@ export class ChartCardComponent implements OnInit {
     await this.waitForModuleLoad();
   }
 
-  public async addBarChart(): Promise<void> {
+  public async addColumnChart(table: any[]): Promise<void> {
     await this.waitForModuleLoad();
+
+    this.chart = new google.visualization.ColumnChart(document.getElementById(this.chartHolderID));
+    const data = google.visualization.arrayToDataTable(table);
+    this.chart.draw(data, {
+      theme: 'material',
+      legend: { position: 'none' },
+    });
   }
 
   private async waitForModuleLoad(): Promise<void> {
