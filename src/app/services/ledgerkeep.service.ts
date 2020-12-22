@@ -15,6 +15,15 @@ export class LedgerkeepService {
     this.client = new Ledgerkeep(configs.api.ledgerkeep);
   }
 
+  public async getTransactions(queries: any): Promise<any> {
+    const token = this.auth.getToken();
+    try {
+      return await this.client.getAllTransactions(token, queries);
+    } catch (err) {
+      throw this.handleError(err, {});
+    }
+  }
+
   public async getTransactionSum(queries: any): Promise<any> {
     const token = this.auth.getToken();
     try {
