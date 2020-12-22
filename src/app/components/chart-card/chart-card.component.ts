@@ -47,7 +47,9 @@ export class ChartCardComponent implements OnInit {
 
     this.chart = new google.visualization.AreaChart(document.getElementById(this.chartHolderID));
     const data = google.visualization.arrayToDataTable(table);
-    this.chart.draw(data, {});
+    this.chart.draw(data, {
+      legend: { position: 'none' },
+    });
   }
 
   public async addLineChart(): Promise<void> {

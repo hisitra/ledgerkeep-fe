@@ -15,6 +15,24 @@ export class LedgerkeepService {
     this.client = new Ledgerkeep(configs.api.ledgerkeep);
   }
 
+  public async getFirstTransactionTimestamp(): Promise<number> {
+    const token = this.auth.getToken();
+
+    let response;
+    try {
+      response = await this.client.getAllTransactions(token, { limit: 1, asc: 'true' });
+    } catch (err) {
+      throw this.handleError(err, {});
+    }
+
+    try {
+      const date = new Date(response.data.docs[0].createdAt);
+      return date.getTime();
+    } catch (err) {
+      return 0;
+    }
+  }
+
   public async getTransactions(queries: any): Promise<any> {
     const token = this.auth.getToken();
     try {
