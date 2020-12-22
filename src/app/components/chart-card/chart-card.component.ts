@@ -36,9 +36,10 @@ export class ChartCardComponent implements OnInit {
 
     const data = google.visualization.arrayToDataTable(table);
     this.chart.draw(data, {
+      theme: 'material',
       pieSliceText: 'none',
       legend: { position: 'labeled' },
-      chartArea: { width: '75%', height: '75%' },
+      chartArea: { width: '80%', height: '80%' },
     });
   }
 
@@ -48,6 +49,7 @@ export class ChartCardComponent implements OnInit {
     this.chart = new google.visualization.AreaChart(document.getElementById(this.chartHolderID));
     const data = google.visualization.arrayToDataTable(table);
     this.chart.draw(data, {
+      theme: 'material',
       legend: { position: 'none' },
     });
   }

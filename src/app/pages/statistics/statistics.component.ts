@@ -30,11 +30,11 @@ const monthNames = [
 export class StatisticsComponent implements AfterViewInit {
   @ViewChild('debitPieChart') debitPieChart: ChartCardComponent;
   @ViewChild('creditPieChart') creditPieChart: ChartCardComponent;
-  @ViewChild('expenseLineChart') expenseLineChart: ChartCardComponent;
+  @ViewChild('balanceChart') balanceChart: ChartCardComponent;
 
   public isDebitPieLoading = false;
   public isCreditPieLoading = false;
-  public isExpenseLineLoading = false;
+  public isBalanceLineLoading = false;
 
   constructor(private ledgerkeep: LedgerkeepService, private alert: SnackbarService) {}
 
@@ -49,9 +49,9 @@ export class StatisticsComponent implements AfterViewInit {
       this.isCreditPieLoading = false;
     });
 
-    this.isExpenseLineLoading = true;
+    this.isBalanceLineLoading = true;
     this.loadExpenseLineChart().finally(() => {
-      this.isExpenseLineLoading = false;
+      this.isBalanceLineLoading = false;
     });
   }
 
@@ -128,7 +128,7 @@ export class StatisticsComponent implements AfterViewInit {
       table.push([date, totalBal]);
     });
 
-    this.expenseLineChart.addAreaChart(table);
+    this.balanceChart.addAreaChart(table);
   }
 
   private dateFormatter(seconds: string, interval: number): string {
