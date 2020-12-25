@@ -172,6 +172,11 @@ export class StatisticsComponent implements AfterViewInit {
       return;
     }
 
+    // Handling empty table.
+    if (Object.keys(response).length === 0) {
+      response = { [`0-${Date.now() / 1000}`]: 0 };
+    }
+
     const table: any[] = [['Time', 'Balance']];
     let totalBal = 0;
     Object.keys(response).forEach((range) => {
