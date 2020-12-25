@@ -51,6 +51,15 @@ export class LedgerkeepService {
     }
   }
 
+  public async getTransactionSumByInterval(queries: any): Promise<any> {
+    const token = this.auth.getToken();
+    try {
+      return await this.client.getTransactionSumByInterval(token, queries);
+    } catch (err) {
+      throw this.handleError(err, {});
+    }
+  }
+
   public async getTransactionCount(queries: any): Promise<any> {
     const token = this.auth.getToken();
     try {

@@ -4,7 +4,6 @@ import { LedgerkeepService } from 'src/app/services/ledgerkeep.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
 const dayInterval = 24 * 3600;
-const weekInterval = dayInterval * 7;
 const monthInterval = dayInterval * 30.45;
 const yearInterval = monthInterval * 12;
 const monthNames = [
@@ -56,7 +55,7 @@ export class StatisticsComponent implements AfterViewInit {
     let result: { [key: string]: number };
 
     try {
-      const { data } = await this.ledgerkeep.getTransactionSum({ amount2: 0, groupBy: 'category' });
+      const { data } = await this.ledgerkeep.getTransactionSum({ amount2: 0, byCategory: 'true' });
       result = data;
     } catch (err) {
       this.alert.error(err.message);
@@ -76,7 +75,7 @@ export class StatisticsComponent implements AfterViewInit {
     let result: { [key: string]: number };
 
     try {
-      const { data } = await this.ledgerkeep.getTransactionSum({ amount1: 0, groupBy: 'category' });
+      const { data } = await this.ledgerkeep.getTransactionSum({ amount1: 0, byCategory: 'true' });
       result = data;
     } catch (err) {
       this.alert.error(err.message);
@@ -94,12 +93,79 @@ export class StatisticsComponent implements AfterViewInit {
 
   private async loadBalanceChart(): Promise<void> {
     const firstExpenseTime = await this.ledgerkeep.getFirstTransactionTimestamp();
-    const interval = (Date.now() - firstExpenseTime) / 1000;
-    const groupBy = this.getGroupByInterval(interval);
+    const totalInterval = (Date.now() - firstExpenseTime) / 1000;
+
+    const firstDate = new Date(firstExpenseTime);
+
+    let type = '';
+    const endDates = [];
+
+    if (totalInterval > 4 * yearInterval) {
+      type = 'year';
+
+      const firstYear = firstDate.getFullYear();
+      const currentMaxDate = new Date(new Date().getFullYear(), 12, 0);
+      currentMaxDate.setHours(23, 59, 59, 999);
+
+      for (let i = 0; true; i++) {
+        const targetDate = new Date(firstYear + i, 12, 0);
+        targetDate.setHours(23, 59, 59, 999);
+
+        if (targetDate.getTime() > currentMaxDate.getTime()) {
+          break;
+        }
+
+        endDates.push(targetDate.getTime() / 1000);
+      }
+    } else if (totalInterval > 4 * monthInterval) {
+      type = 'month';
+
+      const firstMonth = firstDate.getMonth();
+      const firstYear = firstDate.getFullYear();
+      const currentDate = new Date();
+      const currentMaxDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+      currentMaxDate.setHours(23, 59, 59, 999);
+
+      for (let i = 0; true; i++) {
+        const targetDate = new Date(firstYear, firstMonth + i + 1, 0);
+        targetDate.setHours(23, 59, 59, 999);
+
+        if (targetDate > currentMaxDate) {
+          break;
+        }
+
+        endDates.push(targetDate.getTime() / 1000);
+      }
+    } else {
+      type = 'day';
+
+      const currentMaxDate = new Date();
+      currentMaxDate.setHours(23, 59, 59, 999);
+
+      for (let i = 0; true; i++) {
+        const targetDate = new Date(firstExpenseTime + dayInterval * 1000 * i);
+        targetDate.setHours(23, 59, 59, 999);
+
+        if (targetDate.getTime() > currentMaxDate.getTime()) {
+          break;
+        }
+
+        endDates.push(targetDate.getTime() / 1000);
+      }
+    }
+
+    const intervals = [];
+    let lastEnd = firstExpenseTime / 1000;
+    for (const endDate of endDates) {
+      intervals.push([Math.floor(lastEnd), Math.floor(endDate)]);
+      lastEnd = endDate;
+    }
 
     let response;
     try {
-      const { data } = await this.ledgerkeep.getTransactionSum({ groupBy });
+      const { data } = await this.ledgerkeep.getTransactionSumByInterval({
+        intervals: JSON.stringify(intervals),
+      });
       response = data;
     } catch (err) {
       this.alert.error(err.message);
@@ -107,46 +173,25 @@ export class StatisticsComponent implements AfterViewInit {
     }
 
     const table: any[] = [['Time', 'Balance']];
-
     let totalBal = 0;
-    Object.keys(response).forEach((span) => {
-      const date = this.dateFormatter(span, groupBy);
-      totalBal += response[span];
-      table.push([date, totalBal]);
-    });
+    Object.keys(response).forEach((range) => {
+      totalBal += response[range];
 
-    // Handling empty table.
-    if (table.length === 1) {
-      table.push([0, 0], [1, 0]);
-    }
+      const endTime = parseInt(range.split('-')[1], 10);
+      const formatted = this.dateFormatter(new Date(endTime * 1000), type);
+      table.push([formatted, totalBal]);
+    });
 
     this.balanceChart.addAreaChart(table);
   }
 
-  private getGroupByInterval(interval: number): number {
-    if (interval >= 4 * yearInterval) {
-      return yearInterval;
+  private dateFormatter(time: Date, type: string): string {
+    if (type === 'year') {
+      return time.getFullYear().toString();
     }
-    if (interval >= 4 * monthInterval) {
-      return monthInterval;
+    if (type === 'month') {
+      return `${monthNames[time.getMonth()]}'${time.getFullYear() - 2000}`;
     }
-    if (interval >= 4 * weekInterval) {
-      return weekInterval;
-    }
-    return dayInterval;
-  }
-
-  private dateFormatter(seconds: string, interval: number): string {
-    const date = new Date(parseInt(seconds, 10) * 1000);
-
-    if (interval >= yearInterval) {
-      return `${date.getFullYear()}`;
-    }
-
-    const month = monthNames[date.getMonth()];
-    if (interval >= monthInterval) {
-      return `${month}'${date.getFullYear() - 2000}`;
-    }
-    return `${date.getDate()} ${month}`;
+    return `${time.getDate()} ${monthNames[time.getMonth()]} ${time.getFullYear() - 2000}`;
   }
 }
