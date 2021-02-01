@@ -1,9 +1,0 @@
-<button mat-raised-button color="primary" [disabled]="isButtonDisabled()" [ngStyle]="buttonStyle">
-  <div *ngIf="!isButtonDisabled()">{{ value }}</div>
-  <mat-progress-spinner
-    *ngIf="isSpinnerVisible()"
-    color="primary"
-    [diameter]="spinnerDia"
-    mode="indeterminate"
-  ></mat-progress-spinner>
-</button>
