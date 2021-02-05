@@ -1,2 +1,9 @@
-<app-toolbar></app-toolbar>
-<router-outlet></router-outlet>
+<app-toolbar [sidebar]="drawer"></app-toolbar>
+<mat-drawer-container hasBackdrop="true" (click)="drawer.close()" class="remaining-height">
+  <mat-drawer #drawer mode="over">
+    <app-sidebar-content></app-sidebar-content>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

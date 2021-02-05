@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -6,7 +7,12 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private readonly TOKEN_KEY = 'LK_TOKEN';
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  public async logout(): Promise<void> {
+    localStorage.removeItem(this.TOKEN_KEY);
+    await this.router.navigate(['/landing']);
+  }
 
   public isLoggedIn(): boolean {
     return this.getToken() !== '';
