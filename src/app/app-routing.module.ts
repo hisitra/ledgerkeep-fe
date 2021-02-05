@@ -11,19 +11,29 @@ import { TransactionCountLineComponent } from './pages/transaction-count-line/tr
 import { BalanceVarianceLineComponent } from './pages/balance-variance-line/balance-variance-line.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { OnlyLoggedOutService } from './guards/only-logged-out.service';
+import { OnlyLoggedInService } from './guards/only-logged-in.service';
 
 const routes: Routes = [
-  { path: 'landing', component: LandingComponent, canActivate: [] },
-  { path: 'transactions', component: TransactionsComponent, canActivate: [] },
-  { path: 'categories', component: CategoriesComponent, canActivate: [] },
-  { path: 'statistics', component: StatisticsComponent, canActivate: [] },
-  { path: 'debit-pie', component: DebitPieComponent, canActivate: [] },
-  { path: 'credit-pie', component: CreditPieComponent, canActivate: [] },
-  { path: 'balance-line', component: BalanceLineComponent, canActivate: [] },
-  { path: 'transaction-count-line', component: TransactionCountLineComponent, canActivate: [] },
-  { path: 'balance-variance-line', component: BalanceVarianceLineComponent, canActivate: [] },
-  { path: 'about', component: AboutComponent, canActivate: [] },
-  { path: 'profile', component: ProfileComponent, canActivate: [] },
+  { path: 'landing', component: LandingComponent, canActivate: [OnlyLoggedOutService] },
+  { path: 'transactions', component: TransactionsComponent, canActivate: [OnlyLoggedInService] },
+  { path: 'categories', component: CategoriesComponent, canActivate: [OnlyLoggedInService] },
+  { path: 'statistics', component: StatisticsComponent, canActivate: [OnlyLoggedInService] },
+  { path: 'debit-pie', component: DebitPieComponent, canActivate: [OnlyLoggedInService] },
+  { path: 'credit-pie', component: CreditPieComponent, canActivate: [OnlyLoggedInService] },
+  { path: 'balance-line', component: BalanceLineComponent, canActivate: [OnlyLoggedInService] },
+  {
+    path: 'transaction-count-line',
+    component: TransactionCountLineComponent,
+    canActivate: [OnlyLoggedInService],
+  },
+  {
+    path: 'balance-variance-line',
+    component: BalanceVarianceLineComponent,
+    canActivate: [OnlyLoggedInService],
+  },
+  { path: 'about', component: AboutComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [OnlyLoggedInService] },
   { path: '**', pathMatch: 'full', redirectTo: 'landing' },
 ];
 
