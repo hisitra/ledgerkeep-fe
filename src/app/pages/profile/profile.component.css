@@ -1,0 +1,42 @@
+.content {
+  margin-top: 10px;
+}
+
+.profile-photo-holder {
+  position: relative;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-photo-holder img {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-photo-overlay {
+  background-color: rgb(0, 0, 0);
+  opacity: 0.533;
+  height: 100%;
+  width: 100%;
+
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.user-full-name {
+  position: absolute;
+  bottom: 12px;
+  left: 10px;
+  font-size: x-large;
+  text-shadow: 1px 1px #000000;
+}
+
+mat-spinner {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
