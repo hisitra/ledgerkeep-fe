@@ -1,0 +1,12 @@
+<div fxLayout="row wrap" fxLayoutAlign="start center" class="row">
+  <div fxFlex="50px" fxLayoutAlign="center center">
+    <mat-icon>{{ iconName }}</mat-icon>
+  </div>
+  <div fxFlex="5px" fxLayoutAlign="center center">
+    <mat-divider vertical="true"></mat-divider>
+  </div>
+  <div class="content">
+    <p class="title">{{ title }}</p>
+    <p class="value" [ngStyle]="{ color: valueColor }">{{ value }}</p>
+  </div>
+</div>

@@ -7,6 +7,37 @@
       <div class="user-full-name">{{ 'John' }} {{ 'Doe' }}</div>
       <mat-spinner diameter="20" color="accent"></mat-spinner>
     </div>
+
+    <app-icon-title-row
+      iconName="email"
+      title="Email"
+      [value]="user.email || 'Loading...'"
+    ></app-icon-title-row>
+    <mat-divider></mat-divider>
+    <app-icon-title-row
+      iconName="history"
+      title="Joined"
+      [value]="user.doc_created_at ? (user.doc_created_at | date) : 'Loading...'"
+    ></app-icon-title-row>
+    <mat-divider></mat-divider>
+    <app-icon-title-row
+      iconName="account_balance"
+      title="Balance"
+      [value]="userBalance || 'Loading...'"
+    ></app-icon-title-row>
+    <mat-divider></mat-divider>
+    <app-icon-title-row
+      iconName="receipt"
+      title="Total Transactions"
+      [value]="userTransactionCount || 'Loading...'"
+    ></app-icon-title-row>
+    <mat-divider></mat-divider>
+    <app-icon-title-row
+      iconName="category"
+      title="Total Categories"
+      [value]="userCategoryCount || 'Loading...'"
+    ></app-icon-title-row>
+    <mat-divider></mat-divider>
   </div>
   <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="0"></div>
 </div>
