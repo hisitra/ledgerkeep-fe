@@ -1,0 +1,25 @@
+<mat-toolbar color="primary" class="toolbar-sticky toolbar-height toolbar-padding mat-elevation-z6">
+  <button mat-icon-button color="accent" *ngIf="!authService.isLoggedIn()" (click)="menuAction()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <img class="toolbar-logo" src="assets/icons/logo-192.png" alt="logo" />
+  <a mat-button class="toolbar-title" routerLink="/landing">
+    <span>{{ applicationName }}</span>
+  </a>
+  <span class="spacer"></span>
+
+  <div fxShow="true" fxHide.lt-sm="true" *ngIf="authService.isLoggedIn()">
+    <a mat-button routerLink="/profile" class="thin-font">Profile</a>
+    <a mat-button class="thin-font" (click)="logout()">Logout</a>
+  </div>
+
+  <div fxShow="true" fxHide.gt-xs="true" *ngIf="authService.isLoggedIn()">
+    <button mat-icon-button color="accent" routerLink="/profile">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button mat-icon-button color="accent" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

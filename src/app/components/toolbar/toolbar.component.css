@@ -1,0 +1,32 @@
+.toolbar-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.toolbar-height {
+  height: 54px;
+}
+
+.toolbar-padding {
+  padding: 0 4px;
+}
+
+.toolbar-logo {
+  height: 60%;
+  margin-left: 10px;
+}
+
+.toolbar-title {
+  font-size: large;
+  font-weight: lighter;
+  padding: 0 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.thin-font {
+  font-weight: lighter;
+}
