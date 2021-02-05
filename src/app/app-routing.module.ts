@@ -13,6 +13,8 @@ import { AboutComponent } from './pages/about/about.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { OnlyLoggedOutService } from './guards/only-logged-out.service';
 import { OnlyLoggedInService } from './guards/only-logged-in.service';
+import { AuthSuccessComponent } from './pages/auth-success/auth-success.component';
+import { AuthFailureComponent } from './pages/auth-failure/auth-failure.component';
 
 const routes: Routes = [
   { path: 'landing', component: LandingComponent, canActivate: [OnlyLoggedOutService] },
@@ -34,6 +36,8 @@ const routes: Routes = [
   },
   { path: 'about', component: AboutComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [OnlyLoggedInService] },
+  { path: 'auth/success', component: AuthSuccessComponent, canActivate: [OnlyLoggedOutService] },
+  { path: 'auth/failure', component: AuthFailureComponent, canActivate: [OnlyLoggedOutService] },
   { path: '**', pathMatch: 'full', redirectTo: 'landing' },
 ];
 

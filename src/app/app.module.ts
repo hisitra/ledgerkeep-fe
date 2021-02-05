@@ -25,6 +25,8 @@ import { TransactionCountLineComponent } from './pages/transaction-count-line/tr
 import { BalanceVarianceLineComponent } from './pages/balance-variance-line/balance-variance-line.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SidebarContentComponent } from './components/sidebar-content/sidebar-content.component';
+import { AuthSuccessComponent } from './pages/auth-success/auth-success.component';
+import { AuthFailureComponent } from './pages/auth-failure/auth-failure.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { SidebarContentComponent } from './components/sidebar-content/sidebar-co
     BalanceVarianceLineComponent,
     ToolbarComponent,
     SidebarContentComponent,
+    AuthSuccessComponent,
+    AuthFailureComponent,
   ],
   imports: [
     BrowserModule,
