@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -7,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +26,9 @@ import { TransactionCountLineComponent } from './pages/transaction-count-line/tr
 import { BalanceVarianceLineComponent } from './pages/balance-variance-line/balance-variance-line.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SidebarContentComponent } from './components/sidebar-content/sidebar-content.component';
+import { AuthSuccessComponent } from './pages/auth-success/auth-success.component';
+import { AuthFailureComponent } from './pages/auth-failure/auth-failure.component';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -41,17 +46,22 @@ import { SidebarContentComponent } from './components/sidebar-content/sidebar-co
     BalanceVarianceLineComponent,
     ToolbarComponent,
     SidebarContentComponent,
+    AuthSuccessComponent,
+    AuthFailureComponent,
+    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FlexLayoutModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
