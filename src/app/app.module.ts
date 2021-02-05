@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +28,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SidebarContentComponent } from './components/sidebar-content/sidebar-content.component';
 import { AuthSuccessComponent } from './pages/auth-success/auth-success.component';
 import { AuthFailureComponent } from './pages/auth-failure/auth-failure.component';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { AuthFailureComponent } from './pages/auth-failure/auth-failure.componen
     SidebarContentComponent,
     AuthSuccessComponent,
     AuthFailureComponent,
+    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { AuthFailureComponent } from './pages/auth-failure/auth-failure.componen
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
