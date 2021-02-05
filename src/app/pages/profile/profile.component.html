@@ -5,7 +5,7 @@
       <img src="assets/photos/aot.jpg" alt="profile_photo" class="mat-elevation-z6" />
       <div class="profile-photo-overlay"></div>
       <div class="user-full-name">{{ 'John' }} {{ 'Doe' }}</div>
-      <mat-spinner diameter="20" color="accent"></mat-spinner>
+      <mat-spinner diameter="20" color="accent" *ngIf="isLoading"></mat-spinner>
     </div>
 
     <app-icon-title-row
@@ -23,19 +23,19 @@
     <app-icon-title-row
       iconName="account_balance"
       title="Balance"
-      [value]="userBalance || 'Loading...'"
+      [value]="userBalance ? userBalance.toString(10) : 'Loading...'"
     ></app-icon-title-row>
     <mat-divider></mat-divider>
     <app-icon-title-row
       iconName="receipt"
       title="Total Transactions"
-      [value]="userTransactionCount || 'Loading...'"
+      [value]="userTransactionCount ? userTransactionCount.toString(10) : 'Loading...'"
     ></app-icon-title-row>
     <mat-divider></mat-divider>
     <app-icon-title-row
       iconName="category"
       title="Total Categories"
-      [value]="userCategoryCount || 'Loading...'"
+      [value]="userCategoryCount ? userCategoryCount.toString(10) : 'Loading...'"
     ></app-icon-title-row>
     <mat-divider></mat-divider>
   </div>

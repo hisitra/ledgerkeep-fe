@@ -2,5 +2,8 @@
   "ledgerguard": {
     "googleAuthEndpoint": "https://guard.ledgerkeep.com/api/general_access/auth/google",
     "facebookAuthEndpoint": "https://guard.ledgerkeep.com/api/general_access/auth/facebook"
+  },
+  "ledgerlens": {
+    "user": "http://lens.ledgerkeep.com/api/user_access/user"
   }
 }

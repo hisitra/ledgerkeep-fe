@@ -13,7 +13,7 @@ export class LandingComponent implements OnInit {
 
   public async googleLogin(): Promise<void> {
     const conf = await this.configService.get();
-    const endpoint = conf?.ledgerguard.googleAuthEndpoint;
+    const endpoint = conf.ledgerguard.googleAuthEndpoint;
     if (endpoint) {
       window.location.href = endpoint;
     }
@@ -21,7 +21,7 @@ export class LandingComponent implements OnInit {
 
   public async facebookLogin(): Promise<void> {
     const conf = await this.configService.get();
-    const endpoint = conf?.ledgerguard.facebookAuthEndpoint;
+    const endpoint = conf.ledgerguard.facebookAuthEndpoint;
     if (endpoint) {
       window.location.href = endpoint;
     }
