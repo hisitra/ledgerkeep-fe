@@ -5,6 +5,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +23,7 @@ import { BalanceLineComponent } from './pages/balance-line/balance-line.componen
 import { TransactionCountLineComponent } from './pages/transaction-count-line/transaction-count-line.component';
 import { BalanceVarianceLineComponent } from './pages/balance-variance-line/balance-variance-line.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { SidebarContentComponent } from './components/sidebar-content/sidebar-content.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     TransactionCountLineComponent,
     BalanceVarianceLineComponent,
     ToolbarComponent,
+    SidebarContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
