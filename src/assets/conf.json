@@ -4,6 +4,7 @@
     "facebookAuthEndpoint": "https://guard.ledgerkeep.com/api/general_access/auth/facebook"
   },
   "ledgerlens": {
-    "user": "http://lens.ledgerkeep.com/api/user_access/user"
+    "user": "http://lens.ledgerkeep.com/api/user_access/user",
+    "transactionSum": "http://lens.ledgerkeep.com/api/user_access/transaction/sum"
   }
 }

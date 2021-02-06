@@ -8,6 +8,7 @@ export interface ServiceConfig {
   };
   ledgerlens: {
     user: string;
+    transactionSum: string;
   };
 }
 

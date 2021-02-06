@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LedgerlensService } from '../../services/ledgerlens.service';
 import { AuthService } from '../../services/auth.service';
+import { SnackService } from '../../services/snack.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +19,11 @@ export class ProfileComponent implements OnInit {
   public userCategoryCount = 0;
   public isLoading = false;
 
-  constructor(private ledgerlens: LedgerlensService, private authService: AuthService) {}
+  constructor(
+    private ledgerlens: LedgerlensService,
+    private authService: AuthService,
+    private snack: SnackService,
+  ) {}
 
   async ngOnInit(): Promise<void> {
     this.isLoading = true;
@@ -35,10 +40,21 @@ export class ProfileComponent implements OnInit {
 
   private async loadUser(): Promise<void> {
     const token = await this.authService.getToken();
-    this.user = await this.ledgerlens.getUser(token);
+    try {
+      this.user = await this.ledgerlens.getUser(token);
+    } catch (err) {
+      this.snack.error(err.message);
+    }
   }
 
-  private async loadBalance(): Promise<void> {}
+  private async loadBalance(): Promise<void> {
+    const token = await this.authService.getToken();
+    try {
+      this.userBalance = await this.ledgerlens.getBalance(token);
+    } catch (err) {
+      this.snack.error(err.message);
+    }
+  }
 
   private async loadTxCount(): Promise<void> {}
 

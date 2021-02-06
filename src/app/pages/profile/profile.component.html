@@ -11,31 +11,31 @@
     <app-icon-title-row
       iconName="email"
       title="Email"
-      [value]="user.email || 'Loading...'"
+      [value]="isLoading ? 'Loading...' : user.email"
     ></app-icon-title-row>
     <mat-divider></mat-divider>
     <app-icon-title-row
       iconName="history"
       title="Joined"
-      [value]="user.doc_created_at ? (user.doc_created_at | date) : 'Loading...'"
+      [value]="isLoading ? 'Loading...' : (user.doc_created_at | date) || ''"
     ></app-icon-title-row>
     <mat-divider></mat-divider>
     <app-icon-title-row
       iconName="account_balance"
       title="Balance"
-      [value]="userBalance ? userBalance.toString(10) : 'Loading...'"
+      [value]="isLoading ? 'Loading...' : userBalance.toString(10)"
     ></app-icon-title-row>
     <mat-divider></mat-divider>
     <app-icon-title-row
       iconName="receipt"
       title="Total Transactions"
-      [value]="userTransactionCount ? userTransactionCount.toString(10) : 'Loading...'"
+      [value]="isLoading ? 'Loading...' : userTransactionCount.toString(10)"
     ></app-icon-title-row>
     <mat-divider></mat-divider>
     <app-icon-title-row
       iconName="category"
       title="Total Categories"
-      [value]="userCategoryCount ? userCategoryCount.toString(10) : 'Loading...'"
+      [value]="isLoading ? 'Loading...' : userCategoryCount.toString(10)"
     ></app-icon-title-row>
     <mat-divider></mat-divider>
   </div>
