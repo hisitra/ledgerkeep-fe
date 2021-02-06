@@ -1,1 +1,43 @@
-<p>profile works!</p>
+<div fxFlex fxLayout="row" fxLayoutAlign="center">
+  <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="0"></div>
+  <div fxFlex="700px" fxFlex.md="600px" fxFlex.sm="500px" fxFlex.xs="100" class="content">
+    <div class="profile-photo-holder">
+      <img src="assets/photos/aot.jpg" alt="profile_photo" class="mat-elevation-z6" />
+      <div class="profile-photo-overlay"></div>
+      <div class="user-full-name">{{ user.first_name }} {{ user.last_name }}</div>
+      <mat-spinner diameter="20" color="accent" *ngIf="isLoading"></mat-spinner>
+    </div>
+
+    <app-icon-title-row
+      iconName="email"
+      title="Email"
+      [value]="isLoading ? 'Loading...' : user.email"
+    ></app-icon-title-row>
+    <mat-divider></mat-divider>
+    <app-icon-title-row
+      iconName="history"
+      title="Joined"
+      [value]="isLoading ? 'Loading...' : (user.doc_created_at | date) || ''"
+    ></app-icon-title-row>
+    <mat-divider></mat-divider>
+    <app-icon-title-row
+      iconName="account_balance"
+      title="Balance"
+      [value]="isLoading ? 'Loading...' : userBalance.toString(10)"
+    ></app-icon-title-row>
+    <mat-divider></mat-divider>
+    <app-icon-title-row
+      iconName="receipt"
+      title="Total Transactions"
+      [value]="isLoading ? 'Loading...' : userTransactionCount.toString(10)"
+    ></app-icon-title-row>
+    <mat-divider></mat-divider>
+    <app-icon-title-row
+      iconName="category"
+      title="Total Categories"
+      [value]="isLoading ? 'Loading...' : userCategoryCount.toString(10)"
+    ></app-icon-title-row>
+    <mat-divider></mat-divider>
+  </div>
+  <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="0"></div>
+</div>

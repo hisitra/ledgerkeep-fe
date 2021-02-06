@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +31,7 @@ import { SidebarContentComponent } from './components/sidebar-content/sidebar-co
 import { AuthSuccessComponent } from './pages/auth-success/auth-success.component';
 import { AuthFailureComponent } from './pages/auth-failure/auth-failure.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { IconTitleRowComponent } from './components/icon-title-row/icon-title-row.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     AuthSuccessComponent,
     AuthFailureComponent,
     SnackbarComponent,
+    IconTitleRowComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +66,8 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     MatSidenavModule,
     MatListModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
