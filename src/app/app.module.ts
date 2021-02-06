@@ -11,6 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,7 @@ import { AuthSuccessComponent } from './pages/auth-success/auth-success.componen
 import { AuthFailureComponent } from './pages/auth-failure/auth-failure.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { IconTitleRowComponent } from './components/icon-title-row/icon-title-row.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { IconTitleRowComponent } from './components/icon-title-row/icon-title-ro
     AuthFailureComponent,
     SnackbarComponent,
     IconTitleRowComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +71,7 @@ import { IconTitleRowComponent } from './components/icon-title-row/icon-title-ro
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatCardModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
