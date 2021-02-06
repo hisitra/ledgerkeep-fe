@@ -9,6 +9,8 @@ export interface ServiceConfig {
   ledgerlens: {
     user: string;
     transactionSum: string;
+    transactionCount: string;
+    categoryCount: string;
   };
 }
 

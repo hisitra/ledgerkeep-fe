@@ -4,7 +4,7 @@
     <div class="profile-photo-holder">
       <img src="assets/photos/aot.jpg" alt="profile_photo" class="mat-elevation-z6" />
       <div class="profile-photo-overlay"></div>
-      <div class="user-full-name">{{ 'John' }} {{ 'Doe' }}</div>
+      <div class="user-full-name">{{ user.first_name }} {{ user.last_name }}</div>
       <mat-spinner diameter="20" color="accent" *ngIf="isLoading"></mat-spinner>
     </div>
 

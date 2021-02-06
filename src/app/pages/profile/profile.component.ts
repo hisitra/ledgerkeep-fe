@@ -11,6 +11,8 @@ import { SnackService } from '../../services/snack.service';
 export class ProfileComponent implements OnInit {
   public user = {
     email: '',
+    first_name: '',
+    last_name: '',
     doc_created_at: 0,
   };
 
@@ -56,7 +58,21 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  private async loadTxCount(): Promise<void> {}
+  private async loadTxCount(): Promise<void> {
+    const token = await this.authService.getToken();
+    try {
+      this.userTransactionCount = await this.ledgerlens.getTransactionCount(token);
+    } catch (err) {
+      this.snack.error(err.message);
+    }
+  }
 
-  private async loadCatCount(): Promise<void> {}
+  private async loadCatCount(): Promise<void> {
+    const token = await this.authService.getToken();
+    try {
+      this.userCategoryCount = await this.ledgerlens.getCategoryCount(token);
+    } catch (err) {
+      this.snack.error(err.message);
+    }
+  }
 }
