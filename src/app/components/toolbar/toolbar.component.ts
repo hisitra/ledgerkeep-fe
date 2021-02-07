@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { MatDrawer } from '@angular/material/sidenav';
+import { ConfirmService } from '../../services/confirm.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -12,7 +13,7 @@ export class ToolbarComponent implements OnInit {
 
   @Input() sidebar: MatDrawer | undefined;
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, private confirm: ConfirmService) {}
 
   ngOnInit(): void {}
 
@@ -21,6 +22,10 @@ export class ToolbarComponent implements OnInit {
   }
 
   public async logout(): Promise<void> {
+    const reply = await this.confirm.prompt('Confirm logout?');
+    if (!reply) {
+      return;
+    }
     this.sidebar?.close();
     await this.authService.logout();
   }
