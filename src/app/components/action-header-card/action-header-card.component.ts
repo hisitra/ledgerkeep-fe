@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ActionHeaderCardComponent implements OnInit {
   @Input() header = '';
   @Input() iconName = '';
+  @Input() onAction = () => {};
 
   constructor() {}
 

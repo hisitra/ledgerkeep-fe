@@ -9,4 +9,6 @@ export class TransactionsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onFilterClick(): void {}
 }

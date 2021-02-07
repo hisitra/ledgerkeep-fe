@@ -1,7 +1,11 @@
 <div fxFlex fxLayout="row" fxLayoutAlign="center">
   <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="0"></div>
   <div fxFlex="700px" fxFlex.md="600px" fxFlex.sm="500px" fxFlex.xs="100" class="content">
-    <app-action-header-card header="Transactions" iconName="filter_alt"></app-action-header-card>
+    <app-action-header-card
+      header="Transactions"
+      iconName="filter_alt"
+      [onAction]="onFilterClick"
+    ></app-action-header-card>
   </div>
   <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="0"></div>
 </div>
