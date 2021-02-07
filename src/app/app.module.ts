@@ -34,6 +34,7 @@ import { AuthFailureComponent } from './pages/auth-failure/auth-failure.componen
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { IconTitleRowComponent } from './components/icon-title-row/icon-title-row.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { ActionHeaderCardComponent } from './components/action-header-card/action-header-card.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     SnackbarComponent,
     IconTitleRowComponent,
     ConfirmDialogComponent,
+    ActionHeaderCardComponent,
   ],
   imports: [
     BrowserModule,
