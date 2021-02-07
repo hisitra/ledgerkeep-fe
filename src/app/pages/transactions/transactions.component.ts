@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
+import { SecondaryDrawerService } from '../../services/secondary-drawer.service';
 
 @Component({
   selector: 'app-transactions',
@@ -6,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transactions.component.css'],
 })
 export class TransactionsComponent implements OnInit {
-  constructor() {}
+  constructor(private secDrawService: SecondaryDrawerService) {}
 
   ngOnInit(): void {}
 
-  onFilterClick(): void {}
+  onFilterClick(): void {
+    this.secDrawService.toggle();
+  }
 }

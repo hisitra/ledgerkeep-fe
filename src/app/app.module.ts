@@ -35,6 +35,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { IconTitleRowComponent } from './components/icon-title-row/icon-title-row.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ActionHeaderCardComponent } from './components/action-header-card/action-header-card.component';
+import { TransactionFilterFormComponent } from './components/transaction-filter-form/transaction-filter-form.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ActionHeaderCardComponent } from './components/action-header-card/actio
     IconTitleRowComponent,
     ConfirmDialogComponent,
     ActionHeaderCardComponent,
+    TransactionFilterFormComponent,
   ],
   imports: [
     BrowserModule,

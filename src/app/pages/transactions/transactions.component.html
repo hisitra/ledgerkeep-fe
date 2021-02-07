@@ -4,7 +4,7 @@
     <app-action-header-card
       header="Transactions"
       iconName="filter_alt"
-      [onAction]="onFilterClick"
+      [onAction]="onFilterClick.bind(this)"
     ></app-action-header-card>
   </div>
   <div fxFlex="0" fxFlex.md="0" fxFlex.sm="0" fxFlex.xs="0"></div>
