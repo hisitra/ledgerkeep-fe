@@ -24,8 +24,13 @@ mat-form-field {
   display: block;
 }
 
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
 .btn-div {
   text-align: end;
+  margin-top: 30px;
 }
 
 .ok-btn {

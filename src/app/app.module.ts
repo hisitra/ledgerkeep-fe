@@ -19,6 +19,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -92,6 +93,7 @@ import { LoadingButtonComponent } from './components/loading-button/loading-butt
     MatNativeDateModule,
     MatSelectModule,
     MatProgressBarModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
