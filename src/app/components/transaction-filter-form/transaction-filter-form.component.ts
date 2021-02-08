@@ -120,6 +120,7 @@ export class TransactionFilterFormComponent implements OnInit {
         category: [''],
         notesHint: [''],
         sort: [''],
+        order: [''],
       },
       {
         validators: [
@@ -132,7 +133,9 @@ export class TransactionFilterFormComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
+  async ngOnInit(): Promise<void> {
+    await this.loadQuery();
+  }
 
   public onClose(): void {
     this.secondaryDrawerService.close();
@@ -146,5 +149,48 @@ export class TransactionFilterFormComponent implements OnInit {
     if (this.filterForm.invalid) {
       return;
     }
+  }
+
+  private async loadQuery(): Promise<void> {
+    return new Promise((resolve) => {
+      this.route.queryParamMap.subscribe((params) => {
+        const startAmount = params.get('startAmount');
+        const endAmount = params.get('endAmount');
+        const startDate = params.get('startDate');
+        const endDate = params.get('endDate');
+        const category = params.get('category');
+        const notesHint = params.get('notesHint');
+        const sortField = params.get('sort');
+        const sortOrder = params.get('order');
+
+        try {
+          if (startAmount !== null) {
+            this.filterForm.get('startAmount')?.setValue(startAmount);
+          }
+          if (endAmount !== null) {
+            this.filterForm.get('endAmount')?.setValue(endAmount);
+          }
+          if (startDate !== null) {
+            this.filterForm.get('startDate')?.setValue(new Date(parseInt(startDate, 10)));
+          }
+          if (endDate !== null) {
+            this.filterForm.get('endDate')?.setValue(new Date(parseInt(endDate, 10)));
+          }
+          if (category !== null) {
+            this.filterForm.get('category')?.setValue(category);
+          }
+          if (notesHint !== null) {
+            this.filterForm.get('notesHint')?.setValue(notesHint);
+          }
+          if (sortField !== null) {
+            this.filterForm.get('sort')?.setValue(sortField);
+          }
+          if (sortOrder !== null) {
+            this.filterForm.get('order')?.setValue(sortOrder);
+          }
+          resolve();
+        } catch (err) {}
+      });
+    });
   }
 }
