@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SecondaryDrawerService } from '../../services/secondary-drawer.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 const startDateValidator = (formGroup: FormGroup) => {
   const startDate = formGroup.controls.startDate;
@@ -106,15 +107,16 @@ export class TransactionFilterFormComponent implements OnInit {
   public filterForm: FormGroup;
 
   constructor(
+    private route: ActivatedRoute,
     private secondaryDrawerService: SecondaryDrawerService,
     private formBuilder: FormBuilder,
   ) {
     this.filterForm = this.formBuilder.group(
       {
-        startDate: [''],
-        endDate: [''],
         startAmount: [''],
         endAmount: [''],
+        startDate: [''],
+        endDate: [''],
         category: [''],
         notesHint: [''],
         sort: [''],
