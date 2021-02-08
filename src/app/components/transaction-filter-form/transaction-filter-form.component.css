@@ -1,3 +1,33 @@
 .container {
   padding: 10px;
+  margin-right: 5vw;
+  margin-bottom: 25px;
+}
+
+.mid-align {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.header {
+  font-weight: lighter;
+  font-size: large;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-form-field {
+  display: block;
+}
+
+.btn-div {
+  text-align: end;
+}
+
+.ok-btn {
+  margin-right: 10px;
 }
