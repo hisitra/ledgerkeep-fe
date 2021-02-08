@@ -7,33 +7,76 @@
     </button>
   </div>
 
-  <form>
+  <form [formGroup]="filterForm" (submit)="onFormSubmit()">
     <mat-form-field appearance="outline">
       <mat-label>Start Amount</mat-label>
-      <input matInput type="number" autocomplete="off" />
+      <input
+        matInput
+        type="number"
+        autocomplete="off"
+        id="startAmountInput"
+        formControlName="startAmount"
+      />
+      <mat-error *ngIf="filterForm?.get('startAmount')?.hasError('invalid')"
+        >Invalid Amount.</mat-error
+      >
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>End Amount</mat-label>
-      <input matInput type="number" autocomplete="off" />
+      <input
+        matInput
+        type="number"
+        autocomplete="off"
+        id="endAmountInput"
+        formControlName="endAmount"
+      />
+      <mat-error *ngIf="filterForm?.get('endAmount')?.hasError('invalid')">
+        Invalid Amount.</mat-error
+      >
+      <mat-error
+        *ngIf="
+          !filterForm?.get('endAmount')?.hasError('invalid') &&
+          filterForm?.get('endAmount')?.hasError('tooLow')
+        "
+      >
+        Too Low.</mat-error
+      >
     </mat-form-field>
     <br />
     <mat-form-field appearance="outline">
       <mat-label>Start Date</mat-label>
-      <input matInput [matDatepicker]="startPicker" />
+      <input
+        matInput
+        [matDatepicker]="startPicker"
+        id="startDateInput"
+        formControlName="startDate"
+      />
       <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
       <mat-datepicker #startPicker></mat-datepicker>
+      <mat-error *ngIf="filterForm?.get('startDate')?.hasError('invalid')">
+        Invalid date.
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>End Date</mat-label>
-      <input matInput [matDatepicker]="endPicker" />
+      <input matInput [matDatepicker]="endPicker" id="endDateInput" formControlName="endDate" />
       <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
       <mat-datepicker #endPicker></mat-datepicker>
+      <mat-error *ngIf="filterForm?.get('endDate')?.hasError('invalid')"> Invalid date.</mat-error>
+      <mat-error
+        *ngIf="
+          !filterForm?.get('endDate')?.hasError('invalid') &&
+          filterForm?.get('endDate')?.hasError('tooLow')
+        "
+      >
+        Too Low.</mat-error
+      >
     </mat-form-field>
     <br />
     <mat-progress-bar mode="indeterminate" *ngIf="isCategoryLoading"></mat-progress-bar>
     <mat-form-field appearance="outline">
       <mat-label>Category</mat-label>
-      <mat-select>
+      <mat-select formControlName="category">
         <mat-option *ngFor="let catName of catNames" [value]="catName">
           {{ catName }}
         </mat-option>
@@ -41,11 +84,11 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Notes Hint</mat-label>
-      <input matInput type="text" autocomplete="off" />
+      <input matInput type="text" autocomplete="off" formControlName="notesHint" />
     </mat-form-field>
     <div class="btn-div">
-      <button mat-raised-button color="primary" class="ok-btn" type="button">OK</button>
-      <button mat-raised-button type="button">Clear</button>
+      <app-loading-button class="ok-btn">OK</app-loading-button>
+      <button mat-raised-button type="button" (click)="onClear()">Clear</button>
     </div>
   </form>
 </div>

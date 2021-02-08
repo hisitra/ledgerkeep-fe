@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -42,6 +43,7 @@ import { IconTitleRowComponent } from './components/icon-title-row/icon-title-ro
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ActionHeaderCardComponent } from './components/action-header-card/action-header-card.component';
 import { TransactionFilterFormComponent } from './components/transaction-filter-form/transaction-filter-form.component';
+import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { TransactionFilterFormComponent } from './components/transaction-filter-
     ConfirmDialogComponent,
     ActionHeaderCardComponent,
     TransactionFilterFormComponent,
+    LoadingButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +76,7 @@ import { TransactionFilterFormComponent } from './components/transaction-filter-
     BrowserAnimationsModule,
     HttpClientModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
