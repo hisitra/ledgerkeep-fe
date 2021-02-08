@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SecondaryDrawerService } from '../../services/secondary-drawer.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 const startDateValidator = (formGroup: FormGroup) => {
   const startDate = formGroup.controls.startDate;
@@ -62,7 +62,7 @@ const startAmountValidator = (formGroup: FormGroup) => {
       return;
     }
 
-    if (typeof startAmount.value !== 'number' || isNaN(startAmount.value)) {
+    if (isNaN(parseFloat(startAmount.value))) {
       startAmount.setErrors({ invalid: true });
     } else {
       startAmount.setErrors(null);
@@ -81,7 +81,7 @@ const endAmountValidator = (formGroup: FormGroup) => {
     return;
   }
 
-  if (typeof endAmount.value !== 'number' || isNaN(endAmount.value)) {
+  if (isNaN(parseFloat(endAmount.value))) {
     endAmount.setErrors({ invalid: true });
   } else if (
     typeof startAmount.value === 'number' &&
@@ -108,6 +108,7 @@ export class TransactionFilterFormComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private secondaryDrawerService: SecondaryDrawerService,
     private formBuilder: FormBuilder,
   ) {
@@ -145,10 +146,41 @@ export class TransactionFilterFormComponent implements OnInit {
     this.filterForm.reset();
   }
 
-  public onFormSubmit(): void {
+  public async onFormSubmit(): Promise<void> {
     if (this.filterForm.invalid) {
       return;
     }
+
+    const values = this.filterForm.value;
+
+    const query: any = {};
+    if (values.startDate instanceof Date) {
+      query.startTime = values.startDate.getTime();
+    }
+    if (values.endDate instanceof Date) {
+      query.endTime = values.endDate.getTime();
+    }
+    if (values.startAmount) {
+      query.startAmount = values.startAmount;
+    }
+    if (values.endAmount) {
+      query.endAmount = values.endAmount;
+    }
+    if (values.category) {
+      query.category = values.category;
+    }
+    if (values.notesHint) {
+      query.notesHint = values.notesHint;
+    }
+    if (values.sort) {
+      query.sort = values.sort;
+    }
+    if (values.order) {
+      query.order = values.order;
+    }
+
+    await this.router.navigate([], { queryParams: query });
+    this.secondaryDrawerService.close();
   }
 
   private async loadQuery(): Promise<void> {
@@ -156,12 +188,12 @@ export class TransactionFilterFormComponent implements OnInit {
       this.route.queryParamMap.subscribe((params) => {
         const startAmount = params.get('startAmount');
         const endAmount = params.get('endAmount');
-        const startDate = params.get('startDate');
-        const endDate = params.get('endDate');
+        const startDate = params.get('startTime');
+        const endDate = params.get('endTime');
         const category = params.get('category');
         const notesHint = params.get('notesHint');
-        const sortField = params.get('sort');
-        const sortOrder = params.get('order');
+        const sort = params.get('sort');
+        const order = params.get('order');
 
         try {
           if (startAmount !== null) {
@@ -182,11 +214,11 @@ export class TransactionFilterFormComponent implements OnInit {
           if (notesHint !== null) {
             this.filterForm.get('notesHint')?.setValue(notesHint);
           }
-          if (sortField !== null) {
-            this.filterForm.get('sort')?.setValue(sortField);
+          if (sort !== null) {
+            this.filterForm.get('sort')?.setValue(sort);
           }
-          if (sortOrder !== null) {
-            this.filterForm.get('order')?.setValue(sortOrder);
+          if (order !== null) {
+            this.filterForm.get('order')?.setValue(order);
           }
           resolve();
         } catch (err) {}
