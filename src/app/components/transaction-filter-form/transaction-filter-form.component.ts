@@ -7,6 +7,9 @@ import { SecondaryDrawerService } from '../../services/secondary-drawer.service'
   styleUrls: ['./transaction-filter-form.component.css'],
 })
 export class TransactionFilterFormComponent implements OnInit {
+  public isCategoryLoading = false;
+  public catNames = [];
+
   constructor(private secondaryDrawerService: SecondaryDrawerService) {}
 
   ngOnInit(): void {}

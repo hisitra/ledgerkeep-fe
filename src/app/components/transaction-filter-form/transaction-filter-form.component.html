@@ -10,11 +10,11 @@
   <form>
     <mat-form-field appearance="outline">
       <mat-label>Start Amount</mat-label>
-      <input matInput />
+      <input matInput type="number" autocomplete="off" />
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>End Amount</mat-label>
-      <input matInput />
+      <input matInput type="number" autocomplete="off" />
     </mat-form-field>
     <br />
     <mat-form-field appearance="outline">
@@ -30,13 +30,18 @@
       <mat-datepicker #endPicker></mat-datepicker>
     </mat-form-field>
     <br />
+    <mat-progress-bar mode="indeterminate" *ngIf="isCategoryLoading"></mat-progress-bar>
     <mat-form-field appearance="outline">
       <mat-label>Category</mat-label>
-      <input matInput />
+      <mat-select>
+        <mat-option *ngFor="let catName of catNames" [value]="catName">
+          {{ catName }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Notes Hint</mat-label>
-      <input matInput />
+      <input matInput type="text" autocomplete="off" />
     </mat-form-field>
     <div class="btn-div">
       <button mat-raised-button color="primary" class="ok-btn" type="button">OK</button>
