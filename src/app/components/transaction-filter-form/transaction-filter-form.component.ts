@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SecondaryDrawerService } from '../../services/secondary-drawer.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LedgerlensService } from '../../services/ledgerlens.service';
+import { AuthService } from '../../services/auth.service';
+import { SnackService } from '../../services/snack.service';
 
 const startDateValidator = (formGroup: FormGroup) => {
   const startDate = formGroup.controls.startDate;
@@ -109,6 +112,9 @@ export class TransactionFilterFormComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private ledgerlens: LedgerlensService,
+    private authService: AuthService,
+    private snack: SnackService,
     private secondaryDrawerService: SecondaryDrawerService,
     private formBuilder: FormBuilder,
   ) {
@@ -134,8 +140,9 @@ export class TransactionFilterFormComponent implements OnInit {
     );
   }
 
-  async ngOnInit(): Promise<void> {
-    await this.loadQuery();
+  ngOnInit(): void {
+    this.loadQuery();
+    this.loadCategories();
   }
 
   public onClose(): void {
@@ -224,5 +231,20 @@ export class TransactionFilterFormComponent implements OnInit {
         } catch (err) {}
       });
     });
+  }
+
+  private async loadCategories(): Promise<void> {
+    if (this.catNames.length > 0) {
+      return;
+    }
+
+    this.isCategoryLoading = true;
+    const token = await this.authService.getToken();
+    try {
+      this.catNames = await this.ledgerlens.getCategories(token);
+    } catch (err) {
+      this.snack.error(err.message);
+    }
+    this.isCategoryLoading = false;
   }
 }

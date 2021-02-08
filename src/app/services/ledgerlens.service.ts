@@ -68,6 +68,20 @@ export class LedgerlensService {
     }
   }
 
+  async getCategories(token: string): Promise<any> {
+    const conf = await this.configService.get();
+    const headers = { authorization: token };
+
+    try {
+      const response = (await this.http
+        .get(conf.ledgerlens.category, { headers })
+        .toPromise()) as any;
+      return response.data;
+    } catch (err) {
+      await this.handleError(err, {});
+    }
+  }
+
   private async handleError(
     err: HttpErrorResponse,
     known: { [key: string]: string },
