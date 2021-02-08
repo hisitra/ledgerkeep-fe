@@ -5,7 +5,7 @@
   </mat-drawer>
   <mat-drawer #secondaryDrawer mode="over" position="end" autoFocus="false">
     <app-transaction-filter-form
-      *ngIf="router.url === '/transactions'"
+      *ngIf="router.url.startsWith('/transactions')"
     ></app-transaction-filter-form>
   </mat-drawer>
   <mat-drawer-content>
