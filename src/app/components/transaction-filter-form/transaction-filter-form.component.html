@@ -86,6 +86,14 @@
       <mat-label>Notes Hint</mat-label>
       <input matInput type="text" autocomplete="off" formControlName="notesHint" />
     </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Sort</mat-label>
+      <mat-select formControlName="sort">
+        <mat-option *ngFor="let sortable of sortables" [value]="sortable">
+          {{ sortable }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <div class="btn-div">
       <app-loading-button class="ok-btn">OK</app-loading-button>
       <button mat-raised-button type="button" (click)="onClear()">Clear</button>

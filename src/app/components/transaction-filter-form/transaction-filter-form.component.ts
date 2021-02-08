@@ -101,6 +101,7 @@ const endAmountValidator = (formGroup: FormGroup) => {
 export class TransactionFilterFormComponent implements OnInit {
   public isCategoryLoading = false;
   public catNames = [];
+  public sortables = ['Amount', 'Date', 'Category'];
 
   public filterForm: FormGroup;
 
@@ -116,6 +117,7 @@ export class TransactionFilterFormComponent implements OnInit {
         endAmount: [''],
         category: [''],
         notesHint: [''],
+        sort: [''],
       },
       {
         validators: [
