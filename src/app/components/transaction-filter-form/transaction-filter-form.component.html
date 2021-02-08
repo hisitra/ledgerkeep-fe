@@ -50,6 +50,7 @@
         [matDatepicker]="startPicker"
         id="startDateInput"
         formControlName="startDate"
+        autocomplete="off"
       />
       <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
       <mat-datepicker #startPicker></mat-datepicker>
@@ -59,7 +60,13 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>End Date</mat-label>
-      <input matInput [matDatepicker]="endPicker" id="endDateInput" formControlName="endDate" />
+      <input
+        matInput
+        [matDatepicker]="endPicker"
+        id="endDateInput"
+        formControlName="endDate"
+        autocomplete="off"
+      />
       <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
       <mat-datepicker #endPicker></mat-datepicker>
       <mat-error *ngIf="filterForm?.get('endDate')?.hasError('invalid')"> Invalid date.</mat-error>
