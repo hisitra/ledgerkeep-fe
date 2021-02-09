@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SecondaryDrawerService } from '../../services/secondary-drawer.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { LedgerlensService } from '../../services/ledgerlens.service';
 import { AuthService } from '../../services/auth.service';
 import { SnackService } from '../../services/snack.service';
@@ -140,6 +140,14 @@ export class TransactionFilterFormComponent implements OnInit {
     );
   }
 
+  private static paramMap2Obj(map: ParamMap): { [key: string]: string | null } {
+    const queries: { [key: string]: string | null } = {};
+    for (const key of map.keys) {
+      queries[key] = map.get(key);
+    }
+    return queries;
+  }
+
   async ngOnInit(): Promise<void> {
     await Promise.all([this.loadQuery(), this.loadCategories()]);
   }
@@ -159,7 +167,7 @@ export class TransactionFilterFormComponent implements OnInit {
 
     const values = this.filterForm.value;
 
-    const query: any = {};
+    const query = await this.getCurrentQuery();
     if (values.startDate instanceof Date) {
       query.startTime = values.startDate.getTime();
     }
@@ -245,5 +253,14 @@ export class TransactionFilterFormComponent implements OnInit {
       this.snack.error(err.message);
     }
     this.isCategoryLoading = false;
+  }
+
+  private async getCurrentQuery(): Promise<{ [key: string]: string | null }> {
+    return new Promise((resolve) => {
+      const subscription = this.route.queryParamMap.subscribe((params: ParamMap) => {
+        resolve(TransactionFilterFormComponent.paramMap2Obj(params));
+      });
+      setTimeout(() => subscription.unsubscribe());
+    });
   }
 }

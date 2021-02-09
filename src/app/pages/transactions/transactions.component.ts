@@ -25,11 +25,36 @@ export class TransactionsComponent implements AfterViewInit {
     private router: Router,
   ) {}
 
+  private static paramMap2Obj(map: ParamMap): { [key: string]: string | null } {
+    const queries: { [key: string]: string | null } = {};
+    for (const key of map.keys) {
+      queries[key] = map.get(key);
+    }
+    return queries;
+  }
+
   async ngAfterViewInit(): Promise<void> {
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
     this.paginator?.page.subscribe(() => this.onPageEvent());
+
+    this.route.queryParamMap.subscribe((paramsMap) => {
+      const queries = TransactionsComponent.paramMap2Obj(paramsMap);
+
+      setTimeout(() => {
+        const parsedLimit = parseInt(queries.limit || '', 10);
+        if (this.paginator && this.allowedLimits.includes(parsedLimit)) {
+          this.paginator.pageSize = parsedLimit;
+        }
+        const parsedOffset = parseInt(queries.offset || '', 10);
+        if (this.paginator && parsedOffset % this.paginator.pageSize === 0) {
+          this.paginator.pageIndex = parsedOffset / this.paginator.pageSize;
+        }
+
+        this.loadTransactions(queries);
+      });
+    });
   }
 
   async onPageEvent(): Promise<void> {
@@ -48,11 +73,7 @@ export class TransactionsComponent implements AfterViewInit {
   private async getCurrentQuery(): Promise<{ [key: string]: string | null }> {
     return new Promise((resolve) => {
       const subscription = this.route.queryParamMap.subscribe((params: ParamMap) => {
-        const queries: { [key: string]: string | null } = {};
-        for (const key of params.keys) {
-          queries[key] = params.get(key);
-        }
-        resolve(queries);
+        resolve(TransactionsComponent.paramMap2Obj(params));
       });
       setTimeout(() => subscription.unsubscribe());
     });
