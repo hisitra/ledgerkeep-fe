@@ -6,50 +6,50 @@ import { LedgerlensService } from '../../services/ledgerlens.service';
 import { AuthService } from '../../services/auth.service';
 import { SnackService } from '../../services/snack.service';
 
-const startDateValidator = (formGroup: FormGroup) => {
-  const startDate = formGroup.controls.startDate;
+const startTimeValidator = (formGroup: FormGroup) => {
+  const startTime = formGroup.controls.startTime;
 
   // The value from document.getElementByID will not be the latest value
   // without this setTimeout
   setTimeout(() => {
-    const node = document.getElementById('startDateInput') as HTMLInputElement;
+    const node = document.getElementById('startTimeInput') as HTMLInputElement;
 
     if (!node || node.value === '') {
-      startDate.setErrors(null);
+      startTime.setErrors(null);
       return;
     }
 
-    if (!startDate.value || !(startDate.value instanceof Date)) {
-      startDate.setErrors({ invalid: true });
+    if (!startTime.value || !(startTime.value instanceof Date)) {
+      startTime.setErrors({ invalid: true });
     } else {
-      startDate.setErrors(null);
+      startTime.setErrors(null);
     }
   }, 0);
 };
 
-const endDateValidator = (formGroup: FormGroup) => {
-  const startDate = formGroup.controls.startDate;
-  const endDate = formGroup.controls.endDate;
+const endTimeValidator = (formGroup: FormGroup) => {
+  const startTime = formGroup.controls.startTime;
+  const endTime = formGroup.controls.endTime;
 
   // The value from document.getElementByID will not be the latest value
   // without this setTimeout
   setTimeout(() => {
-    const node = document.getElementById('endDateInput') as HTMLInputElement;
+    const node = document.getElementById('endTimeInput') as HTMLInputElement;
 
     if (!node || node.value === '') {
-      endDate.setErrors(null);
+      endTime.setErrors(null);
       return;
     }
 
-    if (!endDate.value || !(endDate.value instanceof Date)) {
-      endDate.setErrors({ invalid: true });
+    if (!endTime.value || !(endTime.value instanceof Date)) {
+      endTime.setErrors({ invalid: true });
     } else if (
-      startDate.value instanceof Date &&
-      endDate.value.getTime() < startDate.value.getTime()
+      startTime.value instanceof Date &&
+      endTime.value.getTime() < startTime.value.getTime()
     ) {
-      endDate.setErrors({ tooLow: true });
+      endTime.setErrors({ tooLow: true });
     } else {
-      endDate.setErrors(null);
+      endTime.setErrors(null);
     }
   }, 0);
 };
@@ -122,8 +122,8 @@ export class TransactionFilterFormComponent implements OnInit {
       {
         startAmount: [''],
         endAmount: [''],
-        startDate: [''],
-        endDate: [''],
+        startTime: [''],
+        endTime: [''],
         category: [''],
         notesHint: [''],
         sortField: [''],
@@ -131,8 +131,8 @@ export class TransactionFilterFormComponent implements OnInit {
       },
       {
         validators: [
-          startDateValidator,
-          endDateValidator,
+          startTimeValidator,
+          endTimeValidator,
           startAmountValidator,
           endAmountValidator,
         ],
@@ -168,11 +168,15 @@ export class TransactionFilterFormComponent implements OnInit {
     const values = this.filterForm.value;
 
     const query = await this.getCurrentQuery();
-    if (values.startDate instanceof Date) {
-      query.startTime = values.startDate.getTime();
+    for (const prop of Object.keys(values)) {
+      delete query[prop];
     }
-    if (values.endDate instanceof Date) {
-      query.endTime = values.endDate.getTime();
+
+    if (values.startTime instanceof Date) {
+      query.startTime = values.startTime.getTime();
+    }
+    if (values.endTime instanceof Date) {
+      query.endTime = values.endTime.getTime();
     }
     if (values.startAmount) {
       query.startAmount = values.startAmount;
@@ -202,8 +206,8 @@ export class TransactionFilterFormComponent implements OnInit {
       this.route.queryParamMap.subscribe((params) => {
         const startAmount = params.get('startAmount');
         const endAmount = params.get('endAmount');
-        const startDate = params.get('startTime');
-        const endDate = params.get('endTime');
+        const startTime = params.get('startTime');
+        const endTime = params.get('endTime');
         const category = params.get('category');
         const notesHint = params.get('notesHint');
         const sortField = params.get('sortField');
@@ -216,11 +220,11 @@ export class TransactionFilterFormComponent implements OnInit {
           if (endAmount !== null) {
             this.filterForm.get('endAmount')?.setValue(endAmount);
           }
-          if (startDate !== null) {
-            this.filterForm.get('startDate')?.setValue(new Date(parseInt(startDate, 10)));
+          if (startTime !== null) {
+            this.filterForm.get('startTime')?.setValue(new Date(parseInt(startTime, 10)));
           }
-          if (endDate !== null) {
-            this.filterForm.get('endDate')?.setValue(new Date(parseInt(endDate, 10)));
+          if (endTime !== null) {
+            this.filterForm.get('endTime')?.setValue(new Date(parseInt(endTime, 10)));
           }
           if (category !== null) {
             this.filterForm.get('category')?.setValue(category);
