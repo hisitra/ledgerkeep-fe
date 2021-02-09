@@ -23,7 +23,7 @@
     <app-icon-title-row
       iconName="account_balance"
       title="Balance"
-      [value]="isLoading ? 'Loading...' : userBalance.toString(10)"
+      [value]="isLoading ? 'Loading...' : (userBalance > 0 ? '+' : '') + userBalance.toString(10)"
     ></app-icon-title-row>
     <mat-divider></mat-divider>
     <app-icon-title-row
