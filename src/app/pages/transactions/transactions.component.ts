@@ -90,6 +90,10 @@ export class TransactionsComponent implements AfterViewInit {
     this.isLoading = true;
     try {
       const { total_count, docs } = await this.ledgerlens.getTransactions(token, queries);
+      if (!docs || !docs.length || docs.length === 0) {
+        throw new Error('No transactions found.');
+      }
+
       if (this.paginator) {
         this.paginator.length = total_count;
       }
