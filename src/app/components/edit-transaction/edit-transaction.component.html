@@ -1,0 +1,30 @@
+<h1>Edit Transaction</h1>
+<form [formGroup]="txForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Amount</mat-label>
+    <input type="number" matInput formControlName="amount" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="datePicker" formControlName="date" />
+    <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+    <mat-datepicker #datePicker></mat-datepicker>
+  </mat-form-field>
+  <mat-progress-bar mode="indeterminate" *ngIf="isCategoryLoading"></mat-progress-bar>
+  <mat-form-field appearance="outline">
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="category" [attr.disabled]="isCategoryLoading">
+      <mat-option *ngFor="let catName of catNames" [value]="catName">
+        {{ catName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Notes</mat-label>
+    <textarea matInput formControlName="notes"></textarea>
+  </mat-form-field>
+  <div class="btn-div">
+    <button mat-raised-button type="button" color="primary" class="right-btn">Update</button>
+    <button mat-raised-button type="button" color="warn">Delete</button>
+  </div>
+</form>

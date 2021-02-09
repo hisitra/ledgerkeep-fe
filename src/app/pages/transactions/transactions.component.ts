@@ -7,6 +7,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { LedgerlensService } from '../../services/ledgerlens.service';
 import { AuthService } from '../../services/auth.service';
 import { SnackService } from '../../services/snack.service';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { EditTransactionComponent } from '../../components/edit-transaction/edit-transaction.component';
 
 @Component({
   selector: 'app-transactions',
@@ -30,6 +32,7 @@ export class TransactionsComponent implements AfterViewInit {
     private ledgerlens: LedgerlensService,
     private authService: AuthService,
     private snack: SnackService,
+    private bottomSheet: MatBottomSheet,
   ) {}
 
   private static paramMap2Obj(map: ParamMap): { [key: string]: string | null } {
@@ -114,6 +117,10 @@ export class TransactionsComponent implements AfterViewInit {
       this.snack.error(err.message);
     }
     this.isLoading = false;
+  }
+
+  public onRowClick(row: { [key: string]: any }): void {
+    this.bottomSheet.open(EditTransactionComponent, { data: row, panelClass: 'bottom-sheet' });
   }
 
   private async getCurrentQuery(): Promise<{ [key: string]: string | null }> {
