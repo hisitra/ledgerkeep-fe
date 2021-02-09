@@ -14,6 +14,8 @@ import { SnackService } from '../../services/snack.service';
   styleUrls: ['./transactions.component.css'],
 })
 export class TransactionsComponent implements AfterViewInit {
+  public isLoading = false;
+
   displayedColumns: string[] = ['index', 'amount', 'date', 'category'];
   allowedLimits = [10, 25, 50, 100];
 
@@ -57,6 +59,15 @@ export class TransactionsComponent implements AfterViewInit {
           this.paginator.pageIndex = parsedOffset / this.paginator.pageSize;
         }
 
+        queries.limit = (this.paginator
+          ? this.paginator.pageSize
+          : this.allowedLimits[0] || 10
+        ).toString();
+        queries.ffset = (this.paginator
+          ? this.paginator.pageIndex * this.paginator.pageSize
+          : 0
+        ).toString();
+
         this.loadTransactions(queries);
       });
     });
@@ -76,6 +87,7 @@ export class TransactionsComponent implements AfterViewInit {
   async loadTransactions(queries: { [key: string]: string | null }): Promise<void> {
     const token = this.authService.getToken();
 
+    this.isLoading = true;
     try {
       const { total_count, docs } = await this.ledgerlens.getTransactions(token, queries);
       if (this.paginator) {
@@ -84,12 +96,18 @@ export class TransactionsComponent implements AfterViewInit {
 
       this.dataSource = new MatTableDataSource<any>(
         (docs as any[]).map((value, index) => {
-          return { index, amount: value.amount, date: value.timestamp, category: value.category };
+          return {
+            index: index + 1,
+            amount: value.amount,
+            date: value.timestamp,
+            category: value.category,
+          };
         }),
       );
     } catch (err) {
       this.snack.error(err.message);
     }
+    this.isLoading = false;
   }
 
   private async getCurrentQuery(): Promise<{ [key: string]: string | null }> {
