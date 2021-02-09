@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { SecondaryDrawerService } from './secondary-drawer.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,10 +8,11 @@ import { Router } from '@angular/router';
 export class AuthService {
   private readonly TOKEN_KEY = 'LK_TOKEN';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private secStorage: SecondaryDrawerService) {}
 
   public async logout(): Promise<void> {
     localStorage.removeItem(this.TOKEN_KEY);
+    this.secStorage.close();
     await this.router.navigate(['/landing']);
   }
 

@@ -19,3 +19,8 @@ table {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.row:hover {
+  background: whitesmoke;
+  cursor: pointer;
+}
