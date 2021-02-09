@@ -126,8 +126,8 @@ export class TransactionFilterFormComponent implements OnInit {
         endDate: [''],
         category: [''],
         notesHint: [''],
-        sort: [''],
-        order: [''],
+        sortField: [''],
+        sortOrder: [''],
       },
       {
         validators: [
@@ -140,9 +140,8 @@ export class TransactionFilterFormComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    this.loadQuery();
-    this.loadCategories();
+  async ngOnInit(): Promise<void> {
+    await Promise.all([this.loadQuery(), this.loadCategories()]);
   }
 
   public onClose(): void {
@@ -179,11 +178,11 @@ export class TransactionFilterFormComponent implements OnInit {
     if (values.notesHint) {
       query.notesHint = values.notesHint;
     }
-    if (values.sort) {
-      query.sort = values.sort;
+    if (values.sortField) {
+      query.sortField = values.sortField;
     }
-    if (values.order) {
-      query.order = values.order;
+    if (values.sortOrder) {
+      query.sortOrder = values.sortOrder;
     }
 
     await this.router.navigate([], { queryParams: query });
@@ -199,8 +198,8 @@ export class TransactionFilterFormComponent implements OnInit {
         const endDate = params.get('endTime');
         const category = params.get('category');
         const notesHint = params.get('notesHint');
-        const sort = params.get('sort');
-        const order = params.get('order');
+        const sortField = params.get('sortField');
+        const sortOrder = params.get('sortOrder');
 
         try {
           if (startAmount !== null) {
@@ -221,11 +220,11 @@ export class TransactionFilterFormComponent implements OnInit {
           if (notesHint !== null) {
             this.filterForm.get('notesHint')?.setValue(notesHint);
           }
-          if (sort !== null) {
-            this.filterForm.get('sort')?.setValue(sort);
+          if (sortField !== null) {
+            this.filterForm.get('sortField')?.setValue(sortField);
           }
-          if (order !== null) {
-            this.filterForm.get('order')?.setValue(order);
+          if (sortOrder !== null) {
+            this.filterForm.get('sortOrder')?.setValue(sortOrder);
           }
           resolve();
         } catch (err) {}

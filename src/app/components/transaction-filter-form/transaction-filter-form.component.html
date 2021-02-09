@@ -96,13 +96,13 @@
     <br />
     <mat-form-field appearance="outline">
       <mat-label>Sort</mat-label>
-      <mat-select formControlName="sort">
+      <mat-select formControlName="sortField">
         <mat-option *ngFor="let sortable of sortables" [value]="sortable">
           {{ sortable }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-radio-group formControlName="order">
+    <mat-radio-group formControlName="sortOrder">
       <mat-radio-button value="asc">Ascending</mat-radio-button>
       <mat-radio-button value="desc">Descending</mat-radio-button>
     </mat-radio-group>
