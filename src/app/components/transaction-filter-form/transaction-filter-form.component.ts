@@ -104,7 +104,7 @@ const endAmountValidator = (formGroup: FormGroup) => {
 })
 export class TransactionFilterFormComponent implements OnInit {
   public isCategoryLoading = false;
-  public catNames = [];
+  public catNames: string[] = [];
   public sortables = [
     { name: 'Amount', value: 'amount' },
     { name: 'Date', value: 'timestamp' },
@@ -173,32 +173,33 @@ export class TransactionFilterFormComponent implements OnInit {
 
     const query = await this.getCurrentQuery();
     for (const prop of Object.keys(values)) {
-      delete query[prop];
+      const snakeProp = prop.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+      delete query[snakeProp];
     }
 
     if (values.startTime instanceof Date) {
-      query.startTime = values.startTime.getTime();
+      query.start_time = values.startTime.getTime();
     }
     if (values.endTime instanceof Date) {
-      query.endTime = values.endTime.getTime();
+      query.end_time = values.endTime.getTime();
     }
     if (values.startAmount) {
-      query.startAmount = values.startAmount;
+      query.start_amount = values.startAmount;
     }
     if (values.endAmount) {
-      query.endAmount = values.endAmount;
+      query.end_amount = values.endAmount;
     }
     if (values.category) {
       query.category = values.category;
     }
     if (values.notesHint) {
-      query.notesHint = values.notesHint;
+      query.notes_hint = values.notesHint;
     }
     if (values.sortField) {
-      query.sortField = values.sortField;
+      query.sort_field = values.sortField;
     }
     if (values.sortOrder) {
-      query.sortOrder = values.sortOrder;
+      query.sort_order = values.sortOrder;
     }
 
     await this.router.navigate([], { queryParams: query });
@@ -249,16 +250,13 @@ export class TransactionFilterFormComponent implements OnInit {
   }
 
   private async loadCategories(): Promise<void> {
-    if (this.catNames.length > 0) {
-      return;
-    }
-
     this.isCategoryLoading = true;
     const token = await this.authService.getToken();
     try {
-      this.catNames = await this.ledgerlens.getCategories(token);
+      const categories = (await this.ledgerlens.getCategories(token)) as any[];
+      this.catNames = categories.map((cat) => cat.name);
     } catch (err) {
-      this.snack.error(err.message);
+      this.snack.error('Failed to load categories.');
     }
     this.isCategoryLoading = false;
   }

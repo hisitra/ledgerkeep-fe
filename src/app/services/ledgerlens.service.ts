@@ -73,10 +73,7 @@ export class LedgerlensService {
     const headers = { authorization: token };
 
     try {
-      const response = (await this.http
-        .get(conf.ledgerlens.category, { headers })
-        .toPromise()) as any;
-      return response.data;
+      return (await this.http.get(conf.ledgerlens.category, { headers }).toPromise()) as any;
     } catch (err) {
       await this.handleError(err, {});
     }
