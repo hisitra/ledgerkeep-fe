@@ -24,7 +24,11 @@
     <textarea matInput formControlName="notes"></textarea>
   </mat-form-field>
   <div class="btn-div">
-    <button mat-raised-button type="button" color="primary" class="right-btn">Update</button>
-    <button mat-raised-button type="button" color="warn">Delete</button>
+    <app-loading-button
+      class="right-btn"
+      btnText="Update"
+      (click)="onUpdateClick()"
+    ></app-loading-button>
+    <button mat-raised-button type="button" color="warn" (click)="onDeleteClick()">Delete</button>
   </div>
 </form>

@@ -36,6 +36,10 @@ export class EditTransactionComponent implements OnInit {
     this.txForm.get('category')?.setValue(this.data.category);
   }
 
+  public async onUpdateClick(): Promise<void> {}
+
+  public async onDeleteClick(): Promise<void> {}
+
   private async loadCategories(): Promise<void> {
     this.isCategoryLoading = true;
     const token = await this.authService.getToken();
