@@ -22,6 +22,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +48,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { ActionHeaderCardComponent } from './components/action-header-card/action-header-card.component';
 import { TransactionFilterFormComponent } from './components/transaction-filter-form/transaction-filter-form.component';
 import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
+import { EditTransactionComponent } from './components/edit-transaction/edit-transaction.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,7 @@ import { LoadingButtonComponent } from './components/loading-button/loading-butt
     ActionHeaderCardComponent,
     TransactionFilterFormComponent,
     LoadingButtonComponent,
+    EditTransactionComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +101,7 @@ import { LoadingButtonComponent } from './components/loading-button/loading-butt
     MatRadioModule,
     MatTableModule,
     MatPaginatorModule,
+    MatBottomSheetModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
