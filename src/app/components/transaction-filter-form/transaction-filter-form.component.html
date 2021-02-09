@@ -107,7 +107,15 @@
       <mat-radio-button value="desc">Descending</mat-radio-button>
     </mat-radio-group>
     <div class="btn-div">
-      <app-loading-button class="ok-btn">OK</app-loading-button>
+      <button
+        mat-raised-button
+        type="button"
+        class="ok-btn"
+        color="primary"
+        (click)="onFormSubmit()"
+      >
+        OK
+      </button>
       <button mat-raised-button type="button" (click)="onClear()">Clear</button>
     </div>
   </form>
