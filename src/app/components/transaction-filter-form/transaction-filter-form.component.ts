@@ -105,7 +105,11 @@ const endAmountValidator = (formGroup: FormGroup) => {
 export class TransactionFilterFormComponent implements OnInit {
   public isCategoryLoading = false;
   public catNames = [];
-  public sortables = ['Amount', 'Date', 'Category'];
+  public sortables = [
+    { name: 'Amount', value: 'amount' },
+    { name: 'Date', value: 'timestamp' },
+    { name: 'Category', value: 'category' },
+  ];
 
   public filterForm: FormGroup;
 

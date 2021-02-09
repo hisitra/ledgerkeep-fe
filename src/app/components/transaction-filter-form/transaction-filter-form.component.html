@@ -97,8 +97,8 @@
     <mat-form-field appearance="outline">
       <mat-label>Sort</mat-label>
       <mat-select formControlName="sortField">
-        <mat-option *ngFor="let sortable of sortables" [value]="sortable.toLowerCase()">
-          {{ sortable }}
+        <mat-option *ngFor="let sortable of sortables" [value]="sortable.value">
+          {{ sortable.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
