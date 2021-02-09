@@ -4,6 +4,9 @@ import { SecondaryDrawerService } from '../../services/secondary-drawer.service'
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { LedgerlensService } from '../../services/ledgerlens.service';
+import { AuthService } from '../../services/auth.service';
+import { SnackService } from '../../services/snack.service';
 
 @Component({
   selector: 'app-transactions',
@@ -14,7 +17,6 @@ export class TransactionsComponent implements AfterViewInit {
   displayedColumns: string[] = ['index', 'amount', 'date', 'category'];
   allowedLimits = [10, 25, 50, 100];
 
-  rawData: any[] = [];
   dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
@@ -23,6 +25,9 @@ export class TransactionsComponent implements AfterViewInit {
     public secDrawService: SecondaryDrawerService,
     private route: ActivatedRoute,
     private router: Router,
+    private ledgerlens: LedgerlensService,
+    private authService: AuthService,
+    private snack: SnackService,
   ) {}
 
   private static paramMap2Obj(map: ParamMap): { [key: string]: string | null } {
@@ -68,7 +73,24 @@ export class TransactionsComponent implements AfterViewInit {
     await this.router.navigate([], { queryParams: currentQuery });
   }
 
-  async loadTransactions(queries: { [key: string]: string | null }): Promise<void> {}
+  async loadTransactions(queries: { [key: string]: string | null }): Promise<void> {
+    const token = this.authService.getToken();
+
+    try {
+      const { total_count, docs } = await this.ledgerlens.getTransactions(token, queries);
+      if (this.paginator) {
+        this.paginator.length = total_count;
+      }
+
+      this.dataSource = new MatTableDataSource<any>(
+        (docs as any[]).map((value, index) => {
+          return { index, amount: value.amount, date: value.timestamp, category: value.category };
+        }),
+      );
+    } catch (err) {
+      this.snack.error(err.message);
+    }
+  }
 
   private async getCurrentQuery(): Promise<{ [key: string]: string | null }> {
     return new Promise((resolve) => {

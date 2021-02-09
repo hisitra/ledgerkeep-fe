@@ -83,7 +83,7 @@
     <mat-progress-bar mode="indeterminate" *ngIf="isCategoryLoading"></mat-progress-bar>
     <mat-form-field appearance="outline">
       <mat-label>Category</mat-label>
-      <mat-select formControlName="category" [disabled]="isCategoryLoading">
+      <mat-select formControlName="category" [attr.disabled]="isCategoryLoading">
         <mat-option *ngFor="let catName of catNames" [value]="catName">
           {{ catName }}
         </mat-option>

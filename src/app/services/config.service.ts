@@ -12,6 +12,7 @@ export interface ServiceConfig {
     transactionCount: string;
     categoryCount: string;
     category: string;
+    transaction: string;
   };
 }
 
