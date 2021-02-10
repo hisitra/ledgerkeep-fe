@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { LedgerlensService } from '../../services/ledgerlens.service';
 import { AuthService } from '../../services/auth.service';
 import { SnackService } from '../../services/snack.service';
+import { ConfirmService } from '../../services/confirm.service';
+import { LedgerquillService } from '../../services/ledgerquill.service';
 
 @Component({
   selector: 'app-edit-transaction',
@@ -15,6 +17,11 @@ export class EditTransactionComponent implements OnInit {
   public catNames: string[] = [];
   public isCategoryLoading = false;
 
+  private transaction: any;
+
+  private pIsDelLoading = false;
+  private pIsUpdLoading = false;
+
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: { [key: string]: any },
     private sheetRef: MatBottomSheetRef<EditTransactionComponent>,
@@ -22,23 +29,64 @@ export class EditTransactionComponent implements OnInit {
     private ledgerlens: LedgerlensService,
     private authService: AuthService,
     private snack: SnackService,
+    private confirm: ConfirmService,
+    private ledgerquill: LedgerquillService,
   ) {
+    this.transaction = this.data.tx;
+
     this.txForm = this.formBuilder.group({
-      amount: [this.data.amount],
-      date: [new Date(this.data.date)],
-      category: [this.data.category],
-      notes: [this.data.notes],
+      amount: [this.transaction.amount],
+      date: [new Date(this.transaction.date)],
+      category: [this.transaction.category],
+      notes: [this.transaction.notes],
     });
+  }
+
+  get isUpdLoading(): boolean {
+    return this.pIsUpdLoading;
+  }
+
+  set isUpdLoading(value: boolean) {
+    value ? this.txForm?.disable() : this.txForm?.enable();
+    this.pIsUpdLoading = value;
+  }
+
+  get isDelLoading(): boolean {
+    return this.pIsDelLoading;
+  }
+
+  set isDelLoading(value: boolean) {
+    value ? this.txForm?.disable() : this.txForm?.enable();
+    this.pIsDelLoading = value;
   }
 
   async ngOnInit(): Promise<void> {
     await Promise.all([this.loadCategories()]);
-    this.txForm.get('category')?.setValue(this.data.category);
+    this.txForm.get('category')?.setValue(this.transaction.category);
   }
 
   public async onUpdateClick(): Promise<void> {}
 
-  public async onDeleteClick(): Promise<void> {}
+  public async onDeleteClick(): Promise<void> {
+    const allow = await this.confirm.prompt('Confirm Deletion?');
+    if (!allow) {
+      return;
+    }
+
+    this.isDelLoading = true;
+
+    const token = this.authService.getToken();
+    try {
+      await this.ledgerquill.deleteTransaction(token, this.transaction.id);
+      this.data.onDelete(this.transaction.index);
+      this.snack.success('Transaction deleted.');
+      this.sheetRef.dismiss();
+    } catch (err) {
+      this.snack.error(err.message);
+    }
+
+    this.isDelLoading = false;
+  }
 
   private async loadCategories(): Promise<void> {
     this.isCategoryLoading = true;

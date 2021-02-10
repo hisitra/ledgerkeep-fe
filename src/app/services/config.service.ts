@@ -14,6 +14,9 @@ export interface ServiceConfig {
     category: string;
     transaction: string;
   };
+  ledgerquill: {
+    transaction: string;
+  };
 }
 
 @Injectable({

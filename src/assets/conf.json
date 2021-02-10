@@ -10,5 +10,8 @@
     "categoryCount": "http://lens.ledgerkeep.com/api/user_access/category/count",
     "category": "http://lens.ledgerkeep.com/api/user_access/category",
     "transaction": "http://lens.ledgerkeep.com/api/user_access/transaction"
+  },
+  "ledgerquill": {
+    "transaction": "http://quill.ledgerkeep.com/api/user_access/transaction"
   }
 }

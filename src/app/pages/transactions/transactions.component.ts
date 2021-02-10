@@ -106,10 +106,12 @@ export class TransactionsComponent implements AfterViewInit {
       this.dataSource = new MatTableDataSource<any>(
         (docs as any[]).map((value, index) => {
           return {
-            index: index + 1,
+            index,
+            id: value.transaction_id,
             amount: value.amount,
             date: value.timestamp,
             category: value.category,
+            notes: value.notes,
           };
         }),
       );
@@ -120,7 +122,15 @@ export class TransactionsComponent implements AfterViewInit {
   }
 
   public onRowClick(row: { [key: string]: any }): void {
-    this.bottomSheet.open(EditTransactionComponent, { data: row, panelClass: 'bottom-sheet' });
+    this.bottomSheet.open(EditTransactionComponent, {
+      panelClass: 'bottom-sheet',
+      data: {
+        tx: row,
+        onDelete: (index: number) => {
+          this.dataSource.data = this.dataSource.data.filter((value, i) => i !== index);
+        },
+      },
+    });
   }
 
   private async getCurrentQuery(): Promise<{ [key: string]: string | null }> {

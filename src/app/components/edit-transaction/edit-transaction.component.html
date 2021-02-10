@@ -27,8 +27,16 @@
     <app-loading-button
       class="right-btn"
       btnText="Update"
+      [loading]="isUpdLoading"
+      [disabled]="isDelLoading"
       (click)="onUpdateClick()"
     ></app-loading-button>
-    <button mat-raised-button type="button" color="warn" (click)="onDeleteClick()">Delete</button>
+    <app-loading-button
+      btnText="Delete"
+      btnColor="warn"
+      (click)="onDeleteClick()"
+      [loading]="isDelLoading"
+      [disabled]="isUpdLoading"
+    ></app-loading-button>
   </div>
 </form>
