@@ -26,6 +26,19 @@ export class LedgerquillService {
     }
   }
 
+  public async updateTransaction(token: string, txID: string, body: any): Promise<void> {
+    const conf = await this.configService.get();
+    const headers = { authorization: token };
+
+    try {
+      await this.http
+        .patch(`${conf.ledgerquill.transaction}/${txID}`, body, { headers })
+        .toPromise();
+    } catch (err) {
+      await this.handleError(err, {});
+    }
+  }
+
   public async deleteTransaction(token: string, txID: string): Promise<void> {
     const conf = await this.configService.get();
     const headers = { authorization: token };

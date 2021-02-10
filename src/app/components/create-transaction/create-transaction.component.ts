@@ -75,7 +75,7 @@ export class CreateTransactionComponent implements OnInit {
       amount: (values.amountType === 'debit' ? -1 : 1) * Math.abs(values.amount),
       timestamp: values.date.getTime(),
       category_name: values.category,
-      notes: values.notes,
+      notes: values.notes || '',
     };
 
     this.isLoading = true;

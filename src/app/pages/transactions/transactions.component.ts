@@ -128,6 +128,14 @@ export class TransactionsComponent implements AfterViewInit {
         onDelete: () => {
           this.dataSource.data = this.dataSource.data.filter((value, i) => i !== index);
         },
+        onUpdate: (body: any) => {
+          row.amount = body.amount;
+          row.date = new Date(body.timestamp);
+          row.category = body.category_name;
+          row.notes = body.notes;
+
+          this.dataSource.data[index] = row;
+        },
       },
     });
   }
@@ -143,6 +151,9 @@ export class TransactionsComponent implements AfterViewInit {
           delete data.category_name;
 
           this.dataSource.data = [data, ...this.dataSource.data];
+          if (this.paginator) {
+            this.paginator.length += 1;
+          }
         },
       },
     });

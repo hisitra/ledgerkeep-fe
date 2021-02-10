@@ -88,6 +88,36 @@ export class EditTransactionComponent implements OnInit {
     if (this.txForm.invalid) {
       return;
     }
+
+    const values = this.txForm.value;
+    const body: any = {
+      amount: (values.amountType === 'debit' ? -1 : 1) * Math.abs(values.amount),
+      timestamp: values.date.getTime(),
+      category_name: values.category,
+      notes: values.notes || '',
+    };
+
+    const amountSame = this.transaction.amount === body.amount;
+    const dateSame = this.transaction.date === body.timestamp;
+    const categorySame = this.transaction.category === body.category_name;
+    const notesSame = this.transaction.notes === body.notes;
+    if (amountSame && dateSame && categorySame && notesSame) {
+      this.snack.warn('No updates provided.');
+      return;
+    }
+
+    const token = await this.authService.getToken();
+    this.isUpdLoading = true;
+    try {
+      await this.ledgerquill.updateTransaction(token, this.transaction.id, body);
+
+      this.data.onUpdate(body);
+      this.snack.success('Transaction updated.');
+      this.sheetRef.dismiss();
+    } catch (err) {
+      this.snack.error(err.message);
+    }
+    this.isUpdLoading = false;
   }
 
   public async onDeleteClick(): Promise<void> {
