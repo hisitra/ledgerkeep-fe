@@ -35,7 +35,8 @@ export class EditTransactionComponent implements OnInit {
     this.transaction = this.data.tx;
 
     this.txForm = this.formBuilder.group({
-      amount: [this.transaction.amount],
+      amount: [Math.abs(this.transaction.amount)],
+      amountType: [this.transaction.amount < 0 ? 'debit' : 'credit'],
       date: [new Date(this.transaction.date)],
       category: [this.transaction.category],
       notes: [this.transaction.notes],

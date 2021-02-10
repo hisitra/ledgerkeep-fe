@@ -4,6 +4,10 @@
     <mat-label>Amount</mat-label>
     <input type="number" matInput formControlName="amount" />
   </mat-form-field>
+  <mat-radio-group formControlName="amountType">
+    <mat-radio-button value="debit">Debit</mat-radio-button>
+    <mat-radio-button value="credit">Credit</mat-radio-button>
+  </mat-radio-group>
   <mat-form-field appearance="outline">
     <mat-label>Date</mat-label>
     <input matInput [matDatepicker]="datePicker" formControlName="date" />
