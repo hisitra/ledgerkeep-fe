@@ -1,1 +1,31 @@
-<p>statistics works!</p>
+<div class="container" fxFlex fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex="50" fxFlex.xs="66" fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+    <div fxFlex="50">
+      <app-chart-card
+        #debitPieChart
+        titleIcon="pie_chart"
+        title="Debit Pie Chart"
+        subtitle="Shows your category-wise debits."
+        [isChartLoading]="isDebitPieLoading"
+      ></app-chart-card>
+    </div>
+    <div fxFlex="50">
+      <app-chart-card
+        #creditPieChart
+        titleIcon="pie_chart"
+        title="Credit Pie Chart"
+        subtitle="Shows your category-wise credits."
+        [isChartLoading]="isCreditPieLoading"
+      ></app-chart-card>
+    </div>
+  </div>
+  <div fxFlex="50" fxFlex.xs="34">
+    <app-chart-card
+      #balanceChart
+      titleIcon="leaderboard"
+      title="Balance Chart"
+      subtitle="Shows how your balance varied over time."
+      [isChartLoading]="isBalanceLineLoading"
+    ></app-chart-card>
+  </div>
+</div>

@@ -14,6 +14,7 @@ export interface ServiceConfig {
     category: string;
     transaction: string;
     transactionSumByCategory: string;
+    transactionSumByInterval: string;
   };
   ledgerquill: {
     transaction: string;

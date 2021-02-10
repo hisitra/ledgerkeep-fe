@@ -54,6 +54,17 @@ export class LedgerlensService {
     }
   }
 
+  async getTransactionSumByInterval(token: string): Promise<any> {
+    const conf = await this.configService.get();
+    const headers = { authorization: token };
+
+    try {
+      return await this.http.get(conf.ledgerlens.transactionSumByInterval, { headers }).toPromise();
+    } catch (err) {
+      await this.handleError(err, {});
+    }
+  }
+
   async getTransactionSumByCategory(token: string, queries: any = {}): Promise<any> {
     const conf = await this.configService.get();
     const headers = { authorization: token };
