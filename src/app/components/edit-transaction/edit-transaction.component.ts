@@ -1,11 +1,21 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LedgerlensService } from '../../services/ledgerlens.service';
 import { AuthService } from '../../services/auth.service';
 import { SnackService } from '../../services/snack.service';
 import { ConfirmService } from '../../services/confirm.service';
 import { LedgerquillService } from '../../services/ledgerquill.service';
+
+const amountValidator = (formGroup: FormGroup) => {
+  const amount = formGroup.controls.amount;
+  const value = parseFloat(amount.value);
+  if (isNaN(value) || value <= 0) {
+    amount.setErrors({ invalid: true });
+  } else {
+    amount.setErrors(null);
+  }
+};
 
 @Component({
   selector: 'app-edit-transaction',
@@ -34,13 +44,18 @@ export class EditTransactionComponent implements OnInit {
   ) {
     this.transaction = this.data.tx;
 
-    this.txForm = this.formBuilder.group({
-      amount: [Math.abs(this.transaction.amount)],
-      amountType: [this.transaction.amount < 0 ? 'debit' : 'credit'],
-      date: [new Date(this.transaction.date)],
-      category: [this.transaction.category],
-      notes: [this.transaction.notes],
-    });
+    this.txForm = this.formBuilder.group(
+      {
+        amount: [Math.abs(this.transaction.amount), Validators.required],
+        amountType: [this.transaction.amount < 0 ? 'debit' : 'credit', Validators.required],
+        date: [new Date(this.transaction.date), Validators.required],
+        category: [this.transaction.category, Validators.required],
+        notes: [this.transaction.notes],
+      },
+      {
+        validators: [amountValidator],
+      },
+    );
   }
 
   get isUpdLoading(): boolean {
@@ -66,9 +81,20 @@ export class EditTransactionComponent implements OnInit {
     this.txForm.get('category')?.setValue(this.transaction.category);
   }
 
-  public async onUpdateClick(): Promise<void> {}
+  public async onUpdateClick(): Promise<void> {
+    if (this.isUpdLoading || this.isDelLoading) {
+      return;
+    }
+    if (this.txForm.invalid) {
+      return;
+    }
+  }
 
   public async onDeleteClick(): Promise<void> {
+    if (this.isUpdLoading || this.isDelLoading) {
+      return;
+    }
+
     const allow = await this.confirm.prompt('Confirm Deletion?');
     if (!allow) {
       return;

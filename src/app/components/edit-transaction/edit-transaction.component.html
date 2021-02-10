@@ -3,6 +3,13 @@
   <mat-form-field appearance="outline">
     <mat-label>Amount</mat-label>
     <input type="number" matInput formControlName="amount" />
+    <mat-error *ngIf="txForm?.get('amount')?.hasError('required')">Amount is required.</mat-error>
+    <mat-error
+      *ngIf="
+        !txForm?.get('amount')?.hasError('required') && txForm?.get('amount')?.hasError('invalid')
+      "
+      >Should be a positive number.</mat-error
+    >
   </mat-form-field>
   <mat-radio-group formControlName="amountType">
     <mat-radio-button value="debit">Debit</mat-radio-button>
@@ -13,6 +20,7 @@
     <input matInput [matDatepicker]="datePicker" formControlName="date" />
     <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
     <mat-datepicker #datePicker></mat-datepicker>
+    <mat-error *ngIf="txForm?.get('date')?.hasError('required')">Date is required.</mat-error>
   </mat-form-field>
   <mat-progress-bar mode="indeterminate" *ngIf="isCategoryLoading"></mat-progress-bar>
   <mat-form-field appearance="outline">
@@ -22,6 +30,9 @@
         {{ catName }}
       </mat-option>
     </mat-select>
+    <mat-error *ngIf="txForm?.get('category')?.hasError('required')"
+      >Category is required.</mat-error
+    >
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Notes</mat-label>
