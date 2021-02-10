@@ -132,6 +132,8 @@ export class TransactionsComponent implements AfterViewInit {
     });
   }
 
+  onAddClick(): void {}
+
   private async getCurrentQuery(): Promise<{ [key: string]: string | null }> {
     return new Promise((resolve) => {
       const subscription = this.route.queryParamMap.subscribe((params: ParamMap) => {

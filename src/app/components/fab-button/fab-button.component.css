@@ -1,0 +1,9 @@
+.bottom-right {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

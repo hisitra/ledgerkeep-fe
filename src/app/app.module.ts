@@ -49,6 +49,7 @@ import { ActionHeaderCardComponent } from './components/action-header-card/actio
 import { TransactionFilterFormComponent } from './components/transaction-filter-form/transaction-filter-form.component';
 import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
 import { EditTransactionComponent } from './components/edit-transaction/edit-transaction.component';
+import { FabButtonComponent } from './components/fab-button/fab-button.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { EditTransactionComponent } from './components/edit-transaction/edit-tra
     TransactionFilterFormComponent,
     LoadingButtonComponent,
     EditTransactionComponent,
+    FabButtonComponent,
   ],
   imports: [
     BrowserModule,
