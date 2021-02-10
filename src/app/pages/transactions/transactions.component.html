@@ -7,6 +7,7 @@
       [onAction]="secDrawService.toggle.bind(secDrawService)"
     ></app-action-header-card>
 
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
     <div class="mat-elevation-z4">
       <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="index">
@@ -42,9 +43,6 @@
           (click)="onRowClick(row, ind)"
         ></tr>
       </table>
-      <div *ngIf="isLoading" class="table-spinner">
-        <mat-spinner diameter="30"></mat-spinner>
-      </div>
       <mat-paginator
         #paginator
         [pageSizeOptions]="allowedLimits"

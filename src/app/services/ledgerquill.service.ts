@@ -28,6 +28,19 @@ export class LedgerquillService {
     }
   }
 
+  public async deleteCategory(token: string, name: string): Promise<void> {
+    const conf = await this.configService.get();
+    const headers = { authorization: token };
+
+    try {
+      await this.http.delete(`${conf.ledgerquill.category}/${name}`, { headers }).toPromise();
+    } catch (err) {
+      await this.handleError(err, {
+        [this.constants.CustomCodes.CategoryInUse]: 'Category is not empty.',
+      });
+    }
+  }
+
   public async createTransaction(token: string, body: any): Promise<any> {
     const conf = await this.configService.get();
     const headers = { authorization: token };

@@ -5,6 +5,7 @@ import { CreateCategoryComponent } from '../../components/create-category/create
 import { LedgerlensService } from '../../services/ledgerlens.service';
 import { AuthService } from '../../services/auth.service';
 import { SnackService } from '../../services/snack.service';
+import { LedgerquillService } from '../../services/ledgerquill.service';
 
 @Component({
   selector: 'app-categories',
@@ -13,6 +14,8 @@ import { SnackService } from '../../services/snack.service';
 })
 export class CategoriesComponent implements OnInit {
   public isLoading = false;
+  public delLoaderCount = 0;
+  public delLoaders: { [key: string]: boolean } = {};
 
   displayedColumns: string[] = ['index', 'name', 'sum', 'actions'];
 
@@ -21,6 +24,7 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private bottomSheet: MatBottomSheet,
     private ledgerlens: LedgerlensService,
+    private ledgerquill: LedgerquillService,
     private authService: AuthService,
     private snack: SnackService,
   ) {}
@@ -33,9 +37,29 @@ export class CategoriesComponent implements OnInit {
 
   onRowClick(row: any, ind: number): void {}
 
-  onDeleteClick($event: MouseEvent, element: any): void {
+  async onDeleteClick($event: MouseEvent, element: any, ind: number): Promise<void> {
     $event.preventDefault();
     $event.stopPropagation();
+
+    if (this.delLoaders[element.name]) {
+      return;
+    }
+    this.delLoaders[element.name] = true;
+    this.delLoaderCount += 1;
+
+    const token = this.authService.getToken();
+
+    try {
+      await this.ledgerquill.deleteCategory(token, element.name);
+
+      this.snack.success(`Deleted '${element.name}'.`);
+      this.dataSource.data = this.dataSource.data.filter((value, i) => i !== ind);
+    } catch (err) {
+      this.snack.error(err.message);
+    }
+
+    delete this.delLoaders[element.name];
+    this.delLoaderCount -= 1;
   }
 
   async loadCategoryData(): Promise<void> {
