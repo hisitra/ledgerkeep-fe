@@ -30,7 +30,8 @@
   <div class="btn-div">
     <app-loading-button
       btnText="Create"
-      [loading]="isLoading || isCategoryLoading"
+      [loading]="isLoading"
+      [disabled]="isCategoryLoading"
       (click)="onCreateClick()"
     ></app-loading-button>
   </div>
