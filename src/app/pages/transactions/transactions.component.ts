@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { SecondaryDrawerService } from '../../services/secondary-drawer.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
