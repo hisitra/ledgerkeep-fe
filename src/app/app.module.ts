@@ -51,6 +51,7 @@ import { LoadingButtonComponent } from './components/loading-button/loading-butt
 import { EditTransactionComponent } from './components/edit-transaction/edit-transaction.component';
 import { FabButtonComponent } from './components/fab-button/fab-button.component';
 import { CreateTransactionComponent } from './components/create-transaction/create-transaction.component';
+import { CreateCategoryComponent } from './components/create-category/create-category.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { CreateTransactionComponent } from './components/create-transaction/crea
     EditTransactionComponent,
     FabButtonComponent,
     CreateTransactionComponent,
+    CreateCategoryComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ export class ConstantsService {
   public CustomCodes = {
     Unauthorized: 'UNAUTHORIZED_OPERATION_ERROR',
     TokenExpired: 'TOKEN_EXPIRED',
+    CategoryAlreadyExists: 'CATEGORY_ALREADY_EXISTS',
   };
 
   public Errors = {

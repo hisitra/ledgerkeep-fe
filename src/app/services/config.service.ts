@@ -13,9 +13,14 @@ export interface ServiceConfig {
     categoryCount: string;
     category: string;
     transaction: string;
+    transactionSumByCategory: string;
   };
   ledgerquill: {
     transaction: string;
+    category: string;
+  };
+  validations: {
+    categoryNamePattern: string;
   };
 }
 

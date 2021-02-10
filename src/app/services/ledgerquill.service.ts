@@ -15,6 +15,19 @@ export class LedgerquillService {
     private authService: AuthService,
   ) {}
 
+  public async createCategory(token: string, name: string): Promise<void> {
+    const conf = await this.configService.get();
+    const headers = { authorization: token };
+
+    try {
+      await this.http.put(`${conf.ledgerquill.category}/${name}`, null, { headers }).toPromise();
+    } catch (err) {
+      await this.handleError(err, {
+        [this.constants.CustomCodes.CategoryAlreadyExists]: 'Category already exists.',
+      });
+    }
+  }
+
   public async createTransaction(token: string, body: any): Promise<any> {
     const conf = await this.configService.get();
     const headers = { authorization: token };
