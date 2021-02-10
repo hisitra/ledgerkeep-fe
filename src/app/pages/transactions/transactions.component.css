@@ -1,7 +1,3 @@
-.remaining-height {
-  height: calc(100vh - 54px);
-}
-
 .content {
   margin-top: 10px;
   margin-bottom: 50px;
