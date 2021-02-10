@@ -54,6 +54,19 @@ export class LedgerlensService {
     }
   }
 
+  async getTransactionSumByCategory(token: string, queries: any = {}): Promise<any> {
+    const conf = await this.configService.get();
+    const headers = { authorization: token };
+
+    try {
+      return await this.http
+        .get(conf.ledgerlens.transactionSumByCategory, { headers, params: queries })
+        .toPromise();
+    } catch (err) {
+      await this.handleError(err, {});
+    }
+  }
+
   async getCategoryCount(token: string): Promise<any> {
     const conf = await this.configService.get();
     const headers = { authorization: token };

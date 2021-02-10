@@ -1,0 +1,21 @@
+.content {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+table {
+  width: 100%;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.row:hover {
+  background: whitesmoke;
+  cursor: pointer;
+}

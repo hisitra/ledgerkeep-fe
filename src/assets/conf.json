@@ -9,9 +9,14 @@
     "transactionCount": "http://lens.ledgerkeep.com/api/user_access/transaction/count",
     "categoryCount": "http://lens.ledgerkeep.com/api/user_access/category/count",
     "category": "http://lens.ledgerkeep.com/api/user_access/category",
-    "transaction": "http://lens.ledgerkeep.com/api/user_access/transaction"
+    "transaction": "http://lens.ledgerkeep.com/api/user_access/transaction",
+    "transactionSumByCategory": "http://lens.ledgerkeep.com/api/user_access/transaction/sum_by_category"
   },
   "ledgerquill": {
+    "category": "http://quill.ledgerkeep.com/api/user_access/category",
     "transaction": "http://quill.ledgerkeep.com/api/user_access/transaction"
+  },
+  "validations": {
+    "categoryNamePattern": "^[a-zA-Z0-9-_]+$"
   }
 }

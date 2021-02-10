@@ -1,0 +1,22 @@
+<h1>Create Category</h1>
+
+<form [formGroup]="catForm" (submit)="onCreateClick()">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" autocomplete="off" />
+    <mat-error *ngIf="catForm?.get('name')?.hasError('required')">Name is required.</mat-error>
+    <mat-error
+      *ngIf="
+        !catForm?.get('name')?.hasError('required') && catForm?.get('name')?.hasError('pattern')
+      "
+      >Contains invalid characters.</mat-error
+    >
+  </mat-form-field>
+  <div class="btn-div">
+    <app-loading-button
+      btnText="Create"
+      [loading]="isLoading"
+      (click)="onCreateClick()"
+    ></app-loading-button>
+  </div>
+</form>
