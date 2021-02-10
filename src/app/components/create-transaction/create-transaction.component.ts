@@ -1,8 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LedgerlensService } from '../../services/ledgerlens.service';
 import { AuthService } from '../../services/auth.service';
 import { SnackService } from '../../services/snack.service';
+
+const amountValidator = (formGroup: FormGroup) => {
+  const amount = formGroup.controls.amount;
+  const value = parseFloat(amount.value);
+  if (isNaN(value) || value <= 0) {
+    amount.setErrors({ invalid: true });
+  } else {
+    amount.setErrors(null);
+  }
+};
 
 @Component({
   selector: 'app-create-transaction',
@@ -22,13 +32,18 @@ export class CreateTransactionComponent implements OnInit {
     private authService: AuthService,
     private snack: SnackService,
   ) {
-    this.txForm = this.formBuilder.group({
-      amount: [''],
-      amountType: ['debit'],
-      date: [new Date()],
-      category: [''],
-      notes: [''],
-    });
+    this.txForm = this.formBuilder.group(
+      {
+        amount: ['', Validators.required],
+        amountType: ['debit', Validators.required],
+        date: [new Date(), Validators.required],
+        category: ['', Validators.required],
+        notes: [''],
+      },
+      {
+        validators: [amountValidator],
+      },
+    );
   }
 
   async ngOnInit(): Promise<void> {
@@ -48,6 +63,5 @@ export class CreateTransactionComponent implements OnInit {
       this.snack.error('Failed to load categories.');
     }
     this.isCategoryLoading = false;
-    console.log(this.catNames);
   }
 }
