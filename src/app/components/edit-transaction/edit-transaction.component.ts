@@ -79,7 +79,7 @@ export class EditTransactionComponent implements OnInit {
     const token = this.authService.getToken();
     try {
       await this.ledgerquill.deleteTransaction(token, this.transaction.id);
-      this.data.onDelete(this.transaction.index);
+      this.data.onDelete();
       this.snack.success('Transaction deleted.');
       this.sheetRef.dismiss();
     } catch (err) {

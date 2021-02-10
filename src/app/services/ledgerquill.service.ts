@@ -15,6 +15,17 @@ export class LedgerquillService {
     private authService: AuthService,
   ) {}
 
+  public async createTransaction(token: string, body: any): Promise<any> {
+    const conf = await this.configService.get();
+    const headers = { authorization: token };
+
+    try {
+      return await this.http.post(conf.ledgerquill.transaction, body, { headers }).toPromise();
+    } catch (err) {
+      await this.handleError(err, {});
+    }
+  }
+
   public async deleteTransaction(token: string, txID: string): Promise<void> {
     const conf = await this.configService.get();
     const headers = { authorization: token };

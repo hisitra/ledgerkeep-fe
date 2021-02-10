@@ -37,9 +37,9 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr
           mat-row
-          *matRowDef="let row; columns: displayedColumns"
+          *matRowDef="let row; let ind = index; columns: displayedColumns"
           class="row"
-          (click)="onRowClick(row)"
+          (click)="onRowClick(row, ind)"
         ></tr>
       </table>
       <div *ngIf="isLoading" class="table-spinner">
