@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
 import { SnackService } from '../../services/snack.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { EditTransactionComponent } from '../../components/edit-transaction/edit-transaction.component';
+import { CreateTransactionComponent } from '../../components/create-transaction/create-transaction.component';
 
 @Component({
   selector: 'app-transactions',
@@ -132,7 +133,12 @@ export class TransactionsComponent implements AfterViewInit {
     });
   }
 
-  onAddClick(): void {}
+  onAddClick(): void {
+    this.bottomSheet.open(CreateTransactionComponent, {
+      panelClass: 'bottom-sheet',
+      data: { onCreate: (data: any) => {} },
+    });
+  }
 
   private async getCurrentQuery(): Promise<{ [key: string]: string | null }> {
     return new Promise((resolve) => {
