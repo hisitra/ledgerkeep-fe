@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +13,16 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +45,12 @@ import { AuthFailureComponent } from './pages/auth-failure/auth-failure.componen
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { IconTitleRowComponent } from './components/icon-title-row/icon-title-row.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { ActionHeaderCardComponent } from './components/action-header-card/action-header-card.component';
+import { TransactionFilterFormComponent } from './components/transaction-filter-form/transaction-filter-form.component';
+import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
+import { EditTransactionComponent } from './components/edit-transaction/edit-transaction.component';
+import { FabButtonComponent } from './components/fab-button/fab-button.component';
+import { CreateTransactionComponent } from './components/create-transaction/create-transaction.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +73,12 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     SnackbarComponent,
     IconTitleRowComponent,
     ConfirmDialogComponent,
+    ActionHeaderCardComponent,
+    TransactionFilterFormComponent,
+    LoadingButtonComponent,
+    EditTransactionComponent,
+    FabButtonComponent,
+    CreateTransactionComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +86,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     BrowserAnimationsModule,
     HttpClientModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -72,6 +96,16 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     MatProgressSpinnerModule,
     MatCardModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatProgressBarModule,
+    MatRadioModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatBottomSheetModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

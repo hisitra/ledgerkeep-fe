@@ -11,6 +11,11 @@ export interface ServiceConfig {
     transactionSum: string;
     transactionCount: string;
     categoryCount: string;
+    category: string;
+    transaction: string;
+  };
+  ledgerquill: {
+    transaction: string;
   };
 }
 

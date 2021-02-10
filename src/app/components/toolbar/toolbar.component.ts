@@ -12,6 +12,7 @@ export class ToolbarComponent implements OnInit {
   public readonly applicationName = 'LedgerKeep';
 
   @Input() sidebar: MatDrawer | undefined;
+  @Input() secondarySidebar: MatDrawer | undefined;
 
   constructor(public authService: AuthService, private confirm: ConfirmService) {}
 
@@ -27,6 +28,7 @@ export class ToolbarComponent implements OnInit {
       return;
     }
     this.sidebar?.close();
+    this.secondarySidebar?.close();
     await this.authService.logout();
   }
 }

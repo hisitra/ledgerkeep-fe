@@ -1,0 +1,26 @@
+.remaining-height {
+  height: calc(100vh - 54px);
+}
+
+.content {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+table {
+  width: 100%;
+}
+
+.table-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.row:hover {
+  background: whitesmoke;
+  cursor: pointer;
+}

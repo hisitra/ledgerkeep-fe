@@ -1,0 +1,22 @@
+h1 {
+  margin-top: 10px;
+  font-weight: lighter;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+  margin-bottom: 20px;
+}
+
+.btn-div {
+  text-align: end;
+  margin-bottom: 10px;
+}
+
+.right-btn {
+  margin-right: 10px;
+}

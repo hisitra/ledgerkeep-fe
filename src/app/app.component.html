@@ -1,7 +1,12 @@
-<app-toolbar [sidebar]="drawer"></app-toolbar>
+<app-toolbar [sidebar]="drawer" [secondarySidebar]="secondaryDrawer"></app-toolbar>
 <mat-drawer-container hasBackdrop="true" (click)="drawer.close()" class="remaining-height">
-  <mat-drawer #drawer mode="over">
+  <mat-drawer #drawer mode="over" autoFocus="false">
     <app-sidebar-content></app-sidebar-content>
+  </mat-drawer>
+  <mat-drawer #secondaryDrawer mode="over" position="end" autoFocus="false">
+    <app-transaction-filter-form
+      *ngIf="router.url.startsWith('/transactions')"
+    ></app-transaction-filter-form>
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet></router-outlet>

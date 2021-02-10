@@ -1,0 +1,38 @@
+.container {
+  padding: 10px;
+  margin-right: 5vw;
+  margin-bottom: 25px;
+}
+
+.mid-align {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.header {
+  font-weight: lighter;
+  font-size: large;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-form-field {
+  display: block;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.btn-div {
+  text-align: end;
+  margin-top: 30px;
+}
+
+.ok-btn {
+  margin-right: 10px;
+}

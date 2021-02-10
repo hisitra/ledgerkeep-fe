@@ -52,7 +52,8 @@ export class ProfileComponent implements OnInit {
   private async loadBalance(): Promise<void> {
     const token = await this.authService.getToken();
     try {
-      this.userBalance = await this.ledgerlens.getBalance(token);
+      const bal = await this.ledgerlens.getBalance(token);
+      this.userBalance = Math.round(bal * 100) / 100;
     } catch (err) {
       this.snack.error(err.message);
     }

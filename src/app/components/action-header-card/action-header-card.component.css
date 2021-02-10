@@ -1,0 +1,18 @@
+mat-card {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.mid-align {
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  font-weight: lighter;
+  font-size: x-large;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
