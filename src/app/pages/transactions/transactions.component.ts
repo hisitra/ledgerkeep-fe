@@ -104,7 +104,7 @@ export class TransactionsComponent implements AfterViewInit {
       }
 
       this.dataSource = new MatTableDataSource<any>(
-        (docs as any[]).map((value, index) => {
+        (docs as any[]).map((value) => {
           return {
             id: value.transaction_id,
             amount: Math.round(value.amount * 100) / 100,
