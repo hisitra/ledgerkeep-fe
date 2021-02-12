@@ -52,6 +52,7 @@ import { FabButtonComponent } from './components/fab-button/fab-button.component
 import { CreateTransactionComponent } from './components/create-transaction/create-transaction.component';
 import { CreateCategoryComponent } from './components/create-category/create-category.component';
 import { ChartCardComponent } from './components/chart-card/chart-card.component';
+import { PieFilterComponent } from './components/pie-filter/pie-filter.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { ChartCardComponent } from './components/chart-card/chart-card.component
     CreateTransactionComponent,
     CreateCategoryComponent,
     ChartCardComponent,
+    PieFilterComponent,
   ],
   imports: [
     BrowserModule,

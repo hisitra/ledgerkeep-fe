@@ -7,6 +7,7 @@
         title="Debit Pie Chart"
         subtitle="Shows your category-wise debits."
         [isChartLoading]="isDebitPieLoading"
+        moreLink="/debit-pie"
       ></app-chart-card>
     </div>
     <div fxFlex="50">
@@ -16,6 +17,7 @@
         title="Credit Pie Chart"
         subtitle="Shows your category-wise credits."
         [isChartLoading]="isCreditPieLoading"
+        moreLink="/credit-pie"
       ></app-chart-card>
     </div>
   </div>
@@ -26,6 +28,7 @@
       title="Balance Chart"
       subtitle="Shows how your balance varied over time."
       [isChartLoading]="isBalanceLineLoading"
+      moreLink="/balance-line"
     ></app-chart-card>
   </div>
   <div fxFlex="50" fxFlex.xs="34">
@@ -35,6 +38,7 @@
       title="Transaction Count Chart"
       subtitle="Shows how your transaction count varied over time."
       [isChartLoading]="isTransactionCountLineLoading"
+      moreLink="/transaction-count-line"
     ></app-chart-card>
   </div>
 </div>

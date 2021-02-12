@@ -7,6 +7,9 @@
     <app-transaction-filter-form
       *ngIf="router.url.startsWith('/transactions')"
     ></app-transaction-filter-form>
+    <app-pie-filter
+      *ngIf="router.url.startsWith('/debit-pie') || router.url.startsWith('/credit-pie')"
+    ></app-pie-filter>
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet></router-outlet>

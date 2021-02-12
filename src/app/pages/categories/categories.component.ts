@@ -78,7 +78,7 @@ export class CategoriesComponent implements OnInit {
 
     const tableData: any[] = [];
     Object.keys(results[0]).forEach((key) => {
-      tableData.push({ name: key, sum: results[0][key] });
+      tableData.push({ name: key, sum: Math.round(results[0][key] * 100) / 100 });
     });
 
     (results[1] as any[]).forEach((entry) => {
