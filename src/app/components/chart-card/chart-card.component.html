@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-header>
+    <mat-icon mat-card-avatar>{{ titleIcon }}</mat-icon>
+    <mat-card-title>{{ title }}</mat-card-title>
+    <mat-card-subtitle>{{ subtitle }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-spinner diameter="20" *ngIf="isChartLoading || !isLoaded"></mat-spinner>
+  <mat-card-content [id]="chartHolderID"></mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions align="end">
+    <button mat-icon-button><mat-icon>open_in_new</mat-icon></button>
+  </mat-card-actions>
+</mat-card>
