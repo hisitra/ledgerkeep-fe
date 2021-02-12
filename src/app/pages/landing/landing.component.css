@@ -1,0 +1,11 @@
+:host {
+  height: calc(100vh - 54px);
+}
+
+button {
+  width: 200px;
+}
+
+.bottom-btn {
+  margin-top: 10px;
+}

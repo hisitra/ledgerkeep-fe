@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService, ServiceConfig } from '../../services/config.service';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-landing',
@@ -7,6 +8,9 @@ import { ConfigService, ServiceConfig } from '../../services/config.service';
   styleUrls: ['./landing.component.css'],
 })
 export class LandingComponent implements OnInit {
+  public googleColor: ThemePalette;
+  public fbColor: ThemePalette;
+
   constructor(private configService: ConfigService) {}
 
   ngOnInit(): void {}
