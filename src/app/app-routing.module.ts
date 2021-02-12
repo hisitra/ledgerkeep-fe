@@ -8,7 +8,6 @@ import { DebitPieComponent } from './pages/debit-pie/debit-pie.component';
 import { CreditPieComponent } from './pages/credit-pie/credit-pie.component';
 import { BalanceLineComponent } from './pages/balance-line/balance-line.component';
 import { TransactionCountLineComponent } from './pages/transaction-count-line/transaction-count-line.component';
-import { BalanceVarianceLineComponent } from './pages/balance-variance-line/balance-variance-line.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { OnlyLoggedOutService } from './guards/only-logged-out.service';
@@ -27,11 +26,6 @@ const routes: Routes = [
   {
     path: 'transaction-count-line',
     component: TransactionCountLineComponent,
-    canActivate: [OnlyLoggedInService],
-  },
-  {
-    path: 'balance-variance-line',
-    component: BalanceVarianceLineComponent,
     canActivate: [OnlyLoggedInService],
   },
   { path: 'about', component: AboutComponent },
