@@ -6,8 +6,8 @@
   </mat-card-header>
   <mat-spinner diameter="20" *ngIf="isChartLoading || !isLoaded"></mat-spinner>
   <mat-card-content [id]="chartHolderID"></mat-card-content>
-  <mat-divider></mat-divider>
-  <mat-card-actions align="end">
+  <mat-divider *ngIf="showActions"></mat-divider>
+  <mat-card-actions align="end" *ngIf="showActions">
     <button mat-icon-button [routerLink]="moreLink"><mat-icon>open_in_new</mat-icon></button>
   </mat-card-actions>
 </mat-card>
