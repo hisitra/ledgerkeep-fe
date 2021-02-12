@@ -13,6 +13,7 @@ export interface ServiceConfig {
     categoryCount: string;
     category: string;
     transaction: string;
+    transactionCountByInterval: string;
     transactionSumByCategory: string;
     transactionSumByInterval: string;
   };

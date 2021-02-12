@@ -28,10 +28,12 @@ export class StatisticsComponent implements AfterViewInit {
   @ViewChild('debitPieChart') debitPieChart: ChartCardComponent | undefined;
   @ViewChild('creditPieChart') creditPieChart: ChartCardComponent | undefined;
   @ViewChild('balanceChart') balanceChart: ChartCardComponent | undefined;
+  @ViewChild('transactionCountChart') transactionCountChart: ChartCardComponent | undefined;
 
   public isDebitPieLoading = true;
   public isCreditPieLoading = true;
   public isBalanceLineLoading = true;
+  public isTransactionCountLineLoading = true;
 
   constructor(
     private ledgerlens: LedgerlensService,
@@ -50,6 +52,10 @@ export class StatisticsComponent implements AfterViewInit {
 
     this.loadBalanceChart().finally(() => {
       this.isBalanceLineLoading = false;
+    });
+
+    this.loadTransactionCountChart().finally(() => {
+      this.isTransactionCountLineLoading = false;
     });
   }
 
@@ -99,7 +105,6 @@ export class StatisticsComponent implements AfterViewInit {
     const token = this.authService.getToken();
     try {
       result = await this.ledgerlens.getTransactionSumByInterval(token);
-      console.log(result);
     } catch (err) {
       this.snack.error(err.message);
       return;
@@ -117,5 +122,30 @@ export class StatisticsComponent implements AfterViewInit {
     });
 
     this.balanceChart?.addAreaChart(table);
+  }
+
+  private async loadTransactionCountChart(): Promise<void> {
+    let result: { [key: string]: number };
+
+    const token = this.authService.getToken();
+    try {
+      result = await this.ledgerlens.getTransactionCountByInterval(token);
+    } catch (err) {
+      this.snack.error(err.message);
+      return;
+    }
+
+    const table: any[] = [['Time', 'Count']];
+
+    let totalCount = 0;
+    Object.keys(result).forEach((time: string) => {
+      const date = new Date(parseInt(time, 10));
+      totalCount += result[time];
+
+      const truncYear = date.getFullYear().toString().slice(2);
+      table.push([`${monthNames[date.getMonth()]} ${date.getDate()}, '${truncYear}`, totalCount]);
+    });
+
+    this.transactionCountChart?.addAreaChart(table);
   }
 }

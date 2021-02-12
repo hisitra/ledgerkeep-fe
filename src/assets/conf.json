@@ -10,6 +10,7 @@
     "categoryCount": "http://lens.ledgerkeep.com/api/user_access/category/count",
     "category": "http://lens.ledgerkeep.com/api/user_access/category",
     "transaction": "http://lens.ledgerkeep.com/api/user_access/transaction",
+    "transactionCountByInterval": "http://lens.ledgerkeep.com/api/user_access/transaction/count_by_interval",
     "transactionSumByCategory": "http://lens.ledgerkeep.com/api/user_access/transaction/sum_by_category",
     "transactionSumByInterval": "http://lens.ledgerkeep.com/api/user_access/transaction/sum_by_interval"
   },

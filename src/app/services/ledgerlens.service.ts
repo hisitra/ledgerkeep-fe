@@ -26,13 +26,13 @@ export class LedgerlensService {
     }
   }
 
-  async getBalance(token: string): Promise<any> {
+  async getBalance(token: string, queries: any = {}): Promise<any> {
     const conf = await this.configService.get();
     const headers = { authorization: token };
 
     try {
       const response = (await this.http
-        .get(conf.ledgerlens.transactionSum, { headers })
+        .get(conf.ledgerlens.transactionSum, { headers, params: queries })
         .toPromise()) as any;
       return response.sum;
     } catch (err) {
@@ -40,15 +40,28 @@ export class LedgerlensService {
     }
   }
 
-  async getTransactionCount(token: string): Promise<any> {
+  async getTransactionCount(token: string, queries: any = {}): Promise<any> {
     const conf = await this.configService.get();
     const headers = { authorization: token };
 
     try {
       const response = (await this.http
-        .get(conf.ledgerlens.transactionCount, { headers })
+        .get(conf.ledgerlens.transactionCount, { headers, params: queries })
         .toPromise()) as any;
       return response.count;
+    } catch (err) {
+      await this.handleError(err, {});
+    }
+  }
+
+  async getTransactionCountByInterval(token: string, queries: any = {}): Promise<any> {
+    const conf = await this.configService.get();
+    const headers = { authorization: token };
+
+    try {
+      return await this.http
+        .get(conf.ledgerlens.transactionCountByInterval, { headers, params: queries })
+        .toPromise();
     } catch (err) {
       await this.handleError(err, {});
     }
