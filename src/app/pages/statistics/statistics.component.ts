@@ -4,6 +4,21 @@ import { LedgerlensService } from '../../services/ledgerlens.service';
 import { AuthService } from '../../services/auth.service';
 import { SnackService } from '../../services/snack.service';
 
+const monthNames = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
@@ -89,5 +104,18 @@ export class StatisticsComponent implements AfterViewInit {
       this.snack.error(err.message);
       return;
     }
+
+    const table: any[] = [['Time', 'Balance']];
+
+    let totalBal = 0;
+    Object.keys(result).forEach((time: string) => {
+      const date = new Date(parseInt(time, 10));
+      totalBal += result[time];
+
+      const truncYear = date.getFullYear().toString().slice(2);
+      table.push([`${monthNames[date.getMonth()]} ${date.getDate()}, '${truncYear}`, totalBal]);
+    });
+
+    this.balanceChart?.addAreaChart(table);
   }
 }
