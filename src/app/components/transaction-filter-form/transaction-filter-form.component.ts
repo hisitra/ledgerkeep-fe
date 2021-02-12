@@ -209,14 +209,14 @@ export class TransactionFilterFormComponent implements OnInit {
   private async loadQuery(): Promise<void> {
     return new Promise((resolve) => {
       this.route.queryParamMap.subscribe((params) => {
-        const startAmount = params.get('startAmount');
-        const endAmount = params.get('endAmount');
-        const startTime = params.get('startTime');
-        const endTime = params.get('endTime');
+        const startAmount = params.get('start_amount');
+        const endAmount = params.get('end_amount');
+        const startTime = params.get('start_time');
+        const endTime = params.get('end_time');
         const category = params.get('category');
-        const notesHint = params.get('notesHint');
-        const sortField = params.get('sortField');
-        const sortOrder = params.get('sortOrder');
+        const notesHint = params.get('notes_hint');
+        const sortField = params.get('sort_field');
+        const sortOrder = params.get('sort_order');
 
         try {
           if (startAmount !== null) {

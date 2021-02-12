@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="mid-align">
+    <div class="header">Chart Filter</div>
+    <span class="spacer"></span>
+    <button mat-icon-button (click)="onClose()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="filterForm" (submit)="onFormSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Start Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="startPicker"
+        id="startTimeInput"
+        formControlName="startTime"
+        autocomplete="off"
+      />
+      <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+      <mat-datepicker #startPicker></mat-datepicker>
+      <mat-error *ngIf="filterForm?.get('startTime')?.hasError('invalid')">
+        Invalid date.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>End Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="endPicker"
+        id="endTimeInput"
+        formControlName="endTime"
+        autocomplete="off"
+      />
+      <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+      <mat-datepicker #endPicker></mat-datepicker>
+      <mat-error *ngIf="filterForm?.get('endTime')?.hasError('invalid')"> Invalid date.</mat-error>
+      <mat-error
+        *ngIf="
+          !filterForm?.get('endTime')?.hasError('invalid') &&
+          filterForm?.get('endTime')?.hasError('tooLow')
+        "
+      >
+        Too Low.</mat-error
+      >
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Notes Hint</mat-label>
+      <input matInput type="text" autocomplete="off" formControlName="notesHint" />
+    </mat-form-field>
+    <br />
+    <div class="btn-div">
+      <button
+        mat-raised-button
+        type="button"
+        class="ok-btn"
+        color="primary"
+        (click)="onFormSubmit()"
+      >
+        OK
+      </button>
+      <button mat-raised-button type="button" (click)="onClear()">Clear</button>
+    </div>
+  </form>
+</div>
