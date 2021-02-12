@@ -12,6 +12,7 @@ export class ChartCardComponent implements OnInit {
   @Input() public title = '';
   @Input() public subtitle = '';
   @Input() public isChartLoading = false;
+  @Input() public moreLink = '';
 
   public chartHolderID = '';
   public isLoaded = false;
