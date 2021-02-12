@@ -107,7 +107,7 @@ export class TransactionsComponent implements AfterViewInit {
         (docs as any[]).map((value, index) => {
           return {
             id: value.transaction_id,
-            amount: value.amount,
+            amount: Math.round(value.amount * 100) / 100,
             date: value.timestamp,
             category: value.category,
             notes: value.notes,
