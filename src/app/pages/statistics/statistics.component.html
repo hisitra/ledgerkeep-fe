@@ -28,7 +28,7 @@
       title="Balance Chart"
       subtitle="Shows how your balance varied over time."
       [isChartLoading]="isBalanceLineLoading"
-      moreLink="/balance-line"
+      [showActions]="false"
     ></app-chart-card>
   </div>
   <div fxFlex="50" fxFlex.xs="34">
@@ -38,7 +38,7 @@
       title="Transaction Count Chart"
       subtitle="Shows how your transaction count varied over time."
       [isChartLoading]="isTransactionCountLineLoading"
-      moreLink="/transaction-count-line"
+      [showActions]="false"
     ></app-chart-card>
   </div>
 </div>
