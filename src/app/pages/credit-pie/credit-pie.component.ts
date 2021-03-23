@@ -18,6 +18,7 @@ export class CreditPieComponent implements AfterViewInit {
   displayedColumns: string[] = ['index', 'name', 'sum', 'percentage'];
   dataSource = new MatTableDataSource<any>();
   public isCreditPieLoading = true;
+  public total = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -64,6 +65,8 @@ export class CreditPieComponent implements AfterViewInit {
     Object.keys(result).forEach((cat) => {
       total += Math.round(Math.abs(result[cat]) * 100) / 100;
     });
+
+    this.total = total;
 
     const table: any[] = [['Category', 'Amount']];
     const data: any[] = [];

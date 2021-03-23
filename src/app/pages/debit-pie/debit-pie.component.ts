@@ -18,6 +18,7 @@ export class DebitPieComponent implements AfterViewInit {
   displayedColumns: string[] = ['index', 'name', 'sum', 'percentage'];
   dataSource = new MatTableDataSource<any>();
   public isDebitPieLoading = true;
+  public total = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -67,6 +68,7 @@ export class DebitPieComponent implements AfterViewInit {
 
     const table: any[] = [['Category', 'Amount']];
     const data: any[] = [];
+
     Object.keys(result).forEach((cat) => {
       const amount = Math.round(Math.abs(result[cat]) * 100) / 100;
       const percentage = Math.round((amount / total) * 100 * 100) / 100;
@@ -75,6 +77,7 @@ export class DebitPieComponent implements AfterViewInit {
       data.push({ name: cat, sum: amount, percentage });
     });
     this.dataSource.data = data;
+    this.total = total;
 
     this.debitPieChart?.addPieChart(table);
   }
