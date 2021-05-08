@@ -81,7 +81,7 @@ export class CategoriesComponent implements OnInit {
       tableData.push({ name: key, sum: Math.round(results[0][key] * 100) / 100 });
     });
 
-    (results[1] as any[]).forEach((entry) => {
+    ((results[1] || []) as any[]).forEach((entry) => {
       if (results[0].hasOwnProperty(entry)) {
         return;
       }
