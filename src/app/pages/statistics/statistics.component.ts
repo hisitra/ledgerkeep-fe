@@ -70,6 +70,7 @@ export class StatisticsComponent implements AfterViewInit {
       this.snack.error(err.message);
       return;
     }
+
     const table: any[] = [['Category', 'Amount']];
     Object.keys(result).forEach((cat) => {
       const amount = Math.round(Math.abs(result[cat]) * 100) / 100;
@@ -114,7 +115,7 @@ export class StatisticsComponent implements AfterViewInit {
 
     let totalBal = 0;
     Object.keys(result).forEach((time: string) => {
-      const date = new Date(parseInt(time, 10));
+      const date = new Date(time);
       totalBal += result[time];
 
       const truncYear = date.getFullYear().toString().slice(2);
@@ -139,7 +140,7 @@ export class StatisticsComponent implements AfterViewInit {
 
     let totalCount = 0;
     Object.keys(result).forEach((time: string) => {
-      const date = new Date(parseInt(time, 10));
+      const date = new Date(time);
       totalCount += result[time];
 
       const truncYear = date.getFullYear().toString().slice(2);

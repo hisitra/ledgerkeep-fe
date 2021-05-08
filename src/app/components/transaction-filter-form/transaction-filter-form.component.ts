@@ -108,7 +108,8 @@ export class TransactionFilterFormComponent implements OnInit {
   public sortables = [
     { name: 'Amount', value: 'amount' },
     { name: 'Date', value: 'timestamp' },
-    { name: 'Category', value: 'category' },
+    { name: 'Category', value: 'category_name' },
+    { name: 'Last Updated', value: 'doc_updated_at' },
   ];
 
   public filterForm: FormGroup;
@@ -253,8 +254,7 @@ export class TransactionFilterFormComponent implements OnInit {
     this.isCategoryLoading = true;
     const token = await this.authService.getToken();
     try {
-      const categories = (await this.ledgerlens.getCategories(token)) as any[];
-      this.catNames = categories.map((cat) => cat.name);
+      this.catNames = (await this.ledgerlens.getCategories(token)) as any[];
     } catch (err) {
       this.snack.error('Failed to load categories.');
     }

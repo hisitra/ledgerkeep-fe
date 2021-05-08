@@ -82,10 +82,10 @@ export class CategoriesComponent implements OnInit {
     });
 
     (results[1] as any[]).forEach((entry) => {
-      if (results[0].hasOwnProperty(entry.name)) {
+      if (results[0].hasOwnProperty(entry)) {
         return;
       }
-      tableData.push({ name: entry.name, sum: 0 });
+      tableData.push({ name: entry, sum: 0 });
     });
 
     this.dataSource.data = tableData;

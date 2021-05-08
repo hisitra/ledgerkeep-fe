@@ -66,7 +66,7 @@ export class TransactionsComponent implements AfterViewInit {
           ? this.paginator.pageSize
           : this.allowedLimits[0] || 10
         ).toString();
-        queries.ffset = (this.paginator
+        queries.offset = (this.paginator
           ? this.paginator.pageIndex * this.paginator.pageSize
           : 0
         ).toString();
@@ -109,7 +109,7 @@ export class TransactionsComponent implements AfterViewInit {
             id: value.transaction_id,
             amount: Math.round(value.amount * 100) / 100,
             date: value.timestamp,
-            category: value.category,
+            category: value.category_name,
             notes: value.notes,
           };
         }),
@@ -127,11 +127,14 @@ export class TransactionsComponent implements AfterViewInit {
         tx: row,
         onDelete: () => {
           this.dataSource.data = this.dataSource.data.filter((value, i) => i !== index);
+          if (this.paginator) {
+            this.paginator.length -= 1;
+          }
         },
         onUpdate: (body: any) => {
           row.amount = body.amount;
           row.date = new Date(body.timestamp);
-          row.category = body.category_name;
+          row.category = body.category;
           row.notes = body.notes;
 
           this.dataSource.data[index] = row;
@@ -147,8 +150,6 @@ export class TransactionsComponent implements AfterViewInit {
         onCreate: (data: any) => {
           data.date = data.timestamp;
           delete data.timestamp;
-          data.category = data.category_name;
-          delete data.category_name;
 
           this.dataSource.data = [data, ...this.dataSource.data];
           if (this.paginator) {

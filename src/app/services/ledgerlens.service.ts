@@ -20,7 +20,8 @@ export class LedgerlensService {
     const headers = { authorization: token };
 
     try {
-      return await this.http.get(conf.ledgerlens.user, { headers }).toPromise();
+      const response = (await this.http.get(conf.ledgerlens.user, { headers }).toPromise()) as any;
+      return response.data;
     } catch (err) {
       await this.handleError(err, {});
     }
@@ -34,7 +35,7 @@ export class LedgerlensService {
       const response = (await this.http
         .get(conf.ledgerlens.transactionSum, { headers, params: queries })
         .toPromise()) as any;
-      return response.sum;
+      return response?.data?.total;
     } catch (err) {
       await this.handleError(err, {});
     }
@@ -48,7 +49,7 @@ export class LedgerlensService {
       const response = (await this.http
         .get(conf.ledgerlens.transactionCount, { headers, params: queries })
         .toPromise()) as any;
-      return response.count;
+      return response?.data?.total;
     } catch (err) {
       await this.handleError(err, {});
     }
@@ -59,9 +60,10 @@ export class LedgerlensService {
     const headers = { authorization: token };
 
     try {
-      return await this.http
+      const response = (await this.http
         .get(conf.ledgerlens.transactionCountByInterval, { headers, params: queries })
-        .toPromise();
+        .toPromise()) as any;
+      return response?.data?.docs;
     } catch (err) {
       await this.handleError(err, {});
     }
@@ -72,9 +74,10 @@ export class LedgerlensService {
     const headers = { authorization: token };
 
     try {
-      return await this.http
+      const response = (await this.http
         .get(conf.ledgerlens.transactionSumByInterval, { headers, params: queries })
-        .toPromise();
+        .toPromise()) as any;
+      return response?.data?.docs;
     } catch (err) {
       await this.handleError(err, {});
     }
@@ -85,9 +88,10 @@ export class LedgerlensService {
     const headers = { authorization: token };
 
     try {
-      return await this.http
+      const response = (await this.http
         .get(conf.ledgerlens.transactionSumByCategory, { headers, params: queries })
-        .toPromise();
+        .toPromise()) as any;
+      return response?.data?.docs;
     } catch (err) {
       await this.handleError(err, {});
     }
@@ -101,7 +105,7 @@ export class LedgerlensService {
       const response = (await this.http
         .get(conf.ledgerlens.categoryCount, { headers })
         .toPromise()) as any;
-      return response.count;
+      return response?.data?.total;
     } catch (err) {
       await this.handleError(err, {});
     }
@@ -112,7 +116,10 @@ export class LedgerlensService {
     const headers = { authorization: token };
 
     try {
-      return (await this.http.get(conf.ledgerlens.category, { headers }).toPromise()) as any;
+      const response = (await this.http
+        .get(conf.ledgerlens.category, { headers })
+        .toPromise()) as any;
+      return response?.data?.docs;
     } catch (err) {
       await this.handleError(err, {});
     }
@@ -123,9 +130,10 @@ export class LedgerlensService {
     const headers = { authorization: token };
 
     try {
-      return (await this.http
+      const response = (await this.http
         .get(conf.ledgerlens.transaction, { headers, params: queries })
         .toPromise()) as any;
+      return response?.data;
     } catch (err) {
       await this.handleError(err, {});
     }

@@ -8,18 +8,19 @@ export interface ServiceConfig {
   };
   ledgerlens: {
     user: string;
-    transactionSum: string;
-    transactionCount: string;
-    categoryCount: string;
     category: string;
+    categoryCount: string;
     transaction: string;
+    transactionCount: string;
+    transactionCountByCategory: string;
     transactionCountByInterval: string;
+    transactionSum: string;
     transactionSumByCategory: string;
     transactionSumByInterval: string;
   };
   ledgerquill: {
-    transaction: string;
     category: string;
+    transaction: string;
   };
   validations: {
     categoryNamePattern: string;

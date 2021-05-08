@@ -46,7 +46,10 @@ export class LedgerquillService {
     const headers = { authorization: token };
 
     try {
-      return await this.http.post(conf.ledgerquill.transaction, body, { headers }).toPromise();
+      const response = (await this.http
+        .post(conf.ledgerquill.transaction, body, { headers })
+        .toPromise()) as any;
+      return response?.data;
     } catch (err) {
       await this.handleError(err, {});
     }

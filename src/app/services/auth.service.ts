@@ -22,7 +22,7 @@ export class AuthService {
 
   public getToken(): string {
     const token = localStorage.getItem(this.TOKEN_KEY);
-    return token === null ? '' : token;
+    return token === null ? '' : 'Bearer ' + token;
   }
 
   public setToken(token: string): void {

@@ -93,13 +93,13 @@ export class EditTransactionComponent implements OnInit {
     const body: any = {
       amount: (values.amountType === 'debit' ? -1 : 1) * Math.abs(values.amount),
       timestamp: values.date.getTime(),
-      category_name: values.category,
+      category: values.category,
       notes: values.notes || '',
     };
 
     const amountSame = this.transaction.amount === body.amount;
     const dateSame = this.transaction.date === body.timestamp;
-    const categorySame = this.transaction.category === body.category_name;
+    const categorySame = this.transaction.category === body.category;
     const notesSame = this.transaction.notes === body.notes;
     if (amountSame && dateSame && categorySame && notesSame) {
       this.snack.warn('No updates provided.');
@@ -149,8 +149,7 @@ export class EditTransactionComponent implements OnInit {
     this.isCategoryLoading = true;
     const token = await this.authService.getToken();
     try {
-      const categories = (await this.ledgerlens.getCategories(token)) as any[];
-      this.catNames = categories.map((cat) => cat.name);
+      this.catNames = (await this.ledgerlens.getCategories(token)) as any[];
     } catch (err) {
       this.snack.error('Failed to load categories.');
     }
