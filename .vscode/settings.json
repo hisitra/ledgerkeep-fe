@@ -1,0 +1,26 @@
+{
+  /** EDITOR BASED SETTINGS */
+  "editor.autoIndent": "advanced",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.detectIndentation": true,
+  "editor.formatOnSave": false,
+  "editor.formatOnPaste": false,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.useTabStops": true,
+  /** ESLINT BASED SETTINGS */
+  "eslint.alwaysShowStatus": true,
+  /** FILE BASED SETTINGS */
+  "files.eol": "\n",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  /** DEFAULT FORMATTER FOR TYPESCRIPT */
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  }
+  // ========================================================== //
+}
