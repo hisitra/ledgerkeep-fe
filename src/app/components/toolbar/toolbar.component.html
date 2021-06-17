@@ -1,7 +1,19 @@
-<mat-toolbar class="mat-elevation-z4">
+<mat-toolbar class="mat-elevation-z4 toolbar">
+  <button mat-icon-button *ngIf="authService.isLoggedIn()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
   <img class="toolbar-logo" src="assets/images/logo.png" alt="logo" />
   <a mat-button class="toolbar-title" routerLink="/home">
     <span>{{ applicationName }}</span>
   </a>
+
   <span class="spacer"></span>
+
+  <div class="toolbar-actions">
+    <!-- Logout Button (shown when person is logged in) -->
+    <button mat-button class="font-light" *ngIf="authService.isLoggedIn()">Logout</button>
+    <!-- Login Button (shown when person is not logged in) -->
+    <button mat-flat-button class="font-light" color="primary" *ngIf="!authService.isLoggedIn()">Login</button>
+  </div>
 </mat-toolbar>

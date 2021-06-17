@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class ToolbarComponent implements OnInit {
   public readonly applicationName = 'ledgerkeep';
 
-  constructor() {
+  constructor(public readonly authService: AuthService) {
     /* No empty functions allowed. */
   }
 

@@ -1,5 +1,13 @@
 @import variables
 
+.toolbar
+  /* Lesser horizontal padding on toolbar. */
+  padding: 0 4px
+
+.toolbar-logo
+  /* The toolbar logo should not go very close to left boundary. */
+  margin-left: 10px
+
 .toolbar-title
   /* Removing anchor tag styles. */
   text-decoration: inherit
@@ -9,13 +17,20 @@
   font-family: 'Rouge Script', cursive
   font-size: 30px
 
-  /* Spacing between the logog and the title. */
-  margin-left: 10px
+.spacer
+  /* Space between the title and toolbar actions. */
+  flex: 1 1 auto
 
+.toolbar-actions
+  /* The toolbar actions should not go very close to right boundary. */
+  margin-right: 10px
 
 @media screen and ( min-width: $min-medium-screen )
   .toolbar-logo
     /* Logo and title will be more toward the middle on big screens. */
     margin-left: 15%
 
-  
+  .toolbar-actions
+    /* Toolbar actions will be more toward the middle on big screens. */
+    margin-right: 15%
+
