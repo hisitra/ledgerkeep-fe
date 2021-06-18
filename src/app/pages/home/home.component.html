@@ -1,0 +1,54 @@
+<!-- Above the wave. -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
+      <div class="intro">
+        <h2 class="intro-title">ledgerkeep</h2>
+        <p>Manage your expenses intuitively.</p>
+        <button mat-flat-button class="font-light" color="primary">Login</button>
+      </div>
+    </div>
+    <div class="col-md-7 d-flex flex-column justify-content-center align-items-center">
+      <img class="intro-svg" src="assets/images/finance_app.svg" />
+    </div>
+  </div>
+</div>
+<!-- The wave. -->
+<img class="wave-svg" src="assets/images/layers.svg" />
+<!-- Below the wave. -->
+<div class="container">
+  <div class="row gy-5">
+    <!-- Add Expenses card. -->
+    <div class="col-lg-3 col-sm-6 col-xs-12 d-flex flex-column justify-content-center align-items-center">
+      <app-feature-card
+        imgSrc="assets/images/cash.svg"
+        title="Add Expenses."
+        body="Add expense logs into the system and track them."
+      ></app-feature-card>
+    </div>
+    <!-- Create Categories card. -->
+    <div class="col-lg-3 col-sm-6 col-xs-12 d-flex flex-column justify-content-center align-items-center">
+      <app-feature-card
+        imgSrc="assets/images/folder.svg"
+        title="Create Categories."
+        body="Categorize your expense log for cleaner management."
+      ></app-feature-card>
+    </div>
+    <!-- Perform Searches card. -->
+    <div class="col-lg-3 col-sm-6 col-xs-12 d-flex flex-column justify-content-center align-items-center">
+      <app-feature-card
+        imgSrc="assets/images/search.svg"
+        title="Perform Searches."
+        body="Find any log entry using extensive search capabilities."
+      ></app-feature-card>
+    </div>
+    <!-- Sketch Plots card. -->
+    <div class="col-lg-3 col-sm-6 col-xs-12 d-flex flex-column justify-content-center align-items-center">
+      <app-feature-card
+        imgSrc="assets/images/charts.svg"
+        title="Sketch Plots."
+        body="Visualize how your expense log changes over time."
+      ></app-feature-card>
+    </div>
+  </div>
+</div>

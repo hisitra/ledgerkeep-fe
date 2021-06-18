@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass'],
 })
 export class AppComponent {
-  title = 'ledgerkeep-fe';
+  public title = 'ledgerkeep';
+  public today = new Date();
 }

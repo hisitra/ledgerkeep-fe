@@ -1,0 +1,26 @@
+@import variables
+
+.intro-title
+  /* Special styles for the website title. */
+  font-family: 'Rouge Script', cursive
+  font-size: 50px
+
+.wave-svg
+  /* Wave should take full space. */
+  min-width: 100%
+
+/* Large screens. */
+@media screen and ( min-width: $max-small-screen )
+  .intro-svg
+    /* SVG top-bottom padding, so it does not touch the toolbar. */
+    padding-top: 30px
+    padding-bottom: 20px
+
+/* Small screens. */
+@media screen and ( max-width: $max-small-screen )
+  .intro
+    /* Intro text will be centered. */
+    text-align: center
+    /* Top-bottom padding, so it does not touch the toolbar. */
+    padding: 40px 0
+  
